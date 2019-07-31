@@ -12,6 +12,12 @@
     "express": "^4.17.1",
     "mongoose": "^5.6.7",
     "socket.io": "^2.2.0",
-    "ts-node": "^8.3.0"
+    "johnny-five": "^1.2.0",
+    "nodemon": "^1.19.1"
+  },
+  "devDependencies": {
+    "@types/johnny-five": "0.0.41",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
   }
 }
