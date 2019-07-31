@@ -6,7 +6,14 @@
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
+    // "strict": true,
+    "typeRoots": ["./node_modules/@types"],
     "resolveJsonModule": true,
-    "strict": true,
-  }
+  },
+  "include": [
+    "./"
+  ],
+  "files": [
+    "app.d.ts"
+  ]
 }
