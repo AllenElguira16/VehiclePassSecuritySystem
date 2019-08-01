@@ -3,6 +3,8 @@ import { View, StyleSheet } from 'react-native'
 import { Header, Text, Button, Card } from 'react-native-elements'
 import Permissions from 'expo-permissions'
 import { BarCodeScanner } from 'expo-barcode-scanner'
+import { Constants } from 'expo';
+import Axios from 'axios'
 
 export default () => {
   let [state, setState] = useState<AppStateInterface>({
@@ -38,6 +40,12 @@ export default () => {
     }
   }) 
   
+  let sendMsg = async () => {
+    // let {data} = await Axios.get('arduino/open-light')
+    // console.log(data);
+    console.log(Constants.manifest.split(':').shift().concat(`:8000`))
+  } 
+
   return (
     <View>
       <Header 
@@ -55,14 +63,16 @@ export default () => {
         <Text h4>QR Code Scanner</Text>
       }
       {/* <Card containerStyle={styles.card}> */}
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <BarCodeScanner
           onBarCodeScanned={handleBarCodeScanned}
           style={styles.card}
         />
-      </View>
+      </View> */}
       {/* </Card> */}
-
+      <View style={styles.qrCodeContainer}>
+        <Button title={'Send msg'} onPress={sendMsg} raised/>
+      </View>
       {state.scanned && (
         <Button title={'Tap to Scan Again'} onPress={() => setState({ scanned: false })} />
       )}
