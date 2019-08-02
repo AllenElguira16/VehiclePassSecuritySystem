@@ -31,6 +31,10 @@ target 'client' do
 
   use_unimodules!
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
+  pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
+
   target 'clientTests' do
     inherit! :search_paths
   end

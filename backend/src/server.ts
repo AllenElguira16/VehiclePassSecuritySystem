@@ -1,3 +1,4 @@
+import express from 'express'
 import { Server as overnightjsServer} from '@overnightjs/core'
 import controllers from './controllers';
 import cors from 'cors';
@@ -5,8 +6,13 @@ import cors from 'cors';
 class Server extends overnightjsServer{
   constructor() {
     super()
+    this.app.use(express.urlencoded({extended: true}))
+    this.app.use(express.json())
     this.app.use(cors({
-      credentials: true
+      origin: ['http://192.168.100.5:19000'],
+      methods: ['GET', 'POST', 'DELETE', 'PUT'],
+      credentials: true,
+      optionsSuccessStatus: 200
     }))
     this.app.set("json spaces", 2)
     super.addControllers(controllers)

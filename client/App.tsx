@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Dimensions } from 'react-native'
 import { Header, Text, Button, Card } from 'react-native-elements'
 import Permissions from 'expo-permissions'
 import { BarCodeScanner } from 'expo-barcode-scanner'
-import { Constants } from 'expo';
+import Constants from 'expo-constants';
 import Axios from 'axios'
+import { backendApi } from './helper';
 
 export default () => {
   let [state, setState] = useState<AppStateInterface>({
@@ -23,31 +24,21 @@ export default () => {
   };
 
   const styles = StyleSheet.create({
-    container: {
+    mainContainer: {
       flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'white'
-    },
-    card: {
-      // aspectRatio: 1
-      flex: 1,
-      aspectRatio: 1
-    },
-    qrCodeContainer: {
-      alignItems: 'center',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
     }
   }) 
   
   let sendMsg = async () => {
-    // let {data} = await Axios.get('arduino/open-light')
+    // await Axios.get(backendApi('/arduino/open-light'))
     // console.log(data);
-    console.log(Constants.manifest.split(':').shift().concat(`:8000`))
+    // console.log(ip)
   } 
 
   return (
-    <View>
+    <>
       <Header 
         leftComponent={{ icon: 'menu', color: '#FFF' }}
         centerComponent={{ text: 'Vehicle Pass Security System', style: { color: '#FFF', fontWeight: 'bold' } }}
@@ -62,21 +53,17 @@ export default () => {
       {state.hasCameraPermission === true && 
         <Text h4>QR Code Scanner</Text>
       }
-      {/* <Card containerStyle={styles.card}> */}
-      {/* <View style={styles.container}>
+      <View
+        style={styles.mainContainer}>
         <BarCodeScanner
-          onBarCodeScanned={handleBarCodeScanned}
-          style={styles.card}
+          onBarCodeScanned={state.scanned ? undefined : handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
         />
-      </View> */}
-      {/* </Card> */}
-      <View style={styles.qrCodeContainer}>
-        <Button title={'Send msg'} onPress={sendMsg} raised/>
+        {state.scanned && (
+          <Button title={'Tap to Scan Again'} onPress={() => setState({ scanned: false })} />
+        )}
       </View>
-      {state.scanned && (
-        <Button title={'Tap to Scan Again'} onPress={() => setState({ scanned: false })} />
-      )}
-    </View>
+    </>
   );
 
 }
