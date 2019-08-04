@@ -1,19 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View, StatusBar } from 'react-native';
+import { ThemeProvider, Header, Theme } from 'react-native-elements'
 
-export default function App() {
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <ThemeProvider theme={theme}>
+      <View>
+        {/* <StatusBar hidden={true} barStyle="light-content"/> */}
+        <Header
+          centerComponent={
+            <Text style={{
+              color: '#FFF'
+            }}>Vehicle Pass Security System - Scanner</Text>
+          }
+        />
+      </View>
+    </ThemeProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const theme: Theme = {
+  Header: {
+    containerStyle: {
+      backgroundColor: '#932842'
+    },
+    leftComponent: {
+      icon: "menu",
+      color: "#FFF"
+    }
+  }
+}

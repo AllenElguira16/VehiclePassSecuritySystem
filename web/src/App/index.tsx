@@ -1,13 +1,23 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import LandingPage from './LandingPage';
+import Navigation from 'Components/Navigation';
+import Footer from 'Components/Footer';
+import Home from './Home';
+import AboutUs from './AboutUs';
+import VehiclePass from './VehiclePass';
 
 export default () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/" component={LandingPage}/>
-      </Switch>
+      <Navigation/>
+      <main style={{minHeight: 450}}>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/about-us" component={AboutUs}/>
+          <Route exact path="/vehicle-pass" component={VehiclePass}/>
+        </Switch>
+      </main>
+      <Footer/>
     </BrowserRouter>
   );
 }

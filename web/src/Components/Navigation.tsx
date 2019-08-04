@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import logo from '../../Assets/images/LNULogo.png'
+import logo from 'Assets/images/LNULogo.png'
 
 export default () => {
   let [state, setState] = useState({
@@ -15,9 +15,9 @@ export default () => {
   return (
     <Navbar color="primary" dark expand="md" className="justify-content-between shadow-lg">
       <div className="container">
-        <NavbarBrand tag={Link} to="/">
+        <NavbarBrand tag={Link} to="/" className="d-flex align-items-center">
           <img src={logo} alt="Lyceum-Northwestern University"/>
-          <span className="ml-2">Vehicle Pass Security System</span>
+          <span className="ml-2 d-none d-sm-inline">Vehicle Pass Security System</span>
         </NavbarBrand>
         <NavbarToggler onClick={toggle}/>
         <Collapse isOpen={state.isOpen} navbar>
@@ -26,10 +26,13 @@ export default () => {
               <NavLink tag={Link} to="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/avail">Avail</NavLink>
+              <NavLink tag={Link} to="/dashboard/signin">Dashboard</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/about">About Us</NavLink>
+              <NavLink tag={Link} to="/vehicle-pass">Vehicle Pass</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/about-us">About Us</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
