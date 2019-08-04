@@ -1,2 +1,2 @@
 # VehiclePassSecuritySystem
- Vehicle Pass Security System is a ReactNative Based framework together with Arduino
+ Vehicle Pass Security System is a security system for lyceans

@@ -1,8 +1,9 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap';
-import logo from '../../../Assets/images/LNULogoFrontPage.png'
+// import logo from '../../../Assets/images/LNULogoFrontPage.png'
+import logo from 'Assets/images/LNULogoFrontPage.png';
 import { Link } from 'react-router-dom';
-import ItalicLink from '../../../Components/ItalicLink';
+import ItalicLink from 'Components/ItalicLink';
 
 export default () => {
   return (

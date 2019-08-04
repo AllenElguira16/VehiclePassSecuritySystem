@@ -18,9 +18,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@Components/*": ["./src/Components"]
+      "Components": ["./Components"]
     }
   },
   "include": [
