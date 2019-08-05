@@ -5,11 +5,12 @@ import Navigation from './Navigation';
 export default () => {
   return (
     <>
-      <Row>
+      
+      {/* <Row>
         <Col sm="2">
           <Navigation/>
         </Col>
-      </Row>
+      </Row> */}
     </>
   )
 }
