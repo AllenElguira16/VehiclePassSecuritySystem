@@ -1,9 +1,9 @@
 import React from 'react'
-import { Col } from 'reactstrap';
+import { Col, Jumbotron } from 'reactstrap';
 
 export default () => {
   return (
-    <footer className="bg-primary p-4">
+    <Jumbotron tag="footer" className="bg-primary">
       <div className="text-center text-white d-flex justify-content-center container">
         <Col sm="6">
           <h4>Vehicle Pass Security System</h4>
@@ -12,6 +12,6 @@ export default () => {
           <span>BSIT Students &copy; {(new Date()).getFullYear()}</span>
         </Col>
       </div>
-    </footer>
+    </Jumbotron>
   )
 }
