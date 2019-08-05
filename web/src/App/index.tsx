@@ -5,6 +5,7 @@ import Footer from 'Components/Footer';
 import Home from './Home';
 import AboutUs from './AboutUs';
 import VehiclePass from './VehiclePass';
+import Dashboard from './Dashboard';
 
 export default () => {
   return (
@@ -15,6 +16,7 @@ export default () => {
           <Route exact path="/" component={Home}/>
           <Route exact path="/about-us" component={AboutUs}/>
           <Route exact path="/vehicle-pass" component={VehiclePass}/>
+          <Route exact path="/dashboard/*" component={Dashboard}/>
         </Switch>
       </main>
       <Footer/>
