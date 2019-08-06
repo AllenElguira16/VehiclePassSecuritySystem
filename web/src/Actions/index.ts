@@ -1,16 +1,13 @@
-export function sendMessage(newMessage: any) {
+export const getUser = (id: string) => {
   return {
-    type: 'SEND_MESSAGE',
-    payload: newMessage
+    type: 'getUser',
+    payload: id
   }
 }
 
-// TypeScript infers that this function is returning DeleteMessageAction
-export function deleteMessage(timestamp: number) {
+export const createUser = (user: IUser) => {
   return {
-    type: 'DELETE_MESSAGE',
-    meta: {
-      timestamp
-    }
+    type: 'createUser',
+    payload: user
   }
 }

@@ -1,21 +1,6 @@
-const initialState: any = {
-  messages: []
-}
+import { combineReducers } from 'redux';
+import userReducer from './userReducer';
 
-export function chatReducer(
-  state = initialState,
-  action: any
-): any {
-  switch (action.type) {
-    case 'SEND_MESSAGE':
-      return {
-        messages: [...state.messages, action.payload]
-      }
-    case 'DELETE_MESSAGE':
-      return {
-        messages: state.messages.filter((message: any) => message.timestamp !== action.meta.timestamp)
-      }
-    default:
-      return state
-  }
-}
+export default combineReducers({
+  user: userReducer
+});

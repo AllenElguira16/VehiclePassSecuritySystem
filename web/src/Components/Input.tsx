@@ -1,30 +1,24 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState } from 'react';
 import { FormGroup, Input, FormGroupProps, Label } from 'reactstrap';
 
-export default (props: any) => {
-  const [state, setState] = useState<{isFloating?: boolean, value?: string}>({
-    isFloating: false,
-    value: ''
-  });
+export default (props: FormGroupProps) => {
+  const [state, setState] = useState(false);
   
   const onClick = () => {
-    setState({isFloating: true});
+    setState(true);
   }
 
   const onClose = () => {
-    if(state.value !== '') setState({isFloating: true});
+    if(props.value === '') setState(false);
   }
-
-  let onChange = (e: FormEvent<HTMLDivElement>) => {
-    if(e !== undefined) props.onChange(e);
-  }
-
-  let className = `bmd-form-group ${state.isFloating === true && "is-focused"}`;
+  
+  console.log(props.value);
+  let className = `bmd-form-group ${state === true && "is-focused"}`;
   
   return (
-    <FormGroup className={className} onFocus={onClick}>
+    <FormGroup className={className} onFocus={onClick} onBlur={onClose}>
       <Label for={props.placeholder} className="bmd-label-floating">{props.placeholder}</Label>
-      <Input id={props.placeholder} onChange={onChange} value={state.value} name={props.name} onBlur={onClose}/>
+      <Input type={props.type as any} id={props.placeholder} name={props.name} onChange={props.onChange} value={props.value}/>
     </FormGroup>
   )
 }

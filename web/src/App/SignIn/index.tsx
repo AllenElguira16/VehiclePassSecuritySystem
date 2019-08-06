@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { Form, FormGroup, Row, Label } from 'reactstrap';
+import { Form, Row, Container } from 'reactstrap';
 import Input from 'Components/Input';
 
 export default () => {
@@ -10,23 +10,21 @@ export default () => {
   
   const onInputChange = (e: FormEvent<HTMLInputElement>) => {
     let { name, value } = e.currentTarget;
-    setInputState({[name]: value});
+    setInputState({...inputState, [name]: value});
   }
 
   const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   }
 
-  console.log(inputState);
-
   return (
-    <>
+    <Container>
       <Form onSubmit={onFormSubmit}>
-        <Row form="true">
-          <Input placeholder="Username" name="username" onChange={onInputChange} value={inputState.username}/>
-          <Input placeholder="Password" name="password" onChange={onInputChange} value={inputState.password}/>
+        <Row>
+          <Input type="text" placeholder="Username" name="username" onChange={onInputChange} value={inputState.username}/>
+          <Input type="password" placeholder="Password" name="password" onChange={onInputChange} value={inputState.password}/>
         </Row>
       </Form>
-    </>
+    </Container>
   )
 }
