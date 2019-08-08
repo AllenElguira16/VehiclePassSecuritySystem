@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es5",
-    // "lib": ["esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -13,15 +12,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    // "jsx": "preserve",
     "typeRoots": ["./node_modules/@types"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "baseUrl": "./src",
   },
   "include": [
     "src"
-  ],
-  "files": [
-    "index.d.ts"
   ]
 }

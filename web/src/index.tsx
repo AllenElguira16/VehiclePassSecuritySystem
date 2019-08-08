@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './Assets/styles/index.scss';
 import App from './App'
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
-import Reducers from 'Reducers';
+import Axios from 'axios';
 import { Provider } from 'react-redux';
+import store from 'store';
 
-const store = createStore(Reducers);
+
+
+Axios.defaults.baseURL = 'http://localhost:8000/api';
+Axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <Provider store={store}>

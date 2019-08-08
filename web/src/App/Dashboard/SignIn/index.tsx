@@ -1,14 +1,12 @@
 import React, { useState, FormEvent } from 'react';
-import { Form, Row, Container } from 'reactstrap';
 import Input from 'Components/Input';
+import { Form, CardBody, Container, Button, FormGroup, Card, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { getUser } from 'Actions';
+import { signIn } from 'Actions';
+import { RouteComponentProps } from 'react-router';
+// import { Route } from 'react-router-dom';
 
-// const mapStateToProps = 
-
-const SignIn = (props: any) => {
-  
+const SignIn: React.FC<SignInProps & RouteComponentProps> = (props) => {
   let [inputState, setInputState] = useState<IUser>({
     username: '',
     password: ''
@@ -21,27 +19,34 @@ const SignIn = (props: any) => {
   
   const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    props.signIn(inputState, (error) => {
+      if(!error) {
+        props.history.push('/')
+      }
+    })
   }
   
-  console.log(props.user);
   return (
-    <Container>
-      <Form onSubmit={onFormSubmit}>
-        <Row>
-          <Input type="text" placeholder="Username" name="username" onChange={onInputChange} value={inputState.username}/>
-          <Input type="password" placeholder="Password" name="password" onChange={onInputChange} value={inputState.password}/>
-        </Row>
-      </Form>
+    <Container className="d-flex justify-content-center">
+      <Col sm="6">
+        <Card>
+          <CardBody>
+            <Form onSubmit={onFormSubmit}>
+              <Input type="text" placeholder="Username" name="username" onChange={onInputChange} value={inputState.username}/>
+              <Input type="password" placeholder="Password" name="password" onChange={onInputChange} value={inputState.password}/>
+              <FormGroup>
+                <Button type="submit" className="btn-raised">Send</Button>
+              </FormGroup>
+            </Form>
+          </CardBody>
+        </Card>
+      </Col>
     </Container>
   )
 }
 
-export default connect((state: any) => {
+export default connect((state: combinedReducerInterface) => {
   return {
-    user: state.user
+    isLoggedIn: state.auth.isLoggedIn
   } 
-}, (dispatch) => {
-  return {
-    getUser: (user: any) => disp
-  }
-})(SignIn);
+}, {signIn})(SignIn);
