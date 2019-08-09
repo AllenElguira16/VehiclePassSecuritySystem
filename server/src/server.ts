@@ -22,7 +22,7 @@ class Server extends overnightjsServer{
     this.app.use(express.urlencoded({extended: true}));
     this.app.use(express.json());
     this.app.use(cors({
-      origin: ['http://192.168.100.5:19000', 'http://192.168.100.5:3000'],
+      origin: ['http://192.168.100.5:19000', 'http://192.168.100.5:3000', 'http://localhost:3000'],
       methods: ['GET', 'POST', 'DELETE', 'PUT'],
       credentials: true,
       optionsSuccessStatus: 200
