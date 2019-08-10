@@ -1,53 +1,73 @@
-import express from 'express'
-import controllers from './controllers';
-import cors from 'cors';
-import session from 'express-session';
-import mongoose from 'mongoose';
-import connectMongo from 'connect-mongo';
-import { Server as overnightjsServer} from '@overnightjs/core'
+import { Server as overnightjsServer } from "@overnightjs/core";
+import controllers from "./Controllers";
+import connectMongo from "connect-mongo";
+import cors from "cors";
+import express from "express";
+import mongoose from "mongoose";
+import session from "express-session";
 
-class Server extends overnightjsServer{
+class Server extends overnightjsServer {
   constructor() {
     super();
-    let mongoInstance = connectMongo(session);
-    mongoose.connect(this.mongoKey);
+    const mongoInstance = connectMongo(session);
+    this.connectToDB();
     this.use(mongoInstance);
     this.app.set("json spaces", 2);
     super.addControllers(controllers);
   }
-  
-  private mongoKey = 'mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/socialapp?retryWrites=true&w=majority';
 
-  private use(mongoInstance: any) {
-    this.app.use(express.urlencoded({extended: true}));
-    this.app.use(express.json());
-    this.app.use(cors({
-      origin: ['http://192.168.100.5:19000', 'http://192.168.100.5:3000', 'http://localhost:3000'],
-      methods: ['GET', 'POST', 'DELETE', 'PUT'],
-      credentials: true,
-      optionsSuccessStatus: 200
-    }));
-    this.app.use(session({
-      secret: 'the-greatest-secret-key',
-      resave: false,
-      saveUninitialized: true,
-      store: new mongoInstance({
-        mongooseConnection: mongoose.connection
-      })
-    }));
+  private async connectToDB() {
+    const mongoKey =
+      "mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority";
+    try {
+      await mongoose.connect(mongoKey, {
+        useNewUrlParser: true,
+        useFindAndModify: false
+      });
+      console.log("MongoDB Connected Successfully");
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  public start(port: Number) {
+  private use(mongoInstance: any) {
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(express.json());
+    this.app.use(
+      cors({
+        origin: [
+          "http://192.168.100.5:19000",
+          "http://192.168.100.5:3000",
+          "http://localhost:3000"
+        ],
+        methods: ["GET", "POST", "DELETE", "PUT"],
+        credentials: true,
+        optionsSuccessStatus: 200
+      })
+    );
+    this.app.use(
+      session({
+        secret: "the-greatest-secret-key",
+        resave: false,
+        saveUninitialized: true,
+        store: new mongoInstance({
+          mongooseConnection: mongoose.connection
+        }),
+        cookie: {
+          sameSite: true,
+          secure: false
+        }
+      })
+    );
+  }
+
+  public start(port: number) {
     this.app.listen(port, () => {
-      console.log('\x1Bc')
-      console.clear()
-      console.log('Compiling...')
       setTimeout(() => {
-        console.clear()
-        console.log(`Server started on port ${port}`)
-      }, 1000)
-    })
+        console.log(`Server started on port ${port}`);
+      }, 1000);
+    });
   }
 }
 
-(new Server()).start(8000);
+new Server().start(8000);

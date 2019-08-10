@@ -1,6 +1,6 @@
 {
   "watch": ["./src"],
   "ext": "ts",
-  "exec": "npx ts-node --files ./src/server.ts",
+  "exec": "npx clear && npx tslint ./src/**/*.ts && npx ts-node --files ./src/server.ts",
   "quiet": true
 }

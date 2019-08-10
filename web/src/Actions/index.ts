@@ -1,32 +1,35 @@
-import Axios from 'axios';
-import { Dispatch } from 'redux';
+import Axios from "axios";
+import { Dispatch } from "redux";
 
-export const signIn = (user: IUser, callback: callbackWithError) => async (dispatch: Dispatch<ReduxActionInterface>) => {
-  let {data} = await Axios.post('/user', user);
-  if(!data.error) {
+export const signIn = (user: IUser, callback: callbackWithError) => async (
+  dispatch: Dispatch<ReduxActionInterface>
+) => {
+  let { data } = await Axios.post("/user", user);
+  console.log(data);
+  if (!data.error) {
     dispatch({
-      type: 'setAsLoggedIn',
+      type: "setAsLoggedIn",
       data: true
-    })
+    });
     callback();
   } else {
     callback(data.error);
   }
-}
+};
 
 export const getUser = () => async (dispatch: any) => {
-  let {data} = await Axios.get('/user');
-  if(!data.error) {
+  let { data } = await Axios.get("/user");
+  if (!data.error) {
     dispatch({
-      type: 'getUser',
+      type: "getUser",
       data
     });
   }
-}
+};
 
 export const createUser = (user: IUser) => {
   return {
-    type: 'createUser',
+    type: "createUser",
     payload: user
-  }
-}
+  };
+};

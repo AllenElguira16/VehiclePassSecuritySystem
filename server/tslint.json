@@ -1,0 +1,16 @@
+{
+  "defaultSeverity": "warn",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier"
+  ],
+  "rules": {
+    "quotemark": [true, "double"],
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "member-ordering": false,
+    "no-console": false,
+    "no-shadowed-variable": false
+  }
+}

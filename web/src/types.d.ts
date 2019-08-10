@@ -1,32 +1,31 @@
-interface IUser{
+interface IUser {
   _id?: string;
   username?: string;
   password?: string;
 }
 
 // store state
-interface iStore{
-  user?: IUser
+interface iStore {
+  user?: IUser;
 }
 
-
-interface ReduxActionInterface{
+interface ReduxActionInterface {
   type: string;
   data: any; //Payload
 }
 
-interface combinedReducerInterface{
-  auth: authState
+interface combinedReducerInterface {
+  auth: authState;
 }
 
 type callbackWithError = (error?: any) => any;
 
-interface SignInProps{
+interface SignInProps {
   auth: authReducerState;
   signIn(user: IUser, callback: callbackWithError): any;
 }
 
-interface authState{
+interface authState {
   user: IUser;
   isLoggedIn: boolean;
 }

@@ -1,23 +1,27 @@
 {
   "compilerOptions": {
+    "outDir": "build",
     "target": "es5",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "build": false,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    // "noEmit": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": "./src",
-    "typeRoots": ["./node_modules/@types"]
+    "baseUrl": "src",
+    "typeRoots": ["./node_modules/@types"],
+    "paths": {
+      "@/*": ["*"]
+    }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "build"]
 }

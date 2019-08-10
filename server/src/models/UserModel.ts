@@ -1,6 +1,9 @@
-import { Schema, Document, model } from 'mongoose';
+import { Schema, Document, model } from "mongoose";
 
-export default model<iUser & Document>('user', new Schema<iUser>({
-  username: { type: String },
-  password: { type: String }
-}));
+export default model<IUser & Document>(
+  "user",
+  new Schema<IUser>({
+    username: { type: String },
+    password: { type: String }
+  })
+);

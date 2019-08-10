@@ -1,9 +1,8 @@
-import React from 'react';
-import { Row, Col } from 'reactstrap';
-import SignIn from 'App/Dashboard/SignIn';
-import Navigation from './Navigation';
-import { Route } from 'react-router-dom';
-
+import React from "react";
+// import { Row, Col } from "reactstrap";
+import SignIn from "App/Dashboard/SignIn";
+// import Navigation from "./Navigation";
+import { Route } from "react-router-dom";
 
 export default () => {
   return (
@@ -13,7 +12,7 @@ export default () => {
           <Navigation/>
         </Col>
       </Row> */}
-      <Route path="/dashboard/signin" component={SignIn}/>
+      <Route path="/dashboard/signin" component={SignIn} />
     </>
-  )
-}
+  );
+};
