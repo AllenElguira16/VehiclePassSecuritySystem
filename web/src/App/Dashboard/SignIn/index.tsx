@@ -30,7 +30,7 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
     e.preventDefault();
     props.signIn(inputState, error => {
       if (!error) {
-        props.history.push("/");
+        props.history.push("/dashboard");
       }
     });
   };

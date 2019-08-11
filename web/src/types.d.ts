@@ -25,6 +25,11 @@ interface SignInProps {
   signIn(user: IUser, callback: callbackWithError): any;
 }
 
+interface DashboardProps {
+  isLoggedIn: boolean;
+  setAsLoggedIn(): any;
+}
+
 interface authState {
   user: IUser;
   isLoggedIn: boolean;

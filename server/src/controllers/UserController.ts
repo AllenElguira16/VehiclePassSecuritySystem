@@ -10,6 +10,7 @@ class UserController {
     if (request.session) {
       if (request.session.user)
         return response.json({ ...request.session.user });
+      return response.json({ error: true });
     }
     return response.json({ error: true });
   }
@@ -28,14 +29,6 @@ class UserController {
         return response.json({ success: true });
       });
     }
-    // hash(password, 10, (error, hash) => {
-    //   if (error) return response.json({ error });
-    //   const userModel = new UserModel({ username, password: hash });
-    //   userModel.save((error: any) => {
-    //     if (error) return response.json({ error });
-    //     return response.send({ success: true });
-    //   });
-    // });
   }
 }
 

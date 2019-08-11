@@ -43,7 +43,7 @@ export default () => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/dashboard/signin">
+              <NavLink tag={Link} to="/dashboard">
                 Dashboard
               </NavLink>
             </NavItem>

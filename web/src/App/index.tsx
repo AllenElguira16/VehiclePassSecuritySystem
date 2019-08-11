@@ -16,7 +16,7 @@ export default () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={AboutUs} />
           <Route exact path="/vehicle-pass" component={VehiclePass} />
-          <Route exact path="/dashboard/*" component={Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
         </Switch>
       </main>
       <Footer />
