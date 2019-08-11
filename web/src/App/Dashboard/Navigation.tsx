@@ -7,7 +7,7 @@ export default () => {
     // <Navbar color="white" className="h-100">
     <Nav vertical color="white" className="h-100">
       <NavItem>
-        <NavLink tag={Link} to="/dashboard/add-user">
+        <NavLink tag={Link} to="/dashboard">
           Home
         </NavLink>
       </NavItem>
@@ -26,7 +26,7 @@ export default () => {
           <NavLink tag={Link} to="/dashboard/add-user">Add User</NavLink>
         </NavItem> */}
       <NavItem>
-        <NavLink tag={Link} to="/dashboard/add-user">
+        <NavLink tag={Link} to="/dashboard/sign-out">
           Sign Out
         </NavLink>
       </NavItem>

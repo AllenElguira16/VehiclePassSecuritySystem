@@ -5,7 +5,6 @@ export const signIn = (user: IUser, callback: callbackWithError) => async (
   dispatch: Dispatch<ReduxActionInterface>
 ) => {
   let { data } = await Axios.post("/user", user);
-  console.log(data);
   if (!data.error) {
     dispatch({
       type: "setAsLoggedIn",
@@ -21,22 +20,5 @@ export const setAsLoggedIn = () => {
   return {
     type: "setAsLoggedIn",
     data: true
-  };
-};
-
-export const getUser = () => async (dispatch: any) => {
-  let { data } = await Axios.get("/user");
-  if (!data.error) {
-    dispatch({
-      type: "getUser",
-      data
-    });
-  }
-};
-
-export const createUser = (user: IUser) => {
-  return {
-    type: "createUser",
-    payload: user
   };
 };
