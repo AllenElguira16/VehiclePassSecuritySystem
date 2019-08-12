@@ -7,31 +7,27 @@ import { connect } from "react-redux";
 import Axios from "axios";
 import State from "App/Dashboard/State";
 import Props from "App/Dashboard/Props";
+import Loader from "Components/Loader";
 
 const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
-  const [state, setState] = React.useState({
-    loading: true
-  });
+  let [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    const fetchLoggedIn = async () => {
+    (async () => {
       let { data } = await Axios.get("/user");
       if (!data.error) {
         props.setAsLoggedIn();
       }
-      setState({loading: false});
-    };
-    fetchLoggedIn();
+    })();
     return () => {
-      console.log('unmounted');
-      console.log(props);
-    }
-  });
-
+      setLoading(false);
+    };
+    // fetchLoggedIn();
+  }, [props]);
 
   if (!props.isLoggedIn) {
-    if (!props.isLoggedIn && state.loading) return <div>Loading</div>;
-    return <Route path="/dashboard/signin" component={SignIn} />;
+    if (!props.isLoggedIn && loading) return <Loader />;
+    return <Route component={SignIn} />;
   }
 
   return (
