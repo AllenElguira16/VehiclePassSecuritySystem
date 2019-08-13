@@ -18,11 +18,9 @@ interface combinedReducerInterface {
   auth: authState;
 }
 
-type callbackWithError = (error?: any) => any;
-
 interface SignInProps {
   auth: authReducerState;
-  signIn(user: IUser, callback: callbackWithError): any;
+  signIn(): any;
 }
 
 interface DashboardProps {

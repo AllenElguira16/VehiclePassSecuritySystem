@@ -11,8 +11,9 @@ import {
   CardHeader
 } from "reactstrap";
 import { connect } from "react-redux";
-import { signIn } from "Actions";
+import { signIn } from "Redux/Actions";
 import { RouteComponentProps } from "react-router";
+import Axios from "axios";
 // import { Route } from 'react-router-dom';
 
 const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
@@ -26,13 +27,12 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
     setInputState({ ...inputState, [name]: value });
   };
 
-  const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.signIn(inputState, error => {
-      if (!error) {
-        props.history.push("/dashboard");
-      }
-    });
+    let { data } = await Axios.post("/user", inputState);
+    if (!data.error) {
+      props.signIn();
+    }
   };
 
   return (

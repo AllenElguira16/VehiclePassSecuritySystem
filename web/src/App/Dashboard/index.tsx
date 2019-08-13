@@ -3,11 +3,9 @@ import { Row, Col, Container, Card, CardBody } from "reactstrap";
 import SignIn from "App/Dashboard/SignIn";
 import Navigation from "./Navigation";
 import { Route, RouteComponentProps } from "react-router-dom";
-import { connect } from "react-redux";
 import Axios from "axios";
-import State from "App/Dashboard/State";
-import Props from "App/Dashboard/Props";
 import Loader from "Components/Loader";
+import DashboardContainer from "./DashboardContainer";
 
 const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
   let [loading, setLoading] = React.useState(true);
@@ -18,10 +16,10 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
       if (!data.error) {
         props.setAsLoggedIn();
       }
-    })();
-    return () => {
       setLoading(false);
-    };
+    })();
+    // return () => {
+    // };
     // fetchLoggedIn();
   }, [props]);
 
@@ -45,7 +43,4 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
   );
 };
 
-export default connect(
-  State,
-  Props
-)(Dashboard);
+export default DashboardContainer(Dashboard);
