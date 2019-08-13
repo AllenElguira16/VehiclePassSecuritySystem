@@ -15,6 +15,22 @@ class UserController {
     return response.json({ error: true });
   }
 
+  @Post("add")
+  public addUser(request: Request, response: Response) {
+    if (
+      request.body.employeeId === "" ||
+      request.body.firstname === "" ||
+      request.body.lastname === ""
+    ) {
+      return response.json({ error: "All inputs are required" });
+    }
+    const user = new UserModel(request.body);
+    user.save((error, newUser) => {
+      if (error) return response.json({ error });
+      return response.json({id: newUser._id});
+    });
+  }
+
   @Post()
   public async signIn(request: Request, response: Response) {
     const { username, password }: IUser = request.body;

@@ -2,9 +2,7 @@ import React from "react";
 import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import ItalicLink from "Components/ItalicLink";
-import logo from "Assets/images/LNULogoFrontPage.png";
-
-// import { Route } from 'react-router-dom';
+import logo from "Assets/images/LNULogoFrontPage.webp";
 
 export default () => {
   return (

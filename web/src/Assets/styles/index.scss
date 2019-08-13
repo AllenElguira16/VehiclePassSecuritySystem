@@ -1,20 +1,24 @@
+@import "./theme";
+@import "~bootstrap-material-design/scss/bootstrap-material-design";
+// @import "~material-design-icons/iconfont/material-icons.css";
 
-@import './theme';
-@import '~bootstrap-material-design/scss/bootstrap-material-design';
-
-.lnu-text{
-  font-family: 'Times New Roman', Times, serif;
+.lnu-text {
+  font-family: "Times New Roman", Times, serif;
 }
 
-.lnu-banner{
-  background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('../images/LNUBanner.jpg') no-repeat center center;
+.lnu-banner {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    url("../images/LNUBanner.webp") no-repeat center center;
   background-size: cover;
 }
 
-.text-white-shadow{
+.text-white-shadow {
   text-shadow: 1px 2px #932842;
 }
 
-.text-primary-shadow{
-  text-shadow: 1px 2px #A15D71;
+.text-primary-shadow {
+  text-shadow: 1px 2px #a15d71;
 }

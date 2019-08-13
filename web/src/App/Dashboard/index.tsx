@@ -6,6 +6,7 @@ import { Route, RouteComponentProps } from "react-router-dom";
 import Axios from "axios";
 import Loader from "Components/Loader";
 import DashboardContainer from "./DashboardContainer";
+import Add from "./Add";
 
 const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
   let [loading, setLoading] = React.useState(true);
@@ -18,9 +19,6 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
       }
       setLoading(false);
     })();
-    // return () => {
-    // };
-    // fetchLoggedIn();
   }, [props]);
 
   if (!props.isLoggedIn) {
@@ -33,8 +31,11 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
       <Card>
         <CardBody>
           <Row>
-            <Col sm="2">
+            <Col lg="2">
               <Navigation />
+            </Col>
+            <Col lg="10">
+              <Route path="/dashboard/add" component={Add} />
             </Col>
           </Row>
         </CardBody>

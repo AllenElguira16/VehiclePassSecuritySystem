@@ -9,8 +9,12 @@ export default (props: FormGroupProps) => {
   };
 
   const onClose = () => {
-    if (props.value === "") setState(false);
+    if (props.value === "" || props.value === undefined) setState(false);
   };
+
+  if (props.value === undefined) {
+    throw new Error("Value should not be undefined");
+  }
 
   return (
     <FormGroup
@@ -22,6 +26,7 @@ export default (props: FormGroupProps) => {
         {props.placeholder}
       </Label>
       <Input
+        tabIndex={props.tabIndex}
         type={props.type as any}
         id={props.placeholder}
         name={props.name}

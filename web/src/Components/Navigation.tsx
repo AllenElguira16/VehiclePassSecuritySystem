@@ -6,10 +6,11 @@ import {
   Collapse,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Container
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import logo from "Assets/images/LNULogo.png";
+import logo from "Assets/images/LNULogo.webp";
 
 export default () => {
   let [state, setState] = useState({
@@ -27,8 +28,13 @@ export default () => {
       expand="lg"
       className="justify-content-between shadow-lg"
     >
-      <div className="container">
-        <NavbarBrand tag={Link} to="/" className="d-flex align-items-center">
+      <Container>
+        <NavbarBrand
+          tag={Link}
+          to="/"
+          className="d-flex align-items-center"
+          tabIndex={-1}
+        >
           <img src={logo} alt="Lyceum-Northwestern University" />
           <span className="ml-2 d-none d-sm-inline">
             Vehicle Pass Security System
@@ -38,28 +44,28 @@ export default () => {
         <Collapse isOpen={state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink tag={Link} to="/">
+              <NavLink tag={Link} to="/" tabIndex={-1}>
                 Home
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/dashboard">
+              <NavLink tag={Link} to="/dashboard" tabIndex={-1}>
                 Dashboard
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/vehicle-pass">
+              <NavLink tag={Link} to="/vehicle-pass" tabIndex={-1}>
                 Vehicle Pass
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/about-us">
+              <NavLink tag={Link} to="/about-us" tabIndex={-1}>
                 About Us
               </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
-      </div>
+      </Container>
     </Navbar>
   );
 };

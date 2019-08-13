@@ -12,19 +12,10 @@ export default () => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink tag={Link} to="/dashboard/add-user">
-          Add User
+        <NavLink tag={Link} to="/dashboard/add">
+          Add
         </NavLink>
       </NavItem>
-      {/* <NavItem>
-          <NavLink tag={Link} to="/dashboard/add-user">Add User</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to="/dashboard/add-user">Add User</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to="/dashboard/add-user">Add User</NavLink>
-        </NavItem> */}
       <NavItem>
         <NavLink tag={Link} to="/dashboard/sign-out">
           Sign Out

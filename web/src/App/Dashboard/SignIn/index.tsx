@@ -48,6 +48,7 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
                 name="username"
                 onChange={onInputChange}
                 value={inputState.username}
+                tabIndex={1}
               />
               <Input
                 type="password"
@@ -55,9 +56,15 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
                 name="password"
                 onChange={onInputChange}
                 value={inputState.password}
+                tabIndex={2}
               />
               <FormGroup>
-                <Button type="submit" color="primary" className="btn-raised">
+                <Button
+                  type="submit"
+                  color="primary"
+                  className="btn-raised"
+                  tabIndex={3}
+                >
                   Send
                 </Button>
               </FormGroup>
