@@ -1,26 +1,34 @@
 import React from "react";
-import { Nav, NavItem, NavLink } from "reactstrap";
+import {
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 import { Link } from "react-router-dom";
 
 export default () => {
   return (
     // <Navbar color="white" className="h-100">
-    <Nav vertical color="white" className="h-100">
-      <NavItem>
-        <NavLink tag={Link} to="/dashboard">
-          Home
-        </NavLink>
-      </NavItem>
+    <Nav color="white" tabs>
       <NavItem>
         <NavLink tag={Link} to="/dashboard/add">
           Add
         </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink tag={Link} to="/dashboard/sign-out">
-          Sign Out
-        </NavLink>
-      </NavItem>
+      <UncontrolledDropdown nav>
+        <DropdownToggle nav caret>
+          Settings
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem header>Options</DropdownItem>
+          <DropdownItem>Account Settings</DropdownItem>
+          <DropdownItem>Sign Out</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
     </Nav>
     // </Navbar>
   );

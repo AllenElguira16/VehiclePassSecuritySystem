@@ -30,14 +30,14 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
     <Container className="mt-5">
       <Card>
         <CardBody>
-          <Row>
-            <Col lg="2">
-              <Navigation />
-            </Col>
-            <Col lg="10">
-              <Route path="/dashboard/add" component={Add} />
-            </Col>
-          </Row>
+          {/* <Row>
+            <Col lg="2"> */}
+          <Navigation />
+          {/* </Col>
+            <Col lg="10"> */}
+          <Route path="/dashboard/add" component={Add} />
+          {/* </Col>
+          </Row> */}
         </CardBody>
       </Card>
     </Container>
