@@ -6,7 +6,13 @@ import UserModel from "../Models/UserModel";
 @Controller("api/user")
 class UserController {
   @Get()
-  public getUser(request: Request, response: Response) {
+  public async getList(request: Request, response: Response) {
+    const user = await UserModel.find();
+    return response.json(user);
+  }
+
+  @Get("auth")
+  public getAuthUser(request: Request, response: Response) {
     if (request.session) {
       if (request.session.user)
         return response.json({ ...request.session.user });
@@ -17,6 +23,7 @@ class UserController {
 
   @Post("add")
   public addUser(request: Request, response: Response) {
+    return response.json(request.body);
     if (
       request.body.employeeId === "" ||
       request.body.firstname === "" ||
@@ -27,7 +34,7 @@ class UserController {
     const user = new UserModel(request.body);
     user.save((error, newUser) => {
       if (error) return response.json({ error });
-      return response.json({id: newUser._id});
+      return response.json({ id: newUser._id });
     });
   }
 
