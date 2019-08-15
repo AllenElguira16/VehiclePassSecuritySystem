@@ -15,13 +15,15 @@ export default () => {
     // <Navbar color="white" className="h-100">
     <Nav color="white" tabs>
       <NavItem>
-        <NavLink tag={Link} to="/dashboard/add">
-          Add
+        <NavLink tag={Link} to="/dashboard/add" tabIndex={-1} className="vertical-centered">
+          <i className="material-icons pr-2">person_add</i>
+          <span>Add</span>
         </NavLink>
       </NavItem>
-      <UncontrolledDropdown nav>
-        <DropdownToggle nav caret>
-          Settings
+      <UncontrolledDropdown nav tabIndex={-1}>
+        <DropdownToggle nav caret tabIndex={-1} className="vertical-centered">
+          <i className="material-icons pr-2">settings</i>
+          <span>Settings</span>
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem header>Options</DropdownItem>

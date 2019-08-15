@@ -36,7 +36,7 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
   };
 
   return (
-    <Container className="mt-5 d-flex justify-content-center">
+    <Container className="mt-5 d-flex horizontal-center">
       <Col lg="6">
         <Card>
           <CardHeader tag="h6">Dashboard Sign-in</CardHeader>

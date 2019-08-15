@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Input from "Components/Input";
-import { Row, Button, Col, Form } from "reactstrap";
+import { Row, Button, Col, Form, Alert } from "reactstrap";
 import QRCodeModal from "./QRCodeModal";
 import Axios from "axios";
 
 const Add: React.FC = () => {
+  const [error, setError] = useState('');
   const [user, setUser] = useState({
     id: "",
     employeeId: "",
@@ -24,6 +25,8 @@ const Add: React.FC = () => {
     if (!data.error) {
       setUser({ ...user, id: data.id });
       setModalToggle(true);
+    } else if(data.error){
+      setError(data.error);
     }
   };
 
@@ -63,6 +66,7 @@ const Add: React.FC = () => {
               />
             </Col>
           </Row>
+          {error.length !== 0 && <Alert color="danger">{error}</Alert>}
           <Button type="submit" color="primary" className="btn-raised">
             Add
           </Button>

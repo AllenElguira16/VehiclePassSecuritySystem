@@ -1,6 +1,6 @@
 @import "./theme";
 @import "~bootstrap-material-design/scss/bootstrap-material-design";
-// @import "~material-design-icons/iconfont/material-icons.css";
+@import "~material-design-icons/iconfont/material-icons.css";
 
 .lnu-text {
   font-family: "Times New Roman", Times, serif;
@@ -21,4 +21,14 @@
 
 .text-primary-shadow {
   text-shadow: 1px 2px #a15d71;
+}
+
+.vertical-centered {
+  @extend .d-flex;
+  @extend .align-items-center;
+}
+
+.horizontal-center {
+  @extend .d-flex;
+  @extend .justify-content-center;
 }

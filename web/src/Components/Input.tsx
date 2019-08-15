@@ -32,6 +32,7 @@ export default (props: FormGroupProps) => {
         name={props.name}
         onChange={props.onChange}
         value={props.value}
+        autoComplete="off"
       />
     </FormGroup>
   );

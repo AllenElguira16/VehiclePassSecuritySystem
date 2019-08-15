@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Container, Card, CardBody } from "reactstrap";
+import { Container, Card, CardBody, Col } from "reactstrap";
 import SignIn from "App/Dashboard/SignIn";
 import Navigation from "./Navigation";
 import { Route, RouteComponentProps } from "react-router-dom";
@@ -24,22 +24,18 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
   if (!props.isLoggedIn) {
     if (!props.isLoggedIn && loading) return <Loader />;
     return <Route component={SignIn} />;
-  }
+  } 
 
   return (
-    <Container className="mt-5">
-      <Card>
-        <CardBody>
-          {/* <Row>
-            <Col lg="2"> */}
-          <Navigation />
-          {/* </Col>
-            <Col lg="10"> */}
-          <Route path="/dashboard/add" component={Add} />
-          {/* </Col>
-          </Row> */}
-        </CardBody>
-      </Card>
+    <Container className="mt-5 horizontal-center">
+      <Col lg={6}>
+        <Card>
+          <CardBody>
+            <Navigation />
+            <Route path="/dashboard/add" component={Add} />
+          </CardBody>
+        </Card>
+      </Col>
     </Container>
   );
 };
