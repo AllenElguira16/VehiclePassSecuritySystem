@@ -32,3 +32,10 @@ interface authState {
   user: IUser;
   isLoggedIn: boolean;
 }
+
+interface IEmployee {
+  employeeId: string;
+  firstname: string;
+  lastname: string;
+  dateCreated: Date | null;
+}

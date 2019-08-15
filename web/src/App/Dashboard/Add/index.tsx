@@ -5,7 +5,7 @@ import QRCodeModal from "./QRCodeModal";
 import Axios from "axios";
 
 const Add: React.FC = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [user, setUser] = useState({
     id: "",
     employeeId: "",
@@ -21,11 +21,11 @@ const Add: React.FC = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let { data } = await Axios.post("/user/add", user);
+    let { data } = await Axios.post("/employee/add", user);
     if (!data.error) {
       setUser({ ...user, id: data.id });
       setModalToggle(true);
-    } else if(data.error){
+    } else if (data.error) {
       setError(data.error);
     }
   };
