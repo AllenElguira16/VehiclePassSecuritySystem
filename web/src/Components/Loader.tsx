@@ -1,13 +1,11 @@
 import React from "react";
 import { Container } from "reactstrap";
+import loader from "Assets/images/loader.gif";
 
 export default () => {
   return (
     <Container className="d-flex justify-content-center text-center">
-      <div className="">
-        <h4>Vehicle Pass Security System</h4>
-        <span>Loading</span>
-      </div>
+      <img className="img-fluid" src={loader} alt="page loader" />
     </Container>
   );
 };

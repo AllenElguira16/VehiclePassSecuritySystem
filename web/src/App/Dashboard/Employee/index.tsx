@@ -2,17 +2,11 @@ import React, { FC, useState, useEffect } from "react";
 import Axios from "axios";
 import { Table } from "reactstrap";
 import Settings from "./Settings";
+import Loader from "Components/Loader";
 // import { Row, Col } from "reactstrap";
 
 const Employee: FC = (): JSX.Element => {
-  const [employees, setEmployees] = useState([
-    {
-      employeeId: "",
-      firstname: "",
-      lastname: "",
-      dateCreated: null
-    }
-  ]);
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -39,7 +33,7 @@ const Employee: FC = (): JSX.Element => {
               <th>Date Created</th>
               <th>Options</th>
             </tr>
-            {employees.length &&
+            {employees.length !== 0 ? (
               employees.map(
                 (
                   { employeeId, firstname, lastname, dateCreated }: IEmployee,
@@ -55,7 +49,14 @@ const Employee: FC = (): JSX.Element => {
                     </td>
                   </tr>
                 )
-              )}
+              )
+            ) : (
+              <tr>
+                <td colSpan={5}>
+                  <Loader />
+                </td>
+              </tr>
+            )}
           </tbody>
         </Table>
       </main>
