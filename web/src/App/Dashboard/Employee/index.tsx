@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import Axios from "axios";
 import { Table } from "reactstrap";
+import Settings from "./Settings";
 // import { Row, Col } from "reactstrap";
 
 const Employee: FC = (): JSX.Element => {
@@ -50,7 +51,7 @@ const Employee: FC = (): JSX.Element => {
                     <td>{lastname}</td>
                     <td>{formatDate(dateCreated)}</td>
                     <td>
-                      <i className="material-icons">settings</i>
+                      <Settings />
                     </td>
                   </tr>
                 )
