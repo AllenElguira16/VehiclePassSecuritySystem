@@ -9,10 +9,14 @@ const Employee: FC = (): JSX.Element => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
+    let isMount = true;
     (async () => {
       const { data } = await Axios.get("/employee");
-      setEmployees(data);
+      if (data && isMount) setEmployees(data);
     })();
+    return () => {
+      isMount = false;
+    };
   }, []);
 
   const formatDate = (date: Date | null): string => {

@@ -21,17 +21,20 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
       }
       setLoading(false);
     })();
+    return () => {
+      setLoading(true);
+    };
   }, [props]);
+
+  let render;
 
   if (!props.isLoggedIn) {
     if (!props.isLoggedIn && loading) return <Loader />;
-    return <Route component={SignIn} />;
+    render = <Route component={SignIn} />;
   } else if (uriMatch !== null) {
-    return <Redirect to="/dashboard/employee" />;
-  }
-
-  return (
-    <Container className="mt-5 horizontal-center">
+    render = <Redirect to="/dashboard/employee" />;
+  } else {
+    render = (
       <Col lg={8}>
         <Card>
           <CardHeader>
@@ -43,8 +46,10 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
           </CardBody>
         </Card>
       </Col>
-    </Container>
-  );
+    );
+  }
+
+  return <Container className="center">{render}</Container>;
 };
 
 export default DashboardContainer(Dashboard);

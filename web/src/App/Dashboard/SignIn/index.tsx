@@ -3,7 +3,6 @@ import Input from "Components/Input";
 import {
   Form,
   CardBody,
-  Container,
   Button,
   FormGroup,
   Card,
@@ -36,43 +35,43 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
   };
 
   return (
-    <Container className="mt-5 d-flex horizontal-center">
-      <Col lg="6">
-        <Card>
-          <CardHeader tag="h6">Dashboard Sign-in</CardHeader>
-          <CardBody>
-            <Form onSubmit={onFormSubmit}>
-              <Input
-                type="text"
-                placeholder="Username"
-                name="username"
-                onChange={onInputChange}
-                value={inputState.username}
-                tabIndex={1}
-              />
-              <Input
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={onInputChange}
-                value={inputState.password}
-                tabIndex={2}
-              />
-              <FormGroup>
-                <Button
-                  type="submit"
-                  color="primary"
-                  className="btn-raised"
-                  tabIndex={3}
-                >
-                  Send
-                </Button>
-              </FormGroup>
-            </Form>
-          </CardBody>
-        </Card>
-      </Col>
-    </Container>
+    // <Container className="mt-5 d-flex horizontal-center">
+    <Col lg="6">
+      <Card>
+        <CardHeader tag="h6">Dashboard Sign-in</CardHeader>
+        <CardBody>
+          <Form onSubmit={onFormSubmit}>
+            <Input
+              type="text"
+              placeholder="Username"
+              name="username"
+              onChange={onInputChange}
+              value={inputState.username}
+              tabIndex={1}
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={onInputChange}
+              value={inputState.password}
+              tabIndex={2}
+            />
+            <FormGroup>
+              <Button
+                type="submit"
+                color="primary"
+                className="btn-raised"
+                tabIndex={3}
+              >
+                Send
+              </Button>
+            </FormGroup>
+          </Form>
+        </CardBody>
+      </Card>
+    </Col>
+    // </Container>
   );
 };
 
