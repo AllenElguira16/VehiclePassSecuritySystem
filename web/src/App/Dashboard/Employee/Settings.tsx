@@ -8,8 +8,8 @@ import {
 
 const Settings: FC = () => {
   return (
-    <UncontrolledDropdown>
-      <DropdownToggle>
+    <UncontrolledDropdown tag="td">
+      <DropdownToggle color="primary" className="d-flex">
         <i className="material-icons">settings</i>
       </DropdownToggle>
       <DropdownMenu>

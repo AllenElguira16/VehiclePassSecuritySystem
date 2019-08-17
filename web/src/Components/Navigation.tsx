@@ -9,16 +9,24 @@ import {
   NavLink,
   Container
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import logo from "Assets/images/LNULogo.webp";
 
-export default () => {
+const Navigation: React.FC<RouteComponentProps> = props => {
   let [state, setState] = useState({
     isOpen: false
   });
 
   const toggle = () => {
     setState({ isOpen: !state.isOpen });
+  };
+
+  const isActive = (regex: RegExp | string): boolean => {
+    const uriMatcher = props.location.pathname.match(regex);
+    if (uriMatcher !== null) {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -44,22 +52,37 @@ export default () => {
         <Collapse isOpen={state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink tag={Link} to="/" tabIndex={-1}>
+              <NavLink tag={Link} to="/" tabIndex={-1} active={isActive(/\/$/)}>
                 Home
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/dashboard" tabIndex={-1}>
+              <NavLink
+                tag={Link}
+                to="/dashboard"
+                tabIndex={-1}
+                active={isActive("dashboard")}
+              >
                 Dashboard
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/vehicle-pass" tabIndex={-1}>
+              <NavLink
+                tag={Link}
+                to="/vehicle-pass"
+                tabIndex={-1}
+                active={isActive("vehicle-pass")}
+              >
                 Vehicle Pass
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/about-us" tabIndex={-1}>
+              <NavLink
+                tag={Link}
+                to="/about-us"
+                tabIndex={-1}
+                active={isActive("about-us")}
+              >
                 About Us
               </NavLink>
             </NavItem>
@@ -69,3 +92,5 @@ export default () => {
     </Navbar>
   );
 };
+
+export default withRouter(Navigation);

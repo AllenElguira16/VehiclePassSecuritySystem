@@ -1,5 +1,6 @@
 @import "./theme";
 @import "~bootstrap-material-design/scss/bootstrap-material-design";
+// @import "~bootstrap/scss/bootstrap";
 @import "~material-design-icons/iconfont/material-icons.css";
 
 .lnu-text {
@@ -31,4 +32,15 @@
 .horizontal-center {
   @extend .d-flex;
   @extend .justify-content-center;
+}
+
+// Dark Mode
+.dark {
+  .card-body {
+    * {
+      color: #ffffff;
+    }
+    background: #303030;
+  }
+  background: #303030;
 }

@@ -36,7 +36,7 @@ const Add: React.FC = () => {
 
   return (
     <>
-      <header className="h4">Add Employee</header>
+      {/* <header className="h4">Add Employee</header> */}
       <main>
         <Form onSubmit={onSubmit}>
           <Input

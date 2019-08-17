@@ -13,13 +13,14 @@ import { Link } from "react-router-dom";
 export default () => {
   return (
     // <Navbar color="white" className="h-100">
-    <Nav color="white" tabs>
+    <Nav tabs card>
       <NavItem>
         <NavLink
           tag={Link}
           to="/dashboard/employee"
           tabIndex={-1}
           className="vertical-centered"
+          active={window.location.pathname === "/dashboard/employee"}
         >
           <i className="material-icons pr-2">person</i>
           <span>Employee</span>
@@ -31,6 +32,7 @@ export default () => {
           to="/dashboard/add"
           tabIndex={-1}
           className="vertical-centered"
+          active={window.location.pathname === "/dashboard/add"}
         >
           <i className="material-icons pr-2">person_add</i>
           <span>Add</span>

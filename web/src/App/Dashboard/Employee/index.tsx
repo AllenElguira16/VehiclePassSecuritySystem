@@ -22,9 +22,9 @@ const Employee: FC = (): JSX.Element => {
 
   return (
     <>
-      <header className="h5">Employee List</header>
+      {/* <header className="h5">Employee List</header> */}
       <main>
-        <Table>
+        <Table striped>
           <tbody>
             <tr>
               <th>Employee ID</th>
@@ -40,13 +40,13 @@ const Employee: FC = (): JSX.Element => {
                   i: number
                 ) => (
                   <tr key={i}>
-                    <td>{employeeId}</td>
-                    <td>{firstname}</td>
-                    <td>{lastname}</td>
-                    <td>{formatDate(dateCreated)}</td>
-                    <td>
-                      <Settings />
-                    </td>
+                    <td className="align-middle">{employeeId}</td>
+                    <td className="align-middle">{firstname}</td>
+                    <td className="align-middle">{lastname}</td>
+                    <td className="align-middle">{formatDate(dateCreated)}</td>
+                    {/* <td> */}
+                    <Settings />
+                    {/* </td> */}
                   </tr>
                 )
               )
