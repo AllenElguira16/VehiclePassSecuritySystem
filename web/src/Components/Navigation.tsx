@@ -1,26 +1,37 @@
-import React, { useState } from "react";
-import { Link, withRouter, RouteComponentProps } from "react-router-dom";
+import React from "react";
+import {
+  withRouter,
+  RouteComponentProps,
+  Link as RouterLink
+} from "react-router-dom";
 // import logo from "Assets/images/LNULogo.webp";
 import {
   AppBar,
   Toolbar,
-  IconButton,
-  Button,
-  Typography
+  // IconLink,
+  // Button,
+  Typography,
+  Link
 } from "@material-ui/core";
-import { Menu as MenuIcon } from "@material-ui/icons";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+// import { Menu as MenuIcon } from "@material-ui/icons";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme: Theme) => {
+const useStyles = makeStyles(theme => {
   return createStyles({
     root: {
       flexGrow: 1
     },
-    menuButton: {
+    menuLink: {
       marginRight: theme.spacing(2)
     },
     title: {
       flexGrow: 1
+    },
+    link: {
+      margin: theme.spacing(1)
+    },
+    appBar: {
+      background: "#932842"
     }
   });
 });
@@ -40,13 +51,46 @@ const Navigation: React.FC<RouteComponentProps> = props => {
   const styles = useStyles();
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className={styles.appBar}>
       <Toolbar>
-        <IconButton edge="start" className={styles.menuButton} color="inherit" aria-label="menu">
+        {/* <IconLink edge="start" className={styles.menuLink} color="inherit" aria-label="menu">
           <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" className={styles.title}>Vehicle Pass Security System</Typography>
-        <Button color="inherit">Login</Button>
+        </IconLink> */}
+        <Typography variant="h6" className={styles.title}>
+          Vehicle Pass Security System
+        </Typography>
+        <Link
+          className={styles.link}
+          color="inherit"
+          component={RouterLink}
+          to="/"
+        >
+          Home
+        </Link>
+        <Link
+          className={styles.link}
+          color="inherit"
+          component={RouterLink}
+          to="/dashboard"
+        >
+          Dashboard
+        </Link>
+        <Link
+          className={styles.link}
+          color="inherit"
+          component={RouterLink}
+          to="/vehicle-pass"
+        >
+          Vehicle Pass
+        </Link>
+        <Link
+          className={styles.link}
+          color="inherit"
+          component={RouterLink}
+          to="/about-us"
+        >
+          About Us
+        </Link>
       </Toolbar>
     </AppBar>
   );
