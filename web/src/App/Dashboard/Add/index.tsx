@@ -41,6 +41,7 @@ const Add: React.FC = () => {
         <Form onSubmit={onSubmit}>
           <Input
             type="text"
+            label="XX-XXXX-XXX"
             placeholder="Employee ID"
             name="employeeId"
             onChange={onInputChange}
@@ -50,8 +51,9 @@ const Add: React.FC = () => {
             <Col>
               <Input
                 type="text"
+                label="Firstname"
+                placeholder="John"
                 name="firstname"
-                placeholder="Firstname"
                 onChange={onInputChange}
                 value={user.firstname}
               />
@@ -59,8 +61,9 @@ const Add: React.FC = () => {
             <Col>
               <Input
                 type="text"
+                label="Lastname"
+                placeholder="Doe"
                 name="lastname"
-                placeholder="Lastname"
                 onChange={onInputChange}
                 value={user.lastname}
               />

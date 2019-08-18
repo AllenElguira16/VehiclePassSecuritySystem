@@ -43,7 +43,8 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
           <Form onSubmit={onFormSubmit}>
             <Input
               type="text"
-              placeholder="Username"
+              label="Username"
+              placeholder="John Doe"
               name="username"
               onChange={onInputChange}
               value={inputState.username}
@@ -51,7 +52,8 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
             />
             <Input
               type="password"
-              placeholder="Password"
+              label="Password"
+              placeholder="someIncrediblePassword"
               name="password"
               onChange={onInputChange}
               value={inputState.password}

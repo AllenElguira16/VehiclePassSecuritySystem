@@ -22,17 +22,18 @@ export default (props: FormGroupProps) => {
       onFocus={onClick}
       onBlur={onClose}
     >
-      <Label for={props.placeholder} className="bmd-label-floating">
-        {props.placeholder}
+      <Label for={props.label} className="bmd-label-floating">
+        {props.label}
       </Label>
       <Input
         tabIndex={props.tabIndex}
         type={props.type as any}
-        id={props.placeholder}
+        id={props.label}
         name={props.name}
         onChange={props.onChange}
         value={props.value}
         autoComplete="off"
+        placeholder={props.placeholder}
       />
     </FormGroup>
   );

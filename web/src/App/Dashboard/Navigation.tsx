@@ -38,7 +38,7 @@ export default () => {
           <span>Add</span>
         </NavLink>
       </NavItem>
-      <UncontrolledDropdown nav tabIndex={-1}>
+      <UncontrolledDropdown nav tabIndex={-1} className="ml-auto">
         <DropdownToggle nav caret tabIndex={-1} className="vertical-centered">
           <i className="material-icons pr-2">settings</i>
           <span>Settings</span>
