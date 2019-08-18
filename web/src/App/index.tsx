@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navigation from "Components/Navigation";
 import Footer from "Components/Footer";
 import Home from "./Home";
@@ -7,7 +7,7 @@ import AboutUs from "./AboutUs";
 import VehiclePass from "./VehiclePass";
 import Dashboard from "./Dashboard";
 
-const App = () => {
+export default () => {
   return (
     <BrowserRouter>
       <Navigation />
@@ -23,5 +23,3 @@ const App = () => {
     </BrowserRouter>
   );
 };
-
-export default App;
