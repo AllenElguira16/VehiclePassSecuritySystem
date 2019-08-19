@@ -3,10 +3,12 @@ import Axios from "axios";
 import { Table } from "reactstrap";
 import Settings from "./Settings";
 import Loader from "Components/Loader";
+import Input from "Components/Input";
 // import { Row, Col } from "reactstrap";
 
 const Employee: FC = (): JSX.Element => {
   const [employees, setEmployees] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     let isMount = true;
@@ -28,6 +30,7 @@ const Employee: FC = (): JSX.Element => {
     <>
       {/* <header className="h5">Employee List</header> */}
       <main>
+        <Input value={search} placeholder="search"/>
         <Table striped>
           <tbody>
             <tr>

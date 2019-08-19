@@ -14,15 +14,18 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
   const uriMatch = props.location.pathname.match(/dashboard$/);
 
   React.useEffect(() => {
+    let isMount = true;
     (async () => {
       let { data } = await Axios.get("/user/auth");
       if (!data.error) {
         props.setAsLoggedIn();
+      } 
+      if (isMount) {
+        setLoading(false);
       }
-      setLoading(false);
     })();
     return () => {
-      setLoading(true);
+      isMount = false;
     };
   }, [props]);
 
@@ -49,7 +52,7 @@ const Dashboard: React.FC<RouteComponentProps & DashboardProps> = props => {
     );
   }
 
-  return <Container className="center">{render}</Container>;
+  return <Container className="center py-5">{render}</Container>;
 };
 
 export default DashboardContainer(Dashboard);

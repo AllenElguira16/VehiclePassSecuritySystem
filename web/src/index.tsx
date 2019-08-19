@@ -6,13 +6,16 @@ import * as serviceWorker from "./serviceWorker";
 import Axios from "axios";
 import { Provider } from "react-redux";
 import store from "Redux/store";
+import { BrowserRouter } from "react-router-dom";
 
 Axios.defaults.baseURL = "http://localhost:8000/api";
 Axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

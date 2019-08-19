@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Input from "Components/Input";
-import { Row, Button, Col, Form, Alert } from "reactstrap";
+import { Row, Button, Col, Form, Alert, FormGroup } from "reactstrap";
 import QRCodeModal from "./QRCodeModal";
 import Axios from "axios";
+import Icon from "Components/Icon";
 
 const Add: React.FC = () => {
   const [error, setError] = useState("");
@@ -41,18 +42,16 @@ const Add: React.FC = () => {
         <Form onSubmit={onSubmit}>
           <Input
             type="text"
-            label="XX-XXXX-XXX"
             placeholder="Employee ID"
             name="employeeId"
             onChange={onInputChange}
             value={user.employeeId}
           />
-          <Row form={true}>
+          <Row form={true} className="align-items-center">
             <Col>
               <Input
                 type="text"
-                label="Firstname"
-                placeholder="John"
+                placeholder="Firstname"
                 name="firstname"
                 onChange={onInputChange}
                 value={user.firstname}
@@ -61,8 +60,7 @@ const Add: React.FC = () => {
             <Col>
               <Input
                 type="text"
-                label="Lastname"
-                placeholder="Doe"
+                placeholder="Lastname"
                 name="lastname"
                 onChange={onInputChange}
                 value={user.lastname}
@@ -70,9 +68,16 @@ const Add: React.FC = () => {
             </Col>
           </Row>
           {error.length !== 0 && <Alert color="danger">{error}</Alert>}
-          <Button type="submit" color="primary" className="btn-raised">
-            Add
-          </Button>
+          <FormGroup>
+            <Button
+              type="submit"
+              color="outline-info"
+              className="align-items-end btn-raised d-flex"
+            >
+              <i className="material-icons pr-2">add</i>
+              <span>Add</span>
+            </Button>
+          </FormGroup>
         </Form>
         <QRCodeModal
           value={user.id}
