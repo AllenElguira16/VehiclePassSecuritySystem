@@ -12,7 +12,7 @@ import {
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import logo from "Assets/images/LNULogo.webp";
 
-const Navigation: React.FC<RouteComponentProps> = props => {
+const Header: React.FC<RouteComponentProps> = props => {
   let [state, setState] = useState({
     isOpen: false
   });
@@ -35,6 +35,7 @@ const Navigation: React.FC<RouteComponentProps> = props => {
       dark
       expand="lg"
       className="justify-content-between shadow-lg"
+      tag="header"
     >
       <Container>
         <NavbarBrand
@@ -93,4 +94,4 @@ const Navigation: React.FC<RouteComponentProps> = props => {
   );
 };
 
-export default withRouter(Navigation);
+export default withRouter(Header);

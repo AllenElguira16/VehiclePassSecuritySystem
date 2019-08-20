@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 export default () => {
   return (
     // <Navbar color="white" className="h-100">
-    <Nav tabs card>
+    <Nav pills card>
       <NavItem>
         <NavLink
           tag={Link}

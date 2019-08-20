@@ -11,3 +11,10 @@ export const setAsLoggedIn = () => {
     data: true
   };
 };
+
+export const toggleConfirmBox = (data: string) => {
+  return {
+    type: "toggleConfirmBox",
+    data
+  };
+};

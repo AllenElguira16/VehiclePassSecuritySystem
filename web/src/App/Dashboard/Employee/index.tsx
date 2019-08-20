@@ -8,7 +8,7 @@ import Input from "Components/Input";
 
 const Employee: FC = (): JSX.Element => {
   const [employees, setEmployees] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     let isMount = true;
@@ -30,7 +30,13 @@ const Employee: FC = (): JSX.Element => {
     <>
       {/* <header className="h5">Employee List</header> */}
       <main>
-        <Input value={search} placeholder="search"/>
+        <Input
+          value={search}
+          placeholder="search"
+          onChange={(e: React.FormEvent<HTMLInputElement>) => {
+            setSearch(e.currentTarget.value);
+          }}
+        />
         <Table striped>
           <tbody>
             <tr>
@@ -46,7 +52,7 @@ const Employee: FC = (): JSX.Element => {
                   { employeeId, firstname, lastname, dateCreated }: IEmployee,
                   i: number
                 ) => (
-                  <tr key={i}>
+                  <tr key={i} style={{ cursor: "pointer" }}>
                     <td className="align-middle">{employeeId}</td>
                     <td className="align-middle">{firstname}</td>
                     <td className="align-middle">{lastname}</td>

@@ -1,16 +1,23 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navigation from "Components/Navigation";
-import Footer from "Components/Footer";
+
+//
+import Header from "App/Header";
+import Footer from "App/Footer";
+
+// Page components
 import Home from "./Home";
 import AboutUs from "./AboutUs";
 import VehiclePass from "./VehiclePass";
 import Dashboard from "./Dashboard";
+import Confirmation from "Components/Confirmation";
+import { connect } from "react-redux";
 
-export default () => {
+const App: React.FC = (props: any) => {
+  console.log(props);
   return (
     <BrowserRouter>
-      <Navigation />
+      <Header />
       <main style={{ minHeight: 450 }}>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -20,6 +27,13 @@ export default () => {
         </Switch>
       </main>
       <Footer />
+      <Confirmation isOpen={props.isOpenConfirmBox} />
     </BrowserRouter>
   );
 };
+
+export default connect((state: any) => {
+  return {
+    isOpenConfirmBox: state.confirm.isOpenConfirmBox
+  };
+})(App);
