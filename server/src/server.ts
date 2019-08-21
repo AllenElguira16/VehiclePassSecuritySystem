@@ -22,7 +22,8 @@ class Server extends overnightjsServer {
     try {
       await mongoose.connect(mongoKey, {
         useNewUrlParser: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useCreateIndex: true
       });
       console.log("MongoDB Connected Successfully");
     } catch (error) {

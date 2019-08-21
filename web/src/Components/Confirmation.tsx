@@ -1,21 +1,22 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { toggleConfirmBox } from "Redux/Actions";
 
-const Confirmation: React.FC<any> = props => {
+type Props = {
+  isOpen: boolean;
+  toggle(): any;
+  children: ReactNode;
+};
+
+const Confirmation: React.FC<Props> = ({ isOpen, toggle, children }) => {
   return (
     <>
       <div>
-        <Modal isOpen={props.isOpen} toggle={props.toggleConfirmBox}>
-          <ModalHeader toggle={props.toggleConfirmBox}>
-            Confirmation
-          </ModalHeader>
-          <ModalBody>{props.children}</ModalBody>
+        <Modal isOpen={isOpen} toggle={toggle}>
+          <ModalHeader toggle={toggle}>Confirmation</ModalHeader>
+          <ModalBody>{children}</ModalBody>
           <ModalFooter>
             <Button color="primary">Delete</Button>
-            <Button color="secondary" onClick={props.toggleConfirmBox}>
+            <Button color="secondary" onClick={toggle}>
               Cancel
             </Button>
           </ModalFooter>
@@ -25,14 +26,4 @@ const Confirmation: React.FC<any> = props => {
   );
 };
 
-export default connect(
-  (state: any) => {
-    console.log(state);
-    return {};
-  },
-  (dispatch: Dispatch<ReduxActionInterface>) => {
-    return {
-      toggleConfirmBox: (msg: string) => dispatch(toggleConfirmBox(msg))
-    };
-  }
-)(Confirmation);
+export default Confirmation;

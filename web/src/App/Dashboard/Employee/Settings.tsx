@@ -5,20 +5,21 @@ import {
   DropdownToggle,
   DropdownItem
 } from "reactstrap";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { toggleConfirmBox } from "Redux/Actions";
+import Axios from "axios";
 
-const Settings: FC = (props: any) => {
-  // const socket = io();
-  // console.log(window.location.origin);
+type Props = {
+  isOpen: boolean;
+  toggle(msg: string): string;
+  employeeId: string;
+  fetchData(): void;
+};
 
-  const onDelete = () => {
-    props.openConfirmBox("Are you sure you want to delete?");
-    // alert("Are you sure you want to delete?");
-    // socket.emit("openConfirmationDialogue", {
-    //   msg: "Are you sure you want to delete?"
-    // });
+const Settings: FC<Props> = ({ employeeId, fetchData }) => {
+  const onDelete = async () => {
+    // toggle("Are you sure you want to delete?");
+    await Axios.delete(`/employee/${employeeId}`);
+    fetchData();
+    // console.log(data);
   };
 
   return (
@@ -36,11 +37,4 @@ const Settings: FC = (props: any) => {
   );
 };
 
-export default connect(
-  null,
-  (dispatch: Dispatch<ReduxActionInterface>) => {
-    return {
-      openConfirmBox: (msg: string) => dispatch(toggleConfirmBox(msg))
-    };
-  }
-)(Settings);
+export default Settings;

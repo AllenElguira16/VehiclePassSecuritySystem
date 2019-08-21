@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormGroup, Input, FormGroupProps, Label } from "reactstrap";
+import { FormGroup, Input, FormGroupProps } from "reactstrap";
 
 export default (props: FormGroupProps) => {
   const [state, setState] = useState(false);

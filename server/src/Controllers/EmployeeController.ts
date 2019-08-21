@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from "@overnightjs/core";
+import { Controller, Get, Post, Delete } from "@overnightjs/core";
 import { Request, Response } from "express";
 import EmployeeModel from "../Models/EmployeeModel";
 
@@ -10,15 +10,28 @@ class EmployeeController {
   }
 
   @Post("add")
-  public addEmployee(request: Request, response: Response) {
+  public async addEmployee(request: Request, response: Response) {
     const { employeeId, firstname, lastname } = request.body;
     if (employeeId === "" || firstname === "" || lastname === "") {
       return response.json({ error: "All inputs are required" });
     }
+    const match = await EmployeeModel.find({ employeeId });
+    // console.log(isExists.length);
+    if (match.length !== 0)
+      return response.json({ error: "Employee already exists" });
     const user = new EmployeeModel({ employeeId, firstname, lastname });
     user.save((error, newUser) => {
       if (error) return response.json({ error });
       return response.json({ id: newUser._id });
+    });
+  }
+
+  @Delete(":id")
+  public async deleteEmployee(request: Request, response: Response) {
+    const employeeId = request.params.id;
+    EmployeeModel.deleteOne({ _id: employeeId }, error => {
+      if (error) return response.json({ error });
+      return response.json({ success: "Deleted Successfully" });
     });
   }
 }

@@ -3,7 +3,7 @@ import Input from "Components/Input";
 import { Row, Button, Col, Form, Alert, FormGroup } from "reactstrap";
 import QRCodeModal from "./QRCodeModal";
 import Axios from "axios";
-import Icon from "Components/Icon";
+// import Icon from "Components/Icon";
 
 const Add: React.FC = () => {
   const [error, setError] = useState("");

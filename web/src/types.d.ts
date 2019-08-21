@@ -34,6 +34,7 @@ interface authState {
 }
 
 interface IEmployee {
+  _id: string;
   employeeId: string;
   firstname: string;
   lastname: string;

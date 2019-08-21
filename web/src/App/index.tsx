@@ -10,11 +10,8 @@ import Home from "./Home";
 import AboutUs from "./AboutUs";
 import VehiclePass from "./VehiclePass";
 import Dashboard from "./Dashboard";
-import Confirmation from "Components/Confirmation";
-import { connect } from "react-redux";
 
 const App: React.FC = (props: any) => {
-  console.log(props);
   return (
     <BrowserRouter>
       <Header />
@@ -27,13 +24,8 @@ const App: React.FC = (props: any) => {
         </Switch>
       </main>
       <Footer />
-      <Confirmation isOpen={props.isOpenConfirmBox} />
     </BrowserRouter>
   );
 };
 
-export default connect((state: any) => {
-  return {
-    isOpenConfirmBox: state.confirm.isOpenConfirmBox
-  };
-})(App);
+export default App;
