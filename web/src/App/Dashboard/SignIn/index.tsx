@@ -13,17 +13,18 @@ import { connect } from "react-redux";
 import { signIn } from "Redux/Actions";
 import { RouteComponentProps } from "react-router";
 import Axios from "axios";
+import Types from "types";
 // import { Route } from 'react-router-dom';
 
-const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
-  let [inputState, setInputState] = useState<IUser>({
+const SignIn: React.FC<Types.SignInProps & RouteComponentProps> = props => {
+  let [inputState, setInputState] = useState<Types.IUser>({
     username: "",
     password: ""
   });
 
-  const onInputChange = (e: FormEvent<HTMLInputElement>) => {
-    let { name, value } = e.currentTarget;
-    setInputState({ ...inputState, [name]: value });
+  const onInputChange = (e: FormEvent<HTMLInputElement>, prop: string) => {
+    let { value } = e.currentTarget;
+    setInputState({ ...inputState, [prop]: value });
   };
 
   const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -44,18 +45,24 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
             <Input
               type="text"
               placeholder="Username"
-              name="username"
-              onChange={onInputChange}
+              onChange={e => onInputChange(e, "username")}
               value={inputState.username}
               tabIndex={1}
+              icon={{
+                position: "prepend",
+                iconName: "people"
+              }}
             />
             <Input
               type="password"
               placeholder="Password"
-              name="password"
-              onChange={onInputChange}
+              onChange={e => onInputChange(e, "password")}
               value={inputState.password}
               tabIndex={2}
+              icon={{
+                position: "prepend",
+                iconName: "vpn_key"
+              }}
             />
             <FormGroup>
               <Button
@@ -76,7 +83,7 @@ const SignIn: React.FC<SignInProps & RouteComponentProps> = props => {
 };
 
 export default connect(
-  (state: combinedReducerInterface) => {
+  (state: Types.combinedReducerInterface) => {
     return {
       isLoggedIn: state.auth.isLoggedIn
     };

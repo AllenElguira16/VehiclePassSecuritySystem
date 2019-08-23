@@ -29,6 +29,7 @@ const Settings: FC<Props> = ({ employeeId, fetchData }) => {
           <i className="material-icons">settings</i>
         </DropdownToggle>
         <DropdownMenu>
+          <DropdownItem>Vehicles</DropdownItem>
           <DropdownItem>Edit</DropdownItem>
           <DropdownItem onClick={onDelete}>Delete</DropdownItem>
         </DropdownMenu>

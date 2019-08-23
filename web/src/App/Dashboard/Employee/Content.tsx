@@ -1,18 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import Settings from "./Settings";
 import { Table } from "reactstrap";
 import Loader from "./Loader";
+import Types from "types";
 
-type Props = {
-  employees: Array<IEmployee>;
-  confirmBoxToggler(msg: string): string;
-  isOpen: boolean;
-  fetchEmployees(): void;
-  isLoading: boolean;
-  onClick(id: string): void;
-};
-
-const Content: React.FC<Props> = ({
+const Content: FC<Types.ContentProps> = ({
   employees,
   confirmBoxToggler,
   fetchEmployees,
@@ -37,7 +29,7 @@ const Content: React.FC<Props> = ({
         </tr>
         {isLoading && <Loader />}
         {(!isLoading && employees.length) !== 0 ? (
-          employees.map((employee: IEmployee, i: number) => (
+          employees.map((employee: Types.IEmployee, i: number) => (
             <tr
               key={i}
               style={{ cursor: "pointer" }}

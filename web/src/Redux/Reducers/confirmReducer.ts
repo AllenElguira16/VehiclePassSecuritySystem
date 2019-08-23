@@ -1,12 +1,21 @@
+import Types from "types";
+
 const initialState = {
   isOpenConfirmBox: false,
   msg: ""
 };
 
-const confirmReducer = (state = initialState, action: ReduxActionInterface) => {
+const confirmReducer = (
+  state = initialState,
+  action: Types.ReduxActionInterface
+) => {
   // console.log(state);
   if (action.type === "toggleConfirmBox") {
-    return { ...state, isOpenConfirmBox: !state.isOpenConfirmBox, msg: action.data };
+    return {
+      ...state,
+      isOpenConfirmBox: !state.isOpenConfirmBox,
+      msg: action.data
+    };
   } else if (action.type === "setMsg") {
     return { ...state, msg: action.data };
   }

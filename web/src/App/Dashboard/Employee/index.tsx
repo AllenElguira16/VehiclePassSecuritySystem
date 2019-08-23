@@ -4,6 +4,7 @@ import Confirmation from "Components/Confirmation";
 import Content from "./Content";
 import Search from "./Search";
 import Vehicles from "./Vehicles";
+import Add from "./Add";
 
 interface confirmBox {
   isOpen: boolean;
@@ -13,7 +14,7 @@ interface confirmBox {
 const Employee: FC = (): JSX.Element => {
   const [employees, setEmployees] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [currentEmployee, addCurrentEmployee] = useState("");
+  // const [currentEmployee, addCurrentEmployee] = useState("");
   const [confirmBox, setConfirmBox] = useState<confirmBox>({
     isOpen: false,
     msg: ""
@@ -53,18 +54,19 @@ const Employee: FC = (): JSX.Element => {
         isOpen={confirmBox.isOpen}
         isLoading={isLoading}
         onClick={id => {
-          addCurrentEmployee(id);
+          // addCurrentEmployee(id);
           toggler();
         }}
       />
-      <Vehicles
+      {/* <Vehicles
         employeeId={currentEmployee}
         toggle={toggle}
         toggler={() => {
           toggler();
           addCurrentEmployee("");
         }}
-      />
+      /> */}
+      <Add />
       <Confirmation
         toggle={() => confirmBoxToggler("")}
         isOpen={confirmBox.isOpen}

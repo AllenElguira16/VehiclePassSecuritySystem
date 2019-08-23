@@ -26,7 +26,7 @@ export default () => {
           <span>Employee</span>
         </NavLink>
       </NavItem>
-      <NavItem>
+      {/* <NavItem>
         <NavLink
           tag={Link}
           to="/dashboard/add"
@@ -36,6 +36,18 @@ export default () => {
         >
           <i className="material-icons pr-2">person_add</i>
           <span>Add</span>
+        </NavLink>
+      </NavItem> */}
+      <NavItem>
+        <NavLink
+          tag={Link}
+          to="/dashboard/vehicles"
+          tabIndex={-1}
+          className="vertical-centered"
+          active={window.location.pathname === "/dashboard/vehicles"}
+        >
+          <i className="material-icons pr-2">directions_car</i>
+          <span>Vehicles</span>
         </NavLink>
       </NavItem>
       <UncontrolledDropdown nav tabIndex={-1} className="ml-auto">

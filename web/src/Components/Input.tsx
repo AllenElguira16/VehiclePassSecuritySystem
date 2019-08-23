@@ -1,40 +1,39 @@
-import React, { useState } from "react";
-import { FormGroup, Input, FormGroupProps } from "reactstrap";
+import React from "react";
+import {
+  FormGroup,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText
+} from "reactstrap";
+import Types from "types";
 
-export default (props: FormGroupProps) => {
-  const [state, setState] = useState(false);
-
-  const onClick = () => {
-    setState(true);
-  };
-
-  const onClose = () => {
-    if (props.value === "" || props.value === undefined) setState(false);
-  };
-
+export default (props: Types.InputComponentProps) => {
   if (props.value === undefined) {
     throw new Error("Value should not be undefined");
   }
 
   return (
-    <FormGroup
-      className={`bmd-form-group${state === true ? " is-focused" : ""}`}
-      onFocus={onClick}
-      onBlur={onClose}
-    >
-      {/* <Label for={props.placeholder} className="bmd-label-floating">
-        {props.placeholder}
-      </Label> */}
-      <Input
-        tabIndex={props.tabIndex}
-        type={props.type as any}
-        placeholder={props.placeholder}
-        id={props.placeholder}
-        name={props.name}
-        onChange={props.onChange}
-        value={props.value}
-        autoComplete="off"
-      />
+    <FormGroup>
+      <InputGroup>
+        {props.icon && (
+          <InputGroupAddon addonType={props.icon.position}>
+            <InputGroupText>
+              <i className="material-icons">{props.icon.iconName}</i>
+            </InputGroupText>
+          </InputGroupAddon>
+        )}
+        <Input
+          tabIndex={props.tabIndex}
+          type={props.type}
+          placeholder={props.placeholder}
+          id={props.placeholder}
+          name={props.name}
+          onChange={props.onChange}
+          value={props.value}
+          autoComplete="off"
+        />
+      </InputGroup>
     </FormGroup>
   );
 };

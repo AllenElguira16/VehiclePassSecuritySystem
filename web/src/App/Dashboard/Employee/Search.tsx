@@ -11,6 +11,10 @@ const Search: React.FC = () => {
       onChange={(e: React.FormEvent<HTMLInputElement>) => {
         setSearch(e.currentTarget.value);
       }}
+      icon={{
+        position: "prepend",
+        iconName: "search"
+      }}
     />
   );
 };

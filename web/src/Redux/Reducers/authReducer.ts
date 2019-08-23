@@ -1,3 +1,5 @@
+import Types from "types";
+
 let initialState = {
   user: {
     _id: "",
@@ -8,8 +10,8 @@ let initialState = {
 };
 
 const authReducer = (
-  state: authState = initialState,
-  action: ReduxActionInterface
+  state: Types.authState = initialState,
+  action: Types.ReduxActionInterface
 ) => {
   if (action.type === "getUser") {
     return { ...state, user: action.data };
