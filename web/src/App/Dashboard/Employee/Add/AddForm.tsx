@@ -1,11 +1,22 @@
 import React, { useState } from "react";
-import { Row, Col, Alert, FormGroup, Button, Form } from "reactstrap";
+import { Row, Col, FormGroup, Button, Form } from "reactstrap";
+import Alert from "Components/Alert";
 import Input from "Components/Input";
 import Axios from "axios";
 // import { error } from "console";
 
-const AddForm: React.FC = () => {
-  const [error, setError] = useState("");
+interface Props {
+  // onSuccess(id: string): void
+}
+
+const AddForm: React.FC<Props> = props => {
+  const [response, setResponse] = useState<{
+    type: "success" | "error";
+    msg: string;
+  }>({
+    type: "success",
+    msg: ""
+  });
   const [user, setUser] = useState({
     id: "",
     employeeId: "",
@@ -21,10 +32,9 @@ const AddForm: React.FC = () => {
     e.preventDefault();
     let { data } = await Axios.post("/employee/add", user);
     if (!data.error) {
-      setUser({ ...user, id: data.id });
-      // setModalToggle(true);
+      setResponse({ type: "success", msg: "Added Successfully" });
     } else if (data.error) {
-      setError(data.error);
+      setResponse({ type: "error", msg: data.error });
     }
   };
   return (
@@ -56,7 +66,9 @@ const AddForm: React.FC = () => {
           />
         </Col>
       </Row>
-      {error.length !== 0 && <Alert color="danger">{error}</Alert>}
+      {response.msg.length !== 0 && (
+        <Alert type={response.type}>{response.msg}</Alert>
+      )}
       <FormGroup>
         <Button
           type="submit"

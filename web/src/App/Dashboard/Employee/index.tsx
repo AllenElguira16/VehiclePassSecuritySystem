@@ -3,7 +3,6 @@ import Axios from "axios";
 import Confirmation from "Components/Confirmation";
 import Content from "./Content";
 import Search from "./Search";
-import Vehicles from "./Vehicles";
 import Add from "./Add";
 
 interface confirmBox {
@@ -12,14 +11,16 @@ interface confirmBox {
 }
 
 const Employee: FC = (): JSX.Element => {
+  // state declarations
   const [employees, setEmployees] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  // const [currentEmployee, addCurrentEmployee] = useState("");
+  const [toggle, setToggleValue] = useState(false);
   const [confirmBox, setConfirmBox] = useState<confirmBox>({
     isOpen: false,
     msg: ""
   });
 
+  // componentDidMount
   const fetchEmployees = useCallback(async () => {
     setLoading(true);
     if (isLoading) {
@@ -33,15 +34,13 @@ const Employee: FC = (): JSX.Element => {
     fetchEmployees();
   }, [fetchEmployees]);
 
+  // Modal Functions
+  const toggler = () => {
+    setToggleValue(!toggle);
+  };
   const confirmBoxToggler = (msg: string): string => {
     setConfirmBox({ ...confirmBox, isOpen: !confirmBox.isOpen, msg });
     return "";
-  };
-
-  const [toggle, setToggleValue] = useState(false);
-
-  const toggler = () => {
-    setToggleValue(!toggle);
   };
 
   return (
@@ -58,14 +57,6 @@ const Employee: FC = (): JSX.Element => {
           toggler();
         }}
       />
-      {/* <Vehicles
-        employeeId={currentEmployee}
-        toggle={toggle}
-        toggler={() => {
-          toggler();
-          addCurrentEmployee("");
-        }}
-      /> */}
       <Add />
       <Confirmation
         toggle={() => confirmBoxToggler("")}

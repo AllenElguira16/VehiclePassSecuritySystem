@@ -1,29 +1,16 @@
 import React, { useState } from "react";
-import Input from "Components/Input";
-import {
-  Row,
-  Button,
-  Col,
-  Form,
-  Alert,
-  FormGroup,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from "reactstrap";
-// import QRCodeModal from "./QRCodeModal";
-// import Axios from "axios";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AddForm from "./AddForm";
-import QRCodeModal from "./QRCodeModal";
-// import Icon from "Components/Icon";
+// import QRCodeModal from "./QRCodeModal";
 
 const Add: React.FC = () => {
   const [modalToggle, setModalToggle] = useState(false);
-  const [isSuccess, setAsSuccess] = useState(false);
+  // const [isSuccess, setAsSuccess] = useState(false);
   const modalToggler = () => {
     setModalToggle(!modalToggle);
   };
+
+  // const onSuccess =
 
   return (
     <>
@@ -32,7 +19,9 @@ const Add: React.FC = () => {
       <Button onClick={modalToggler}>Add Employee</Button>
       <Modal isOpen={modalToggle} toggle={modalToggler}>
         <ModalHeader toggle={modalToggler}>Add Employee</ModalHeader>
-        <ModalBody>{!isSuccess ? <AddForm /> : <QRCodeModal />}</ModalBody>
+        <ModalBody>
+          <AddForm />
+        </ModalBody>
         <ModalFooter>
           <Button onClick={modalToggler}>Close</Button>
         </ModalFooter>
