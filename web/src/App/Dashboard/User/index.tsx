@@ -1,8 +1,8 @@
 import React, { FC, useState, useEffect, useCallback } from "react";
 import Axios from "axios";
 import Confirmation from "Components/Confirmation";
-import Content from "./Content";
-import Search from "./Search";
+import Content from "./Components/Content";
+import Search from "./Components/Search";
 import Add from "./Add";
 
 interface confirmBox {

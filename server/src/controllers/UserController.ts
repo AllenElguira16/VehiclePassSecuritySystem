@@ -36,6 +36,16 @@ class UserController {
       });
     }
   }
+
+  @Post("logout")
+  public async logout(request: Request, response: Response) {
+    if (request.session) {
+      request.session.destroy(err => {
+        if (err) return response.json({ error: err });
+        return response.json({ success: "Sign out successfully" });
+      });
+    }
+  }
 }
 
 export default new UserController();

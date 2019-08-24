@@ -1,50 +1,64 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import { Container, Card, CardBody, Col, CardHeader } from "reactstrap";
-import SignIn from "App/Dashboard/SignIn";
-import Navigation from "./Navigation";
-import { Route, RouteComponentProps, Redirect } from "react-router-dom";
+import { Route, RouteComponentProps, Redirect, Switch } from "react-router-dom";
 import Axios from "axios";
+import SignIn from "App/Dashboard/SignIn";
+import Navigation from "./Components/Navigation";
 import Loader from "Components/Loader";
-// import DashboardContainer from "./DashboardContainer";
-// import Add from "./Employee/Add";
-import Employee from "./Employee";
+import Users from "./User";
 import Types from "types";
+import Vehicles from "./Vehicles";
 
 const Dashboard: React.FC<
   RouteComponentProps & Types.DashboardProps
 > = props => {
-  const [loading, setLoading] = React.useState(true);
+  const [isLoading, setAsLoading] = React.useState(true);
   const [isLoggedIn, setAsLoggedIn] = React.useState(false);
   const uriMatch = props.location.pathname.match(/dashboard$/);
   let render;
 
-  React.useEffect(() => {
-    const checkLoginState = async () => {
-      let { data } = await Axios.get("/user/auth");
-      if (!data.error) setAsLoggedIn(true);
-      setLoading(false);
-    };
-    checkLoginState();
-  }, [props]);
+  const checkLoginState = useCallback(async () => {
+    setAsLoading(true);
+    let { data } = await Axios.get("/user/auth");
+    if (!data.error) setAsLoggedIn(true);
+    else setAsLoggedIn(false);
+    setAsLoading(false);
+  }, []);
 
-  if (!isLoggedIn) {
-    render = loading ? <Loader /> : <Route component={SignIn} />;
-  } else if (uriMatch !== null) {
-    render = <Redirect to="/dashboard/employee" />;
+  useEffect(() => {
+    checkLoginState();
+  }, [checkLoginState]);
+
+  if (!isLoading) {
+    if (!isLoggedIn) {
+      render = (
+        <Route
+          component={(props: RouteComponentProps) => (
+            <SignIn {...props} setLoggedInState={checkLoginState} />
+          )}
+        />
+      );
+    } else if (uriMatch !== null) {
+      render = <Redirect to="/dashboard/users" />;
+    } else {
+      render = (
+        <Col lg={8}>
+          <Card>
+            <CardHeader>
+              <Navigation setAsLoggedInState={checkLoginState} />
+            </CardHeader>
+            <CardBody>
+              <Switch>
+                <Route path="/dashboard/users" component={Users} />
+                <Route path="/dashboard/vehicles" component={Vehicles} />
+              </Switch>
+            </CardBody>
+          </Card>
+        </Col>
+      );
+    }
   } else {
-    render = (
-      <Col lg={8}>
-        <Card>
-          <CardHeader>
-            <Navigation />
-          </CardHeader>
-          <CardBody>
-            {/* <Route path="/dashboard/add" component={Add} /> */}
-            <Route path="/dashboard/employee" component={Employee} />
-          </CardBody>
-        </Card>
-      </Col>
-    );
+    render = <Loader />;
   }
 
   return <Container className="center py-5">{render}</Container>;

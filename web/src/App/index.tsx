@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //
-import Header from "App/Header";
-import Footer from "App/Footer";
+import Header from "App/Components/Header";
+import Footer from "App/Components/Footer";
 
 // Page components
 import Home from "./Home";
@@ -11,7 +11,7 @@ import AboutUs from "./AboutUs";
 import VehiclePass from "./VehiclePass";
 import Dashboard from "./Dashboard";
 
-const App: React.FC = (props: any) => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Header />

@@ -9,14 +9,15 @@ import {
   Col,
   CardHeader
 } from "reactstrap";
-import { connect } from "react-redux";
-import { signIn } from "Redux/Actions";
 import { RouteComponentProps } from "react-router";
 import Axios from "axios";
 import Types from "types";
 // import { Route } from 'react-router-dom';
+interface Props extends RouteComponentProps {
+  setLoggedInState(): void;
+}
 
-const SignIn: React.FC<Types.SignInProps & RouteComponentProps> = props => {
+const SignIn: React.FC<Props> = props => {
   let [inputState, setInputState] = useState<Types.IUser>({
     username: "",
     password: ""
@@ -31,7 +32,7 @@ const SignIn: React.FC<Types.SignInProps & RouteComponentProps> = props => {
     e.preventDefault();
     let { data } = await Axios.post("/user", inputState);
     if (!data.error) {
-      props.signIn();
+      props.setLoggedInState();
     }
   };
 
@@ -82,11 +83,4 @@ const SignIn: React.FC<Types.SignInProps & RouteComponentProps> = props => {
   );
 };
 
-export default connect(
-  (state: Types.combinedReducerInterface) => {
-    return {
-      isLoggedIn: state.auth.isLoggedIn
-    };
-  },
-  { signIn }
-)(SignIn);
+export default SignIn;
