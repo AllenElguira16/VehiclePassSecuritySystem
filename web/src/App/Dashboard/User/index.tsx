@@ -21,18 +21,29 @@ const Employee: FC = (): JSX.Element => {
   });
 
   // componentDidMount
-  const fetchEmployees = useCallback(async () => {
+  // const fetchEmployees = useCallback(async () => {
+  //   setLoading(true);
+  //   if (isLoading) {
+  //     const { data } = await Axios.get("/user");
+  //     if (data) setEmployees(data);
+  //   }
+  //   setLoading(false);
+  // }, [isLoading]);
+
+  const fetchEmployees = async (value?: string) => {
     setLoading(true);
     if (isLoading) {
-      const { data } = await Axios.get("/employee");
+      setEmployees([]);
+      const { data } = value
+        ? await Axios.get(`/user/${value}`)
+        : await Axios.get(`/user`);
       if (data) setEmployees(data);
     }
     setLoading(false);
-  }, [isLoading]);
-
-  useEffect(() => {
-    fetchEmployees();
-  }, [fetchEmployees]);
+  };
+  // useEffect(() => {
+  //   fetchEmployees();
+  // });
 
   // Modal Functions
   const toggler = () => {
@@ -45,7 +56,7 @@ const Employee: FC = (): JSX.Element => {
 
   return (
     <main>
-      <Search />
+      {/* <Search onSearch={e => fetchEmployees(e)} /> */}
       <Content
         employees={employees}
         fetchEmployees={fetchEmployees}

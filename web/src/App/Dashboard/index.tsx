@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import { Container, Card, CardBody, Col, CardHeader } from "reactstrap";
-import { Route, RouteComponentProps, Redirect, Switch } from "react-router-dom";
+import { Route, RouteComponentProps, Redirect } from "react-router-dom";
 import Axios from "axios";
 import SignIn from "App/Dashboard/SignIn";
 import Navigation from "./Components/Navigation";
@@ -48,10 +48,8 @@ const Dashboard: React.FC<
               <Navigation setAsLoggedInState={checkLoginState} />
             </CardHeader>
             <CardBody>
-              <Switch>
-                <Route path="/dashboard/users" component={Users} />
-                <Route path="/dashboard/vehicles" component={Vehicles} />
-              </Switch>
+              <Route path="/dashboard/users" component={Users} />
+              <Route path="/dashboard/vehicles" component={Vehicles} />
             </CardBody>
           </Card>
         </Col>
