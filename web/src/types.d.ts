@@ -64,6 +64,11 @@ declare namespace Types {
     icon?: { position: InputGroupAddonProps["addonType"]; iconName: string };
     name?: InputProps["name"];
   }
+
+  export interface confirmBox {
+    isOpen: boolean;
+    msg: string;
+  }
 }
 
 export default Types;

@@ -3,13 +3,13 @@ import controllers from "./Controllers";
 import { ConnectionOptions, connect } from "mongoose";
 
 export class Server extends overnightjsServer {
-  constructor() {
-    super();
-    super.addControllers(controllers);
-  }
+  // constructor() {
+  //   super();
+  // }
 
   public middleware(middlewares: any[]) {
     middlewares.forEach(middleware => {
+      // console.log(middleware());
       this.app.use(middleware);
     });
   }
@@ -33,6 +33,7 @@ export class Server extends overnightjsServer {
   }
 
   public start(port: number) {
+    super.addControllers(controllers);
     this.app.listen(port, () => {
       console.log(`Server started on port ${port}`);
     });

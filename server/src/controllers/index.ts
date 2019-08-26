@@ -6,5 +6,6 @@
 
 import ArduinoController from "./ArduinoController";
 import UserController from "./UserController";
+import AdminController from "./AdminController";
 
-export default [ArduinoController, UserController];
+export default [ArduinoController, UserController, AdminController];

@@ -8,22 +8,6 @@ const mongoInstance = connectMongo(session);
 
 async function bootstrap() {
   const app = new Server();
-  app.connectMongoDB(
-    "mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useFindAndModify: false,
-      useCreateIndex: true
-    }
-  );
-
-  app.setting([
-    {
-      name: "json spaces",
-      value: 2
-    }
-  ]);
-
   app.middleware([
     express.urlencoded({ extended: true }),
     express.json(),
@@ -49,6 +33,22 @@ async function bootstrap() {
         secure: false
       }
     })
+  ]);
+
+  app.connectMongoDB(
+    "mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+    }
+  );
+
+  app.setting([
+    {
+      name: "json spaces",
+      value: 2
+    }
   ]);
   app.start(8000);
 }

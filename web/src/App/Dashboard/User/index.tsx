@@ -4,69 +4,60 @@ import Confirmation from "Components/Confirmation";
 import Content from "./Components/Content";
 import Search from "./Components/Search";
 import Add from "./Add";
-
-interface confirmBox {
-  isOpen: boolean;
-  msg: string;
-}
+import Types from "types";
 
 const Employee: FC = (): JSX.Element => {
   // state declarations
   const [employees, setEmployees] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [toggle, setToggleValue] = useState(false);
-  const [confirmBox, setConfirmBox] = useState<confirmBox>({
+  const [search, setSearch] = useState("");
+  const [confirmBox, setConfirmBox] = useState<Types.confirmBox>({
     isOpen: false,
     msg: ""
   });
 
-  // componentDidMount
-  // const fetchEmployees = useCallback(async () => {
-  //   setLoading(true);
-  //   if (isLoading) {
-  //     const { data } = await Axios.get("/user");
-  //     if (data) setEmployees(data);
-  //   }
-  //   setLoading(false);
-  // }, [isLoading]);
-
-  const fetchEmployees = async (value?: string) => {
+  const fetchEmployees = useCallback(async () => {
     setLoading(true);
     if (isLoading) {
       setEmployees([]);
-      const { data } = value
-        ? await Axios.get(`/user/${value}`)
-        : await Axios.get(`/user`);
+      const { data } = await Axios.get(!search ? `/user` : `/user/${search}`);
       if (data) setEmployees(data);
     }
     setLoading(false);
-  };
-  // useEffect(() => {
-  //   fetchEmployees();
-  // });
+  }, [isLoading, search]);
 
-  // Modal Functions
+  // Modal toggle
   const toggler = () => {
     setToggleValue(!toggle);
   };
+
+  // ConfirmBoxToggler
   const confirmBoxToggler = (msg: string): string => {
     setConfirmBox({ ...confirmBox, isOpen: !confirmBox.isOpen, msg });
     return "";
   };
 
+  // Search handler
+  const searchOnChange = (value: string) => {
+    setLoading(true);
+    setSearch(value);
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, [fetchEmployees]);
+
   return (
     <main>
-      {/* <Search onSearch={e => fetchEmployees(e)} /> */}
+      <Search value={search} onChange={searchOnChange} />
       <Content
         employees={employees}
         fetchEmployees={fetchEmployees}
         confirmBoxToggler={confirmBoxToggler}
         isOpen={confirmBox.isOpen}
         isLoading={isLoading}
-        onClick={id => {
-          // addCurrentEmployee(id);
-          toggler();
-        }}
+        onClick={toggler}
       />
       <Add />
       <Confirmation

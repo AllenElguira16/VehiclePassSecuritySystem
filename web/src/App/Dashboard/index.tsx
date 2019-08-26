@@ -3,7 +3,7 @@ import { Container, Card, CardBody, Col, CardHeader } from "reactstrap";
 import { Route, RouteComponentProps, Redirect } from "react-router-dom";
 import Axios from "axios";
 import SignIn from "App/Dashboard/SignIn";
-import Navigation from "./Components/Navigation";
+import Navigation from "./Navigation";
 import Loader from "Components/Loader";
 import Users from "./User";
 import Types from "types";
@@ -19,7 +19,7 @@ const Dashboard: React.FC<
 
   const checkLoginState = useCallback(async () => {
     setAsLoading(true);
-    let { data } = await Axios.get("/user/auth");
+    let { data } = await Axios.get("/admin/auth");
     if (!data.error) setAsLoggedIn(true);
     else setAsLoggedIn(false);
     setAsLoading(false);

@@ -30,7 +30,7 @@ const SignIn: React.FC<Props> = props => {
 
   const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let { data } = await Axios.post("/user", inputState);
+    let { data } = await Axios.post("/admin", inputState);
     if (!data.error) {
       props.setLoggedInState();
     }

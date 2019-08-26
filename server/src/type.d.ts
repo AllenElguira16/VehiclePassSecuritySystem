@@ -1,9 +1,9 @@
-interface IUser {
+interface Admin {
   username: string;
   password: string;
 }
 
-interface IEmployee {
+interface User {
   employeeId: string;
   firstname: string;
   lastname: string;

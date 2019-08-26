@@ -30,7 +30,7 @@ const AddForm: React.FC<Props> = props => {
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let { data } = await Axios.post("/employee/add", user);
+    let { data } = await Axios.post("/user/add", user);
     if (!data.error) {
       setResponse({ type: "success", msg: "Added Successfully" });
     } else if (data.error) {

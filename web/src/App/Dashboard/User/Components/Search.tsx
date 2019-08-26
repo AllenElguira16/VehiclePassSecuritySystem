@@ -1,23 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "Components/Input";
 
 interface Props {
-  onSearch(value: string): void;
+  value: string;
+  onChange(value: string): void;
 }
 
-const Search: React.FC<Props> = ({ onSearch }) => {
-  const [search, setSearch] = useState("");
-
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setSearch(e.currentTarget.value);
-    onSearch(e.currentTarget.value);
+const Search: React.FC<Props> = ({ onChange, value }) => {
+  const onInputChange = async (e: React.FormEvent<HTMLInputElement>) => {
+    let { value } = e.currentTarget;
+    onChange(value);
   };
 
   return (
     <Input
-      value={search}
+      value={value}
       placeholder="search"
-      onChange={onChange}
+      onChange={onInputChange}
       icon={{
         position: "prepend",
         iconName: "search"
