@@ -12,6 +12,7 @@
     "member-ordering": false,
     "no-console": false,
     "no-shadowed-variable": false,
-    "curly": false
+    "curly": false,
+    "interface-name": false
   }
 }

@@ -8,3 +8,8 @@ interface IEmployee {
   firstname: string;
   lastname: string;
 }
+
+interface Setting {
+  name: string;
+  value: any;
+}
