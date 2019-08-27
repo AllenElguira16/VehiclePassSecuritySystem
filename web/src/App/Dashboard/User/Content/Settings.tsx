@@ -6,20 +6,20 @@ import {
   DropdownItem
 } from "reactstrap";
 import Axios from "axios";
+import { SettingsProps } from "types";
 
-type Props = {
-  isOpen: boolean;
-  toggle(msg: string): string;
-  employeeId: string;
-  fetchData(): void;
-};
-
-const Settings: FC<Props> = ({ employeeId, fetchData }) => {
+const Settings: FC<SettingsProps> = props => {
   const onDelete = async () => {
     // toggle("Are you sure you want to delete?");
-    await Axios.delete(`/employee/${employeeId}`);
-    fetchData();
+    await Axios.delete(`/user/${props.user.userId}`);
+    props.fetchData();
     // console.log(data);
+  };
+
+  const onEdit = async () => {
+    props.setFormType("update");
+    props.setUserInput(props.user);
+    props.setFormToggle(true);
   };
 
   return (
@@ -30,7 +30,7 @@ const Settings: FC<Props> = ({ employeeId, fetchData }) => {
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem>Vehicles</DropdownItem>
-          <DropdownItem>Edit</DropdownItem>
+          <DropdownItem onClick={onEdit}>Edit</DropdownItem>
           <DropdownItem onClick={onDelete}>Delete</DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>

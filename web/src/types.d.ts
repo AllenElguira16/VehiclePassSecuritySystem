@@ -1,74 +1,105 @@
 import { InputProps } from "reactstrap";
 import { FC } from "react";
 
-declare namespace Types {
-  export interface ContentProps {
-    employees: Array<Types.IEmployee>;
-    confirmBoxToggler(msg: string): string;
-    isOpen: boolean;
-    fetchEmployees(): void;
-    isLoading: boolean;
-    onClick(id: string): void;
-  }
-
-  export interface IUser {
-    _id?: string;
-    username?: string;
-    password?: string;
-  }
-
-  // store state
-  export interface iStore {
-    user?: IUser;
-  }
-
-  export interface ReduxActionInterface {
-    type: string;
-    data: any; //Payload
-  }
-
-  export interface combinedReducerInterface {
-    auth: authState;
-  }
-
-  export interface SignInProps {
-    auth: authReducerState;
-    signIn(): any;
-  }
-
-  export interface DashboardProps {
-    isLoggedIn: boolean;
-    setAsLoggedIn(): any;
-  }
-
-  export interface authState {
-    user: IUser;
-    isLoggedIn: boolean;
-  }
-
-  export interface IEmployee {
-    _id: string;
-    employeeId: string;
-    firstname: string;
-    lastname: string;
-    dateCreated: Date | null;
-  }
-
-  // Components Props
-  export interface InputComponentProps {
-    onChange?(e: React.FormEvent<HTMLInputElement>): void;
-    tabIndex?: number;
-    value?: InputProps["value"];
-    type?: InputProps["type"];
-    placeholder?: InputProps["placeholder"];
-    icon?: { position: InputGroupAddonProps["addonType"]; iconName: string };
-    name?: InputProps["name"];
-  }
-
-  export interface confirmBox {
-    isOpen: boolean;
-    msg: string;
-  }
+// PropTypes
+export interface ContentProps {
+  setFormType(type: FormProps["type"]): void;
+  confirmBoxToggler(msg: string): string;
+  setUserInput(value: UserInput): void;
+  users: Array<Types.IEmployee>;
+  setFormToggle(boolean: boolean): void;
+  onClick(id: string): void;
+  fetchUsers(): void;
+  isOpen: boolean;
+  isLoading: boolean;
 }
 
-export default Types;
+export interface SignInProps {
+  auth: authReducerState;
+  signIn(): any;
+}
+
+export interface DashboardProps {
+  isLoggedIn: boolean;
+  setAsLoggedIn(): any;
+}
+
+export interface AddFormProps {
+  setUser(user: UserInput): void;
+  onSubmit(event: React.FormEvent<HTMLFormElement>): void;
+  response: Response;
+  user: UserInput;
+}
+
+export interface FormProps {
+  setUser(user: UserInput): void;
+  setFormType(type: FormProps["type"]);
+  setToggle(boolean: boolean): void;
+  toggle: boolean;
+  user: UserInput;
+  type: "create" | "update";
+}
+
+export interface InputComponentProps {
+  onChange?(e: React.FormEvent<HTMLInputElement>): void;
+  tabIndex?: number;
+  value?: InputProps["value"];
+  type?: InputProps["type"];
+  placeholder?: InputProps["placeholder"];
+  icon?: { position: InputGroupAddonProps["addonType"]; iconName: string };
+  name?: InputProps["name"];
+}
+
+export interface ConfirmBox {
+  isOpen: boolean;
+  msg: string;
+}
+
+export interface SettingsProps {
+  setFormType(type: FormProps["type"]): void;
+  setFormToggle(boolean: boolean): void;
+  setUserInput(value: UserInput): void;
+  toggle(msg: string): string;
+  fetchData(): void;
+  isOpen: boolean;
+  user: User;
+}
+// End Prop
+
+// Miscs
+export interface IUser {
+  _id?: string;
+  username?: string;
+  password?: string;
+}
+
+export interface authState {
+  user: IUser;
+  isLoggedIn: boolean;
+}
+
+export interface User {
+  _id: string;
+  userId: string;
+  firstname: string;
+  lastname: string;
+  dateCreated: Date | null;
+}
+
+export interface UserInput {
+  userId: User["userId"];
+  firstname: User["firstname"];
+  lastname: User["lastname"];
+}
+
+export interface User {
+  id: string;
+  userId: string;
+  firstname: string;
+  lastname: string;
+}
+
+export interface Response {
+  type: "success" | "error";
+  msg: string;
+}

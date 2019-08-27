@@ -4,7 +4,7 @@ interface Admin {
 }
 
 interface User {
-  employeeId: string;
+  userId: string;
   firstname: string;
   lastname: string;
 }
