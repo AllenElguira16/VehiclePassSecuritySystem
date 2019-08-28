@@ -10,6 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "@overnightjs/core": "^1.6.9",
+    "@tsed/common": "^5.27.5",
+    "@tsed/core": "^5.27.5",
+    "@tsed/di": "^5.27.5",
+    "@tsed/mongoose": "^5.27.5",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",

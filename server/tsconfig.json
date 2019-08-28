@@ -2,7 +2,7 @@
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types"],
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "esnext",
     "module": "commonjs",
     "baseUrl": "src",
     "outDir": "dist",
@@ -19,6 +19,18 @@
     "allowJs": true,
     "strict": true
   },
+  // "compilerOptions": {
+  //   "target": "es5",
+  //   // "lib": ["es2016"],
+  //   "typeRoots": ["./node_modules/@types"],
+  //   "module": "commonjs",
+  //   "moduleResolution": "node",
+  //   "experimentalDecorators": true,
+  //   "emitDecoratorMetadata": true,
+  //   "allowSyntheticDefaultImports": true,
+  //   "esModuleInterop": true,
+  //   "strict": true
+  // },
   "include": ["src"],
   "exclude": ["dist"]
 }

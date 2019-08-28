@@ -13,6 +13,7 @@
     "no-console": false,
     "no-shadowed-variable": false,
     "curly": false,
-    "interface-name": false
+    "interface-name": false,
+    "variable-name": false
   }
 }

@@ -1,37 +1,49 @@
-import { Get, Post, Controller } from "@overnightjs/core";
+// import { Get, Post, Controller } from "@overnightjs/core";
+import {
+  Controller,
+  Get,
+  Post,
+  Inject,
+  Session,
+  BodyParams
+} from "@tsed/common";
 import { Request, Response } from "express";
 import { hash, compare } from "bcryptjs";
-import Admin from "../Models/Admin";
+import { Admin } from "../Service/Admin";
+import { MongooseModel } from "@tsed/mongoose";
+// import Admin from "../Dump/Models/Admin";
 
-@Controller("api/admin")
+@Controller("/admin")
 class AdminController {
-  @Get("auth")
-  public getAuthUser(request: Request, response: Response) {
-    if (request.session) {
-      if (request.session.user)
-        return response.json({ ...request.session.user });
-      return response.json({ error: true });
-    }
-    return response.json({ error: true });
+  constructor(@Inject(Admin) private model: MongooseModel<any>) {
+    console.log(model);
+  }
+
+  @Get("/auth")
+  public getAuth(@Session() session: any) {
+    if (session.user) return { ...session.user };
+    return { error: true };
   }
 
   @Post()
-  public async signIn(request: Request, response: Response) {
-    const { username, password }: Admin = request.body;
-    const user = await Admin.findOne({ username });
-    if (!user) return response.json({ error: true });
+  public async signIn(
+    @BodyParams() { username, password }: any,
+    @Session() session: any
+  ) {
+    const user = await this.model.findOne({ username });
+    if (!user) return { error: true };
     const isMatch = await compare(password, user.password);
-    if (!isMatch) return response.json({ error: true });
-    if (request.session) {
-      request.session.user = user;
-      request.session.save(error => {
-        if (error) return response.json({ error });
-        return response.json({ success: true });
-      });
-    }
+    if (!isMatch) return { error: true };
+    session.user = user;
+    return { success: true };
   }
 
-  // @Post()
+  @Post("/logout")
+  public async logout(@Session() session: any) {
+    delete session.user;
+    return { success: "Sign out successfully" };
+  }
+  // @Post(":create")
   // public async register(request: Request, response: Response) {
   //   const { username, password }: Admin = request.body;
   //   const hashedPassword = await hash(password, 10);
@@ -41,16 +53,6 @@ class AdminController {
   //     return response.json({ success: true });
   //   });
   // }
-
-  @Post("logout")
-  public async logout(request: Request, response: Response) {
-    if (request.session) {
-      request.session.destroy(err => {
-        if (err) return response.json({ error: err });
-        return response.json({ success: "Sign out successfully" });
-      });
-    }
-  }
 }
 
-export default new AdminController();
+export default AdminController;
