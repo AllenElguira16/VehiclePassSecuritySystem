@@ -42,7 +42,7 @@ const Dashboard: React.FC<
       render = <Redirect to="/dashboard/users" />;
     } else {
       render = (
-        <Col lg={8}>
+        <Col lg={10}>
           <Card>
             <CardHeader>
               <Navigation setAsLoggedInState={checkLoginState} />

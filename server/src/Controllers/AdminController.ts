@@ -7,14 +7,12 @@ import {
   BodyParams
 } from "@tsed/common";
 import { hash, compare } from "bcryptjs";
-import { Admin } from "../Service/Admin";
+import { Admin } from "../Model/Admin";
 import { MongooseModel } from "@tsed/mongoose";
 
 @Controller("/admin")
 class AdminController {
-  constructor(@Inject(Admin) private model: MongooseModel<any>) {
-    console.log(model);
-  }
+  constructor(@Inject(Admin) private model: MongooseModel<any>) {}
 
   @Get("/auth")
   public getAuth(@Session() session: any) {
@@ -23,10 +21,8 @@ class AdminController {
   }
 
   @Post()
-  public async signIn(
-    @BodyParams() { username, password }: any,
-    @Session() session: any
-  ) {
+  public async signIn(@BodyParams() params: any, @Session() session: any) {
+    const { username, password } = params;
     const user = await this.model.findOne({ username });
     if (!user) return { error: true };
     const isMatch = await compare(password, user.password);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalFooter } from "reactstrap";
-import Form from "./AddForm";
+import ModalForm from "./ModalForm";
 import { Response, FormProps } from "types";
 import Axios from "axios";
 // import QRCodeModal from "./QRCodeModal";
@@ -45,7 +45,7 @@ const Add: React.FC<FormProps> = props => {
       </Button>
       <Modal isOpen={props.toggle} toggle={toggler}>
         <ModalHeader toggle={toggler}>Add Employee</ModalHeader>
-        <Form
+        <ModalForm
           setUser={props.setUser}
           user={props.user}
           response={response}
@@ -69,7 +69,7 @@ const Add: React.FC<FormProps> = props => {
               <span>Close</span>
             </Button>
           </ModalFooter>
-        </Form>
+        </ModalForm>
       </Modal>
     </>
   );

@@ -99,6 +99,14 @@ export interface User {
   lastname: string;
 }
 
+export interface Vehicle {
+  id: string;
+  name: string;
+  type: string;
+  color: string;
+  registrationNumber: string;
+}
+
 export interface Response {
   type: "success" | "error";
   msg: string;

@@ -7,7 +7,7 @@ import {
   Inject,
   BodyParams
 } from "@tsed/common";
-import { User } from "../Service/User";
+import { User } from "../Model/User";
 import { MongooseModel } from "@tsed/mongoose";
 // import { Request, Response } from "express";
 // import User from "../Models/User";
@@ -33,9 +33,9 @@ class UserController {
   @Post()
   public async addUser(@BodyParams() params: any) {
     const { userId, firstname, lastname } = params;
-    if (userId === "" || firstname === "" || lastname === "") {
+    if (userId === "" || firstname === "" || lastname === "")
       return { error: "All inputs are required" };
-    }
+
     const match = await this.user.find({ userId });
     if (match.length !== 0) return { error: "User already exists" };
     const user = new this.user({ userId, firstname, lastname });
@@ -54,7 +54,7 @@ class UserController {
     });
   }
 
-  @Delete(":id")
+  @Delete("/:id")
   public async deleteUser(@BodyParams() params: any) {
     const userId = params.id;
     this.user.deleteOne({ _id: userId }, error => {

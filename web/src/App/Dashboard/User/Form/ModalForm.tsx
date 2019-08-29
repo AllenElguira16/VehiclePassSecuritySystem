@@ -4,7 +4,7 @@ import Alert from "Components/Alert";
 import Input from "Components/Input";
 import { AddFormProps } from "types";
 
-const AddForm: React.FC<AddFormProps> = props => {
+const ModalForm: React.FC<AddFormProps> = props => {
   const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     let { name, value } = e.currentTarget;
     props.setUser({ ...props.user, [name]: value });
@@ -49,4 +49,4 @@ const AddForm: React.FC<AddFormProps> = props => {
   );
 };
 
-export default AddForm;
+export default ModalForm;

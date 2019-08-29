@@ -36,6 +36,7 @@ const Header: React.FC<RouteComponentProps> = props => {
       expand="lg"
       className="justify-content-between shadow-lg"
       tag="header"
+      sticky={"top"}
     >
       <Container>
         <NavbarBrand
