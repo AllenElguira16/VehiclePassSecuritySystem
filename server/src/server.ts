@@ -5,11 +5,12 @@ import {
   GlobalAcceptMimesMiddleware
 } from "@tsed/common";
 import "@tsed/mongoose";
-// import controllers from "./Dump";
-// import { ConnectionOptions, connect } from "mongoose";
 import express from "express";
 import cors from "cors";
 import session from "express-session";
+import connectMongo from "connect-mongo";
+import mongoose from "mongoose";
+const mongoInstance = connectMongo(session);
 
 @ServerSettings({
   rootDir: __dirname,
@@ -53,9 +54,9 @@ export class Server extends ServerLoader {
           secret: "the-greatest-secret-key",
           resave: false,
           saveUninitialized: true,
-          // store: new mongoInstance({
-          //   mongooseConnection: mongoose.connection
-          // }),
+          store: new mongoInstance({
+            mongooseConnection: mongoose.connection
+          }),
           cookie: {
             sameSite: true,
             secure: false

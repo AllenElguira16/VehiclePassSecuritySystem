@@ -1,4 +1,3 @@
-// import { Get, Post, Controller } from "@overnightjs/core";
 import {
   Controller,
   Get,
@@ -7,11 +6,9 @@ import {
   Session,
   BodyParams
 } from "@tsed/common";
-import { Request, Response } from "express";
 import { hash, compare } from "bcryptjs";
 import { Admin } from "../Service/Admin";
 import { MongooseModel } from "@tsed/mongoose";
-// import Admin from "../Dump/Models/Admin";
 
 @Controller("/admin")
 class AdminController {
@@ -43,16 +40,20 @@ class AdminController {
     delete session.user;
     return { success: "Sign out successfully" };
   }
-  // @Post(":create")
-  // public async register(request: Request, response: Response) {
-  //   const { username, password }: Admin = request.body;
-  //   const hashedPassword = await hash(password, 10);
-  //   const admin = new Admin({ username, password: hashedPassword });
-  //   admin.save(error => {
-  //     if (error) return response.json({ error });
-  //     return response.json({ success: true });
-  //   });
-  // }
+
+  @Post("/register")
+  public async register(@BodyParams() { username, password }: Admin) {
+    if (username && password) {
+      const hashedPassword = await hash(password, 10);
+      const admin = new this.model({ username, password: hashedPassword });
+      admin.save((error: any) => {
+        if (error) return { error };
+        return { success: true };
+      });
+    } else {
+      return { error: "Empty" };
+    }
+  }
 }
 
 export default AdminController;
