@@ -5,7 +5,8 @@ import {
   Delete,
   Put,
   Inject,
-  BodyParams
+  BodyParams,
+  PathParams
 } from "@tsed/common";
 import { User } from "../Model/User";
 import { MongooseModel } from "@tsed/mongoose";
@@ -21,8 +22,8 @@ class UserController {
     return await this.user.find();
   }
 
-  @Get(":value")
-  public async getUserBySearch(@BodyParams() { value }: any) {
+  @Get("/:value")
+  public async getUserBySearch(@PathParams() { value }: any) {
     if (value) {
       return await this.user.find({
         userId: new RegExp(`^${value}`, "i")

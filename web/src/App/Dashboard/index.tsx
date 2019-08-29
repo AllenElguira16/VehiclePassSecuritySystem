@@ -42,7 +42,7 @@ const Dashboard: React.FC<
       render = <Redirect to="/dashboard/users" />;
     } else {
       render = (
-        <Col lg={10}>
+        <Col lg={12}>
           <Card>
             <CardHeader>
               <Navigation setAsLoggedInState={checkLoginState} />
@@ -59,7 +59,11 @@ const Dashboard: React.FC<
     render = <Loader />;
   }
 
-  return <Container className="center py-5">{render}</Container>;
+  return (
+    <Container fluid className="center py-5">
+      {render}
+    </Container>
+  );
 };
 
 export default Dashboard;

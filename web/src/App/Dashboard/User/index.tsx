@@ -5,6 +5,7 @@ import Content from "./Content";
 import Search from "./Search";
 import Form from "./Form";
 import { User, UserInput, ConfirmBox, FormProps } from "types";
+import { Row, Col } from "reactstrap";
 
 const Employee: FC = (): JSX.Element => {
   // state declarations
@@ -54,7 +55,21 @@ const Employee: FC = (): JSX.Element => {
   //
   return (
     <>
-      <Search value={search} onChange={searchOnChange} />
+      <Row>
+        <Col lg="2">
+          <Search value={search} onChange={searchOnChange} />
+        </Col>
+        <Col>
+          <Form
+            setUser={setUserInput}
+            user={userInput}
+            type={FormType}
+            setFormType={setFormType}
+            setToggle={setFormToggle}
+            toggle={FormToggle}
+          />
+        </Col>
+      </Row>
       <Content
         users={users}
         fetchUsers={fetchUsers}
@@ -65,14 +80,6 @@ const Employee: FC = (): JSX.Element => {
         setFormType={setFormType}
         setFormToggle={setFormToggle}
         setUserInput={setUserInput}
-      />
-      <Form
-        setUser={setUserInput}
-        user={userInput}
-        type={FormType}
-        setFormType={setFormType}
-        setToggle={setFormToggle}
-        toggle={FormToggle}
       />
       <Confirmation
         toggle={() => confirmBoxToggler("")}

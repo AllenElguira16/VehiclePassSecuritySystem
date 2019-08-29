@@ -13,7 +13,7 @@ interface Props {
 
 const Options: FC<Props> = Props => {
   const signOut = async () => {
-    const { data } = await Axios.post("/user/logout");
+    const { data } = await Axios.post("/admin/logout");
     if (data.success) Props.setAsLoggedInState();
   };
 

@@ -40,7 +40,11 @@ const Add: React.FC<FormProps> = props => {
 
   return (
     <>
-      <Button onClick={toggler} color="primary" className="btn-raised">
+      <Button
+        onClick={toggler}
+        color="primary"
+        className="float-right btn-raised"
+      >
         Add
       </Button>
       <Modal isOpen={props.toggle} toggle={toggler}>

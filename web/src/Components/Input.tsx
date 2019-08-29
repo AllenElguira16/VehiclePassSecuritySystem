@@ -16,13 +16,6 @@ export default (props: Types.InputComponentProps) => {
   return (
     <FormGroup>
       <InputGroup>
-        {props.icon && (
-          <InputGroupAddon addonType={props.icon.position}>
-            <InputGroupText>
-              <i className="material-icons">{props.icon.iconName}</i>
-            </InputGroupText>
-          </InputGroupAddon>
-        )}
         <Input
           tabIndex={props.tabIndex}
           type={props.type}
@@ -33,6 +26,13 @@ export default (props: Types.InputComponentProps) => {
           value={props.value}
           autoComplete="off"
         />
+        {props.icon && (
+          <InputGroupAddon addonType={props.icon.position}>
+            <InputGroupText>
+              <i className="material-icons px-1">{props.icon.iconName}</i>
+            </InputGroupText>
+          </InputGroupAddon>
+        )}
       </InputGroup>
     </FormGroup>
   );
