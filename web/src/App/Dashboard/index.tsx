@@ -60,7 +60,7 @@ const Dashboard: React.FC<
   }
 
   return (
-    <Container fluid className="py-5">
+    <Container fluid className="horizontal-center py-5">
       {render}
     </Container>
   );

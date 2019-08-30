@@ -11,7 +11,7 @@ import { SettingsProps } from "types";
 const Settings: FC<SettingsProps> = props => {
   const onDelete = async () => {
     // toggle("Are you sure you want to delete?");
-    await Axios.delete(`/user/${props.user.userId}`);
+    await Axios.delete(`/user/${props.user.id}`);
     props.fetchData();
     // console.log(data);
   };

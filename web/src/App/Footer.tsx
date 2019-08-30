@@ -3,7 +3,7 @@ import { Col, Jumbotron } from "reactstrap";
 
 export default () => {
   return (
-    <Jumbotron tag="footer" className="bg-primary rounded-0 mb-0">
+    <Jumbotron tag="footer" className="bg-dark rounded-0 mb-0">
       <div className="text-center text-white d-flex justify-content-center container">
         <Col sm="6">
           <h4>Vehicle Pass Security System</h4>

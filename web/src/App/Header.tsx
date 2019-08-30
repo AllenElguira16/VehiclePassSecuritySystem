@@ -32,9 +32,10 @@ const Header: React.FC<RouteComponentProps> = props => {
     <Navbar
       color="white"
       expand="lg"
-      className="justify-content-between shadow-lg"
+      className="justify-content-between shadow-sm"
       tag="header"
-      sticky={"top"}
+      sticky="top"
+      light
     >
       <NavbarBrand
         tag={Link}

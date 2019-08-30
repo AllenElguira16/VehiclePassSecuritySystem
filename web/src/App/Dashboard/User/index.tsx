@@ -6,6 +6,7 @@ import Search from "./Search";
 import Form from "./Form";
 import { User, UserInput, ConfirmBox, FormProps } from "types";
 import { Row, Col } from "reactstrap";
+import io from "socket.io-client";
 
 const Employee: FC = (): JSX.Element => {
   // state declarations
@@ -51,6 +52,10 @@ const Employee: FC = (): JSX.Element => {
   //
   useEffect(() => {
     fetchUsers();
+    const socket = io("http://localhost:8000");
+    socket.on("newVehicle", () => {
+      fetchUsers();
+    });
   }, [fetchUsers]);
   //
   return (

@@ -10,12 +10,16 @@ import {
 } from "@tsed/common";
 import { User } from "../Model/User";
 import { MongooseModel } from "@tsed/mongoose";
+import { MySocketService } from "../Services/Socket";
 // import { Request, Response } from "express";
 // import User from "../Models/User";
 
 @Controller("/user")
 class UserController {
-  constructor(@Inject(User) private user: MongooseModel<any>) {}
+  constructor(
+    @Inject(User) private user: MongooseModel<any>,
+    private socket: MySocketService
+  ) {}
 
   @Get()
   public async getUser() {
@@ -41,6 +45,9 @@ class UserController {
     if (match.length !== 0) return { error: "User already exists" };
     const user = new this.user({ userId, firstname, lastname });
     user.save((error: any) => ({ error }));
+    if (this.socket.nsp) {
+      this.socket.nsp.emit("newVehicle");
+    }
     return { success: "Created Successfully" };
   }
 
@@ -56,10 +63,10 @@ class UserController {
   }
 
   @Delete("/:id")
-  public async deleteUser(@BodyParams() params: any) {
-    const userId = params.id;
-    this.user.deleteOne({ _id: userId }, error => {
+  public async deleteUser(@PathParams() params: any) {
+    this.user.findByIdAndRemove(params.id, error => {
       if (error) return { error };
+      // this.socket.nsp;
       return { success: "Deleted Successfully" };
     });
   }

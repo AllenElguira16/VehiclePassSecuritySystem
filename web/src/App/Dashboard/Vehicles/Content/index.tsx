@@ -4,7 +4,7 @@ import { Table } from "reactstrap";
 // import Loader from "./Loader";
 import { Vehicle } from "types";
 import Loader from "Components/Loader";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 interface Props {
   vehicles: Vehicle[];
   isLoading: boolean;
@@ -15,9 +15,6 @@ const Content: FC<Props> = props => {
   //   let readableDate: Date = new Date(date as Date);
   //   return readableDate.toLocaleDateString();
   // };
-  useEffect(() => {
-    // const socket = io("http://localhost:3000");
-  }, []);
 
   return (
     <Table striped responsive>

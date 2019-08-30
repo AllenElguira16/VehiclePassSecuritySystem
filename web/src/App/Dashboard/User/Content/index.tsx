@@ -25,11 +25,7 @@ const Content: FC<ContentProps> = props => {
           {props.isLoading && <Loader />}
           {(!props.isLoading && props.users.length) !== 0 ? (
             props.users.map((user: User, i: number) => (
-              <tr
-                key={i}
-                style={{ cursor: "pointer" }}
-                onClick={() => props.onClick(user._id)}
-              >
+              <tr key={i} style={{ cursor: "pointer" }}>
                 <td className="align-middle">{user.userId}</td>
                 <td className="align-middle">{user.firstname}</td>
                 <td className="align-middle">{user.lastname}</td>

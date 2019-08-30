@@ -7,8 +7,9 @@ import {
   Namespace
 } from "@tsed/socketio";
 import SocketIO from "socket.io";
+import { $log } from "@tsed/common";
 
-@SocketService("/my-namespace")
+@SocketService()
 export class MySocketService {
   @Namespace public nsp: Namespace | undefined;
 
@@ -19,7 +20,9 @@ export class MySocketService {
   /**
    * Triggered the namespace is created
    */
-  public $onNamespaceInit(nsp: SocketIO.Namespace) {}
+  public $onNamespaceInit(nsp: SocketIO.Namespace) {
+    console.log("");
+  }
 
   /**
    * Triggered when a new client connects to the Namespace.
@@ -27,10 +30,14 @@ export class MySocketService {
   public $onConnection(
     @Socket socket: SocketIO.Socket,
     @SocketSession session: SocketSession
-  ) {}
+  ) {
+    $log.debug("Connected");
+  }
 
   /**
    * Triggered when a client disconnects from the Namespace.
    */
-  public $onDisconnect(@Socket socket: SocketIO.Socket) {}
+  public $onDisconnect(@Socket socket: SocketIO.Socket) {
+    console.log("");
+  }
 }
