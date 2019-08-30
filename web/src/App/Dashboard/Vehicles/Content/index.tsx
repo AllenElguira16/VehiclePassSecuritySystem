@@ -1,10 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 // import Settings from "./Settings";
 import { Table } from "reactstrap";
 // import Loader from "./Loader";
-import { ContentProps, Vehicle } from "types";
+import { Vehicle } from "types";
+import Loader from "Components/Loader";
+import io from "socket.io-client";
 interface Props {
-  vehicles: Vehicle[] | undefined;
+  vehicles: Vehicle[];
+  isLoading: boolean;
 }
 
 const Content: FC<Props> = props => {
@@ -12,9 +15,12 @@ const Content: FC<Props> = props => {
   //   let readableDate: Date = new Date(date as Date);
   //   return readableDate.toLocaleDateString();
   // };
+  useEffect(() => {
+    // const socket = io("http://localhost:3000");
+  }, []);
 
   return (
-    <Table striped>
+    <Table striped responsive>
       <tbody>
         <tr>
           <th>Plate Number</th>
@@ -23,27 +29,21 @@ const Content: FC<Props> = props => {
           <th>Color</th>
           <th>Registration Number</th>
         </tr>
-        {/* {props.isLoading && <Loader />} */}
-        {/* {(!props.isLoading && props.users.length) !== 0 ? (
-          props.users.map((user: User, i: number) => (
-            <tr
-              key={i}
-              style={{ cursor: "pointer" }}
-              onClick={() => props.onClick(user._id)}
-            >
-              <td className="align-middle">{user.userId}</td>
-              <td className="align-middle">{user.firstname}</td>
-              <td className="align-middle">{user.lastname}</td>
-              <td className="align-middle">{formatDate(user.dateCreated)}</td>
-              <Settings
-                toggle={props.confirmBoxToggler}
-                isOpen={props.isOpen}
-                fetchData={props.fetchUsers}
-                user={user}
-                setFormType={props.setFormType}
-                setUserInput={props.setUserInput}
-                setFormToggle={props.setFormToggle}
-              />
+        {props.isLoading && (
+          <tr>
+            <td colSpan={5}>
+              <Loader />
+            </td>
+          </tr>
+        )}
+        {(!props.isLoading && props.vehicles.length) !== 0 ? (
+          props.vehicles.map((vehicle: Vehicle, i: number) => (
+            <tr key={i} style={{ cursor: "pointer" }}>
+              <td className="align-middle">{vehicle.plateNumber}</td>
+              <td className="align-middle">{vehicle.name}</td>
+              <td className="align-middle">{vehicle.type}</td>
+              <td className="align-middle">{vehicle.color}</td>
+              <td className="align-middle">{vehicle.registrationNumber}</td>
             </tr>
           ))
         ) : (
@@ -52,7 +52,7 @@ const Content: FC<Props> = props => {
               <em>Empty</em>
             </td>
           </tr>
-        )} */}
+        )}
       </tbody>
     </Table>
   );

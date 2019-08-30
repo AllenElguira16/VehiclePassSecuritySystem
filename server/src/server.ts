@@ -5,6 +5,7 @@ import {
   GlobalAcceptMimesMiddleware
 } from "@tsed/common";
 import "@tsed/mongoose";
+import "@tsed/socketio";
 import express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -16,8 +17,7 @@ const mongoInstance = connectMongo(session);
   rootDir: __dirname,
   acceptMimes: ["accept/json"],
   httpPort: "127.0.0.1:8000",
-  // httpsPort: "127.0.0.1:8080",
-  // port: 8000
+  socketIO: {},
   mount: {
     "/api": "${rootDir}/Controllers/**/*.ts"
   },

@@ -100,7 +100,7 @@ export interface User {
 }
 
 export interface Vehicle {
-  id: string;
+  plateNumber: string;
   name: string;
   type: string;
   color: string;

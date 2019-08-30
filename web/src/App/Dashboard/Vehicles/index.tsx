@@ -4,7 +4,7 @@ import { Vehicle } from "types";
 import Axios, { AxiosResponse } from "axios";
 
 const Vehicles: FC = () => {
-  const [vehicles, setVehicles] = useState<Vehicle[]>();
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +16,7 @@ const Vehicles: FC = () => {
 
   return (
     <>
-      <Content vehicles={vehicles} />
+      <Content vehicles={vehicles} isLoading={true} />
     </>
   );
 };
