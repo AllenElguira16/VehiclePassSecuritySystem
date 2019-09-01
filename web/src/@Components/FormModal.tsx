@@ -28,8 +28,8 @@ const FormModal: React.FC<Props> = props => {
                 color="outline-info"
                 className="p-align-items-end d-flex"
               >
-                <i className="material-icons pr-2">add</i>
-                <span>Add</span>
+                <span>Submit</span>
+                <i className="material-icons pl-2">send</i>
               </Button>
             </Col>
             <Col>
@@ -38,8 +38,8 @@ const FormModal: React.FC<Props> = props => {
                 color="outline-danger"
                 className="float-right align-items-end d-flex"
               >
-                <i className="material-icons pr-2">close</i>
                 <span>Close</span>
+                <i className="material-icons pl-2">close</i>
               </Button>
             </Col>
           </Row>

@@ -1,9 +1,10 @@
-import React, { useContext, FormEvent } from "react";
+import React, { useContext, FormEvent, useState } from "react";
 import { FormModal, Input } from "@Components";
 import { observer } from "mobx-react-lite";
 import { AppStore } from "store";
-import { Row, Col } from "reactstrap";
+import { Row, Col, UncontrolledAlert } from "reactstrap";
 import Axios from "axios";
+import { Response } from "types";
 
 const Form = observer(() => {
   const { UserFormComponentState } = useContext(AppStore);
@@ -17,11 +18,26 @@ const Form = observer(() => {
       [name]: value
     };
   };
+  const [response, setResponse] = useState<Response>({
+    msg: "",
+    type: "danger"
+  });
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    let response;
     if (UserFormComponentState.type === "create")
-      console.log(await Axios.post("/user", UserFormComponentState.userInput));
+      response = await Axios.post("/user", UserFormComponentState.userInput);
+    else if (UserFormComponentState.type === "update")
+      response = await Axios.put("/user", UserFormComponentState.userInput);
+    // if (response) console.log(response.data);
+    if (response) {
+      if (!response.data.error)
+        setResponse({ type: "success", msg: response.data.success });
+      else if (response.data.error)
+        setResponse({ type: "danger", msg: response.data.error });
+    }
   };
+
   return (
     <FormModal
       title={UserFormComponentState.title}
@@ -56,9 +72,11 @@ const Form = observer(() => {
           />
         </Col>
       </Row>
-      {/* {response.msg.length !== 0 && (
-          <Alert type={response.type}>{response.msg}</Alert>
-        )} */}
+      {response.msg.length !== 0 && (
+        <UncontrolledAlert color={response.type}>
+          {response.msg}
+        </UncontrolledAlert>
+      )}
     </FormModal>
   );
 });

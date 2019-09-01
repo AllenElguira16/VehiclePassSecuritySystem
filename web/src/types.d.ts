@@ -101,6 +101,6 @@ export interface Vehicle {
 }
 
 export interface Response {
-  type: "success" | "error";
+  type: "success" | "danger";
   msg: string;
 }

@@ -1,45 +1,26 @@
-import React, { FC, useState, FormEvent } from "react";
+import React, { FC, useContext } from "react";
 import {
   UncontrolledDropdown,
   DropdownMenu,
   DropdownToggle,
-  DropdownItem,
-  Row,
-  Col
+  DropdownItem
 } from "reactstrap";
 import Axios from "axios";
-import FormModal from "@Components/FormModal";
-import { SettingsProps, UserInput } from "types";
-import Input from "@Components/Input";
+import { SettingsProps } from "types";
+import { observer } from "mobx-react-lite";
+import { AppStore } from "store";
 
-const Settings: FC<SettingsProps> = props => {
+const Settings: FC<SettingsProps> = observer(props => {
+  const { UserFormComponentState } = useContext(AppStore);
   const onDelete = async () => {
     await Axios.delete(`/user/${props.user.id}`);
   };
 
   const onEdit = async () => {
-    setUserInput(props.user);
-    toggler();
-  };
-  const [toggle, setToggle] = useState(false);
-  const toggler = () => {
-    setToggle(!toggle);
-  };
-  const [userInput, setUserInput] = useState<UserInput>({
-    id: "",
-    firstname: "",
-    lastname: "",
-    userId: ""
-  });
-  //
-  const onInputChange = (event: FormEvent<HTMLInputElement>) => {
-    let { name, value } = event.currentTarget;
-    setUserInput({ ...userInput, [name]: value });
-  };
-  //
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await Axios.put("/user", userInput);
+    UserFormComponentState.title = "Update User";
+    UserFormComponentState.type = "update";
+    UserFormComponentState.toggle = true;
+    UserFormComponentState.userInput = props.user;
   };
 
   return (
@@ -53,43 +34,9 @@ const Settings: FC<SettingsProps> = props => {
           <DropdownItem onClick={onEdit}>Edit</DropdownItem>
           <DropdownItem onClick={onDelete}>Delete</DropdownItem>
         </DropdownMenu>
-        <FormModal
-          title="Edit User"
-          toggle={toggle}
-          toggler={toggler}
-          onSubmit={onSubmit}
-        >
-          <Input
-            type="text"
-            placeholder="Employee ID"
-            name="userId"
-            onChange={onInputChange}
-            value={userInput.userId}
-          />
-          <Row form={true} className="align-items-center">
-            <Col>
-              <Input
-                type="text"
-                placeholder="Firstname"
-                name="firstname"
-                onChange={onInputChange}
-                value={userInput.firstname}
-              />
-            </Col>
-            <Col>
-              <Input
-                type="text"
-                placeholder="Lastname"
-                name="lastname"
-                onChange={onInputChange}
-                value={userInput.lastname}
-              />
-            </Col>
-          </Row>
-        </FormModal>
       </UncontrolledDropdown>
     </>
   );
-};
+});
 
 export default Settings;
