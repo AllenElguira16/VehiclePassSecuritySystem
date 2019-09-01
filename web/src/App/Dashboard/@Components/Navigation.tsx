@@ -8,7 +8,7 @@ import {
 import Options from "./Options";
 
 interface Props extends RouteComponentProps {
-  setAsLoggedInState(): void;
+  // setAsLoggedInState(): void;
 }
 
 const Navigation: FC<Props> = props => {
@@ -38,7 +38,7 @@ const Navigation: FC<Props> = props => {
           <span>Vehicles</span>
         </NavLink>
       </NavItem>
-      <Options setAsLoggedInState={props.setAsLoggedInState} />
+      <Options />
     </Nav>
   );
 };

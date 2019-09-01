@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { Table } from "reactstrap";
 // import Loader from "./Loader";
 import { Vehicle } from "types";
-import Loader from "Components/Loader";
+import Loader from "@Components/Loader";
 // import io from "socket.io-client";
 interface Props {
   vehicles: Vehicle[];

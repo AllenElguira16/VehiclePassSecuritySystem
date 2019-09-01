@@ -1,9 +1,9 @@
 import React, { FC, useState, FormEvent } from "react";
 import { Row, Col, Alert, Button } from "reactstrap";
-import FormModal from "Components/FormModal";
 import { UserInput, Response } from "types";
-import Input from "Components/Input";
 import Axios from "axios";
+import FormModal from "@Components/FormModal";
+import Input from "@Components/Input";
 
 const Add: FC = () => {
   const [userInput, setUserInput] = useState<UserInput>({

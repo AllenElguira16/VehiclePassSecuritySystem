@@ -1,20 +1,26 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+// import Axios from "axios";
+import { observer } from "mobx-react-lite";
+import { AppStore } from "store";
 import Axios from "axios";
 
 interface Props {
-  setAsLoggedInState(): void;
+  // setAsLoggedInState(): void;
 }
 
-const Options: FC<Props> = Props => {
+const Options: FC<Props> = observer(() => {
+  const { DashboardState } = useContext(AppStore);
   const signOut = async () => {
+    DashboardState.isLoading = true;
     const { data } = await Axios.post("/admin/logout");
-    if (data.success) Props.setAsLoggedInState();
+    if (data.success) DashboardState.isLoggedIn = false;
+    DashboardState.isLoading = false;
   };
 
   return (
@@ -30,6 +36,6 @@ const Options: FC<Props> = Props => {
       </DropdownMenu>
     </UncontrolledDropdown>
   );
-};
+});
 
 export default Options;

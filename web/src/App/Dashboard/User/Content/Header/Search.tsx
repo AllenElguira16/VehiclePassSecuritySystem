@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "Components/Input";
+import Input from "@Components/Input";
 
 interface Props {
   // value: string;

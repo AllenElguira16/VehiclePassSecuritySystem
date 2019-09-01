@@ -14,7 +14,9 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src"]
 }

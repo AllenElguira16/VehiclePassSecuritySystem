@@ -1,8 +1,8 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
-import ItalicLink from "Components/ItalicLink";
 import logo from "Assets/images/LNULogoFrontPage.webp";
+import ItalicLink from "@Components/ItalicLink";
 
 export default () => {
   return (

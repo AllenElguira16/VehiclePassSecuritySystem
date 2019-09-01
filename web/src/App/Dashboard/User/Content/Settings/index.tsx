@@ -8,9 +8,9 @@ import {
   Col
 } from "reactstrap";
 import Axios from "axios";
-import FormModal from "Components/FormModal";
+import FormModal from "@Components/FormModal";
 import { SettingsProps, UserInput } from "types";
-import Input from "Components/Input";
+import Input from "@Components/Input";
 
 const Settings: FC<SettingsProps> = props => {
   const onDelete = async () => {

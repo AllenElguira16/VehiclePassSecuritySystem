@@ -1,34 +1,33 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useEffect, useContext } from "react";
 import { Table } from "reactstrap";
 import io from "socket.io-client";
 import Axios from "axios";
 import { User } from "types";
-import Loader from "Components/Loader";
+import Loader from "@Components/Loader";
 // import Page from "./Page";
 import Settings from "./Settings";
 import Header from "./Header";
+import { AppStore } from "store";
+import { observer } from "mobx-react-lite";
 
-const Content: FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [isLoading, setLoading] = useState(true);
+const Content: FC = observer(() => {
+  const { ContentState } = useContext(AppStore);
   //
   useEffect(() => {
     const fetchUsers = async () => {
-      setLoading(true);
-      if (isLoading) {
-        setUsers([]);
-        // const { data } = await Axios.get(!search ? `/user` : `/user/${search}`);
+      ContentState.isLoading = true;
+      if (ContentState.isLoading) {
         const { data } = await Axios.get("/user");
-        if (data) setUsers(data);
+        ContentState.users = data;
       }
-      setLoading(false);
+      ContentState.isLoading = false;
     };
     fetchUsers();
     const socket = io("http://localhost:8000");
     socket.on("fetchUser", () => {
       fetchUsers();
     });
-  }, [isLoading]);
+  }, [ContentState]);
 
   const formatDate = (date: Date | null): string => {
     return new Date(date as Date).toLocaleDateString();
@@ -36,7 +35,7 @@ const Content: FC = () => {
 
   return (
     <>
-      <Header></Header>
+      <Header />
       <Table striped responsive size="sm">
         <tbody>
           <tr>
@@ -47,8 +46,8 @@ const Content: FC = () => {
             <th>Options</th>
           </tr>
           {/* {isLoading && } */}
-          {!isLoading && users.length !== 0 ? (
-            users.map((user: User, i: number) => (
+          {!ContentState.isLoading && ContentState.users.length !== 0 ? (
+            ContentState.users.map((user: User, i: number) => (
               <tr key={i} style={{ cursor: "pointer" }}>
                 <td className="align-middle">{user.userId}</td>
                 <td className="align-middle">{user.firstname}</td>
@@ -60,7 +59,7 @@ const Content: FC = () => {
           ) : (
             <tr>
               <td colSpan={5} className="text-center">
-                {isLoading ? <Loader></Loader> : <em>Empty</em>}
+                {ContentState.isLoading ? <Loader></Loader> : <em>Empty</em>}
               </td>
             </tr>
           )}
@@ -69,6 +68,6 @@ const Content: FC = () => {
       {/* <Page></Page> */}
     </>
   );
-};
+});
 
 export default Content;

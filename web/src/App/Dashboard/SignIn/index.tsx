@@ -1,5 +1,5 @@
-import React, { useState, FormEvent } from "react";
-import Input from "Components/Input";
+import React, { useState, FormEvent, useContext } from "react";
+import Input from "@Components/Input";
 import {
   Form,
   CardBody,
@@ -9,15 +9,13 @@ import {
   Col,
   CardHeader
 } from "reactstrap";
-import { RouteComponentProps } from "react-router";
 import Axios from "axios";
 import Types from "types";
-// import { Route } from 'react-router-dom';
-interface Props extends RouteComponentProps {
-  setLoggedInState(): void;
-}
+import { AppStore } from "store";
+import { observer } from "mobx-react-lite";
 
-const SignIn: React.FC<Props> = props => {
+const SignIn: React.FC = observer(() => {
+  const { DashboardState } = useContext(AppStore);
   let [inputState, setInputState] = useState<Types.IUser>({
     username: "",
     password: ""
@@ -30,10 +28,10 @@ const SignIn: React.FC<Props> = props => {
 
   const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    DashboardState.isLoading = true;
     let { data } = await Axios.post("/admin", inputState);
-    if (!data.error) {
-      props.setLoggedInState();
-    }
+    if (data.success) DashboardState.isLoggedIn = true;
+    DashboardState.isLoading = false;
   };
 
   return (
@@ -81,6 +79,6 @@ const SignIn: React.FC<Props> = props => {
     </Col>
     // </Container>
   );
-};
+});
 
 export default SignIn;
