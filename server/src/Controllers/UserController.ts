@@ -45,9 +45,7 @@ class UserController {
     if (match.length !== 0) return { error: "User already exists" };
     const user = new this.user({ userId, firstname, lastname });
     user.save((error: any) => ({ error }));
-    if (this.socket.nsp) {
-      this.socket.nsp.emit("newVehicle");
-    }
+    if (this.socket.nsp) this.socket.nsp.emit("fetchUser");
     return { success: "Created Successfully" };
   }
 
@@ -58,15 +56,16 @@ class UserController {
       return { error: "All inputs are required" };
     this.user.findByIdAndUpdate(id, { userId, firstname, lastname }, error => {
       if (error) return { error };
-      return { success: "Updated Successfully" };
     });
+    if (this.socket.nsp) this.socket.nsp.emit("fetchUser");
+    return { success: "Updated Successfully" };
   }
 
   @Delete("/:id")
   public async deleteUser(@PathParams() params: any) {
     this.user.findByIdAndRemove(params.id, error => {
       if (error) return { error };
-      // this.socket.nsp;
+      if (this.socket.nsp) this.socket.nsp.emit("fetchUser");
       return { success: "Deleted Successfully" };
     });
   }

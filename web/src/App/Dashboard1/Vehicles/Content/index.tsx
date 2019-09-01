@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 // import Settings from "./Settings";
 import { Table } from "reactstrap";
 // import Loader from "./Loader";

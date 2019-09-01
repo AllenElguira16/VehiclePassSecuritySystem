@@ -25,10 +25,8 @@ export interface DashboardProps {
 }
 
 export interface AddFormProps {
-  setUser(user: UserInput): void;
   onSubmit(event: React.FormEvent<HTMLFormElement>): void;
   response: Response;
-  user: UserInput;
 }
 
 export interface FormProps {
@@ -56,13 +54,7 @@ export interface ConfirmBox {
 }
 
 export interface SettingsProps {
-  setFormType(type: FormProps["type"]): void;
-  setFormToggle(boolean: boolean): void;
-  setUserInput(value: UserInput): void;
-  toggle(msg: string): string;
-  fetchData(): void;
-  isOpen: boolean;
-  user: User;
+  user: UserInput;
 }
 // End Prop
 
@@ -87,6 +79,7 @@ export interface User {
 }
 
 export interface UserInput {
+  id: User["id"];
   userId: User["userId"];
   firstname: User["firstname"];
   lastname: User["lastname"];
