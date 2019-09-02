@@ -5,22 +5,19 @@ import {
   DropdownToggle,
   DropdownItem
 } from "reactstrap";
-import Axios from "axios";
+// import Axios from "axios";
 import { SettingsProps } from "types";
 import { observer } from "mobx-react-lite";
 import { AppStore } from "store";
 
 const Settings: FC<SettingsProps> = observer(props => {
-  const { UserFormComponentState } = useContext(AppStore);
+  const { openFormInput } = useContext(AppStore);
   const onDelete = async () => {
-    await Axios.delete(`/user/${props.user.id}`);
+    openFormInput("delete", "Delete User", props.user);
   };
 
   const onEdit = async () => {
-    UserFormComponentState.title = "Update User";
-    UserFormComponentState.type = "update";
-    UserFormComponentState.toggle = true;
-    UserFormComponentState.userInput = props.user;
+    openFormInput("update", "Update User", props.user);
   };
 
   return (

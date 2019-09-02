@@ -9,14 +9,13 @@ import {
   Col,
   CardHeader
 } from "reactstrap";
-import Axios from "axios";
-import Types from "types";
+import { IUser } from "types";
 import { AppStore } from "store";
 import { observer } from "mobx-react-lite";
 
 const SignIn: React.FC = observer(() => {
-  const { DashboardState } = useContext(AppStore);
-  let [inputState, setInputState] = useState<Types.IUser>({
+  const { login } = useContext(AppStore);
+  let [inputState, setInputState] = useState<IUser>({
     username: "",
     password: ""
   });
@@ -28,10 +27,7 @@ const SignIn: React.FC = observer(() => {
 
   const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    DashboardState.isLoading = true;
-    let { data } = await Axios.post("/admin", inputState);
-    if (data.success) DashboardState.isLoggedIn = true;
-    DashboardState.isLoading = false;
+    login(inputState);
   };
 
   return (

@@ -5,7 +5,6 @@ import { Loader } from "@Components";
 import { DashboardProps } from "types";
 import { observer } from "mobx-react-lite";
 import { AppStore } from "store";
-import Axios from "axios";
 import SignIn from "App/Dashboard/SignIn";
 import Navigation from "./@Components/Navigation";
 import Users from "./User";
@@ -14,18 +13,16 @@ import Users from "./User";
 type Props = RouteComponentProps & DashboardProps;
 
 const Dashboard: React.FC<Props> = observer(props => {
-  const { DashboardState } = useContext(AppStore);
+  const { DashboardState, getLoginState } = useContext(AppStore);
   const uriMatch = props.location.pathname.match(/dashboard$/);
   let render;
 
   useEffect(() => {
     const checkLoginState = async () => {
-      let { data } = await Axios.get("/admin/auth");
-      if (!data.error) DashboardState.isLoggedIn = true;
-      DashboardState.isLoading = false;
+      getLoginState();
     };
     checkLoginState();
-  }, [DashboardState]);
+  }, [DashboardState, getLoginState]);
 
   if (!DashboardState.isLoading) {
     if (!DashboardState.isLoggedIn) {

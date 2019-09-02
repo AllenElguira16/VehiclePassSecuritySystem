@@ -65,9 +65,9 @@ class UserController {
   public async deleteUser(@PathParams() params: any) {
     this.user.findByIdAndRemove(params.id, error => {
       if (error) return { error };
-      if (this.socket.nsp) this.socket.nsp.emit("fetchUser");
-      return { success: "Deleted Successfully" };
     });
+    if (this.socket.nsp) this.socket.nsp.emit("fetchUser");
+    return { success: "Deleted Successfully" };
   }
 }
 

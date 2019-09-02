@@ -11,23 +11,15 @@ import { AppStore } from "store";
 import { observer } from "mobx-react-lite";
 
 const Content: FC = observer(() => {
-  const { ContentState } = useContext(AppStore);
+  const { ContentState, fetchUsers } = useContext(AppStore);
   //
   useEffect(() => {
-    const fetchUsers = async () => {
-      ContentState.isLoading = true;
-      if (ContentState.isLoading) {
-        const { data } = await Axios.get("/user");
-        ContentState.users = data;
-      }
-      ContentState.isLoading = false;
-    };
     fetchUsers();
     const socket = io("http://localhost:8000");
     socket.on("fetchUser", () => {
       fetchUsers();
     });
-  }, [ContentState]);
+  }, [ContentState, fetchUsers]);
 
   const formatDate = (date: Date | null): string => {
     return new Date(date as Date).toLocaleDateString();
