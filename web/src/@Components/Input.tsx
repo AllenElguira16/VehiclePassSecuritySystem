@@ -1,14 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   FormGroup,
-  Input,
+  Input as FormInput,
   InputGroup,
   InputGroupAddon,
   InputGroupText
 } from "reactstrap";
-import Types from "types";
-
-export default (props: Types.InputComponentProps) => {
+import { InputComponentProps } from "types";
+/**
+ * A Input Component with mix-ins
+ *
+ * Very simple to integrate with Icons
+ * @param props Props from parent component
+ */
+const Input: FC<InputComponentProps> = props => {
+  // Checks value if its undefined then will throw error
   if (props.value === undefined) {
     throw new Error("Value should not be undefined");
   }
@@ -16,7 +22,7 @@ export default (props: Types.InputComponentProps) => {
   return (
     <FormGroup>
       <InputGroup>
-        <Input
+        <FormInput
           tabIndex={props.tabIndex}
           type={props.type}
           placeholder={props.placeholder}
@@ -37,3 +43,5 @@ export default (props: Types.InputComponentProps) => {
     </FormGroup>
   );
 };
+
+export default Input;

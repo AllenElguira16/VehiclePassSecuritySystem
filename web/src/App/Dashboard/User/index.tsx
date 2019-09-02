@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import Confirmation from "@Components/Confirmation";
+// import Confirmation from "@Components/Confirmation";
 import Content from "./Content";
 import { ConfirmBox } from "types";
 import Form from "./@Components/Form";
@@ -19,12 +19,12 @@ const Employee: FC = (): JSX.Element => {
     <>
       <Content />
       <Form></Form>
-      <Confirmation
+      {/* <Confirmation
         toggle={() => confirmBoxToggler("")}
         isOpen={confirmBox.isOpen}
       >
         {confirmBox.msg}
-      </Confirmation>
+      </Confirmation> */}
     </>
   );
 };

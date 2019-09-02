@@ -5,21 +5,27 @@ import {
   DropdownToggle,
   DropdownItem
 } from "reactstrap";
-// import Axios from "axios";
 import { SettingsProps } from "types";
 import { observer } from "mobx-react-lite";
 import { AppStore } from "store";
 
+/**
+ * ContentSettings
+ * 
+ * used for managing users such as deleting or updating
+ */
 const Settings: FC<SettingsProps> = observer(props => {
+  // Initialize AppStore
   const { openFormInput } = useContext(AppStore);
+  // func that handles the deletion of user
   const onDelete = async () => {
     openFormInput("delete", "Delete User", props.user);
   };
-
+  // func that handles the updates of user
   const onEdit = async () => {
     openFormInput("update", "Update User", props.user);
   };
-
+  // Render Func
   return (
     <>
       <UncontrolledDropdown tag="td">

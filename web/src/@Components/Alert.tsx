@@ -1,19 +1,26 @@
 import React from "react";
 import { Alert as ReactStrapAlert } from "reactstrap";
 
-// type Type = "error" | "success"
-
 interface Props {
   type?: "error" | "success";
 }
 
+/**
+ * Alert Func Component
+ *
+ * This Component Handles the Alerts
+ */
 const Alert: React.FC<Props> = props => {
-  const typeArray = { error: "danger", success: "success" };
-  if (props.type) {
-    const type = typeArray[props.type];
-    return <ReactStrapAlert color={type}>{props.children}</ReactStrapAlert>;
-  }
-  return <ReactStrapAlert>{props.children}</ReactStrapAlert>;
+  // An array that stores the equivalent of color
+  const colorArray = { error: "danger", success: "success" };
+  // Render
+  return props.type ? (
+    <ReactStrapAlert color={colorArray[props.type]}>
+      {props.children}
+    </ReactStrapAlert>
+  ) : (
+    <ReactStrapAlert>{props.children}</ReactStrapAlert>
+  );
 };
 
 export default Alert;

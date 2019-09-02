@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useContext } from "react";
 import { Table } from "reactstrap";
 import io from "socket.io-client";
-import Axios from "axios";
+// import Axios from "axios";
 import { User } from "types";
 import Loader from "@Components/Loader";
 // import Page from "./Page";

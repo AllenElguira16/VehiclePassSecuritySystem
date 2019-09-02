@@ -1,17 +1,13 @@
 import React, { FC } from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
-import {
-  NavLink as Link,
-  withRouter,
-  RouteComponentProps
-} from "react-router-dom";
+import { NavLink as Link, withRouter } from "react-router-dom";
 import Options from "./Options";
-
-interface Props extends RouteComponentProps {
-  // setAsLoggedInState(): void;
-}
-
-const Navigation: FC<Props> = props => {
+/**
+ * Dashboard Components
+ *
+ */
+const Navigation: FC = () => {
+  // Render
   return (
     <Nav tabs card>
       <NavItem>

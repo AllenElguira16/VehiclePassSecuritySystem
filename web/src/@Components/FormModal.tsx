@@ -14,7 +14,15 @@ interface Props {
   toggler(): void;
   title: string;
 }
+
+/**
+ * Form Modal Component
+ *
+ * A modal component with form in its body
+ * @param props Props from
+ */
 const FormModal: React.FC<Props> = props => {
+  // Render
   return (
     <>
       <Modal isOpen={props.toggle} toggle={props.toggler}>
