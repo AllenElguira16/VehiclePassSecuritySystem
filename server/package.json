@@ -9,7 +9,6 @@
   "author": "Allen Elguira",
   "license": "ISC",
   "dependencies": {
-    "@overnightjs/core": "^1.6.9",
     "@tsed/common": "^5.27.5",
     "@tsed/core": "^5.27.5",
     "@tsed/di": "^5.27.5",

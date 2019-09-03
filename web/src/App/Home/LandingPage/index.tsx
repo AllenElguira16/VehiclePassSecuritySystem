@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Container } from "reactstrap";
 import { Link } from "react-router-dom";
 import logo from "Assets/images/LNULogoFrontPage.webp";
 import ItalicLink from "@Components/ItalicLink";
@@ -8,30 +8,26 @@ export default () => {
   return (
     <>
       <div className="jumbotron lnu-banner text-dark shadow">
-        <Row>
-          <Col
-            sm="5"
-            className="d-flex justify-content-center justify-content-sm-end"
-          >
+        <Container>
+          <Row className="align-items-center">
             <img
               src={logo}
               alt="Lyceum-Northwestern University"
               className="img-fluid"
             />
-          </Col>
-          <Col sm="7" className="align-self-center" style={{ fontSize: 18 }}>
-            <h1 className="font-weight-normal text-primary text-primary-shadow display-4">
-              Vehicle Pass Security System
-            </h1>
-            <div className="text-secondary-shadow">
-              <div>
-                A Better Security System for Lyceans who enters in the campus
-                which owns a vehicles
+            <div style={{ fontSize: 18 }}>
+              <h1 className="font-weight-normal text-primary text-primary-shadow display-4">
+                Vehicle Pass Security System
+              </h1>
+              <div className="text-secondary-shadow">
+                <div>
+                  A Better Security System for Lyceans who enters in the campus
+                  which owns a vehicles
+                </div>
               </div>
-              {/* <div><Link to="/how-to-avail" className="text-primary-shadow">Click</Link> to know how to avail a security pass</div> */}
             </div>
-          </Col>
-        </Row>
+          </Row>
+        </Container>
       </div>
       <div className="container">
         <Row>

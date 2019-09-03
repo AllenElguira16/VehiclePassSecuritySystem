@@ -22,10 +22,7 @@ const Header: React.FC<RouteComponentProps> = props => {
 
   const isActive = (regex: RegExp | string): boolean => {
     const uriMatcher = props.location.pathname.match(regex);
-    if (uriMatcher !== null) {
-      return true;
-    }
-    return false;
+    return uriMatcher !== null;
   };
 
   return (
