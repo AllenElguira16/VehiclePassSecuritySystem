@@ -1,20 +1,17 @@
-import React, { FC } from "react";
-// import Settings from "./Settings";
+import React, { FC, useContext, useEffect } from "react";
 import { Table } from "reactstrap";
-// import Loader from "./Loader";
 import { Vehicle } from "types";
 import Loader from "@Components/Loader";
-// import io from "socket.io-client";
-interface Props {
-  vehicles: Vehicle[];
-  isLoading: boolean;
-}
+import { observer } from "mobx-react-lite";
+import { AppStore } from "Store";
 
-const Content: FC<Props> = props => {
-  // const formatDate = (date: Date | null): string => {
-  //   let readableDate: Date = new Date(date as Date);
-  //   return readableDate.toLocaleDateString();
-  // };
+const Content: FC = observer(() => {
+  const { fetchVehicles, VehiclesContentState } = useContext(AppStore);
+  const { isLoading, vehicles } = VehiclesContentState;
+
+  useEffect(() => {
+    fetchVehicles();
+  }, [fetchVehicles]);
 
   return (
     <Table striped responsive>
@@ -26,15 +23,8 @@ const Content: FC<Props> = props => {
           <th>Color</th>
           <th>Registration Number</th>
         </tr>
-        {props.isLoading && (
-          <tr>
-            <td colSpan={5}>
-              <Loader />
-            </td>
-          </tr>
-        )}
-        {(!props.isLoading && props.vehicles.length) !== 0 ? (
-          props.vehicles.map((vehicle: Vehicle, i: number) => (
+        {!isLoading && vehicles.length !== 0 ? (
+          vehicles.map((vehicle: Vehicle, i: number) => (
             <tr key={i} style={{ cursor: "pointer" }}>
               <td className="align-middle">{vehicle.plateNumber}</td>
               <td className="align-middle">{vehicle.name}</td>
@@ -46,13 +36,13 @@ const Content: FC<Props> = props => {
         ) : (
           <tr>
             <td colSpan={5} className="text-center">
-              <em>Empty</em>
+              {isLoading ? <Loader></Loader> : <em>Empty</em>}
             </td>
           </tr>
         )}
       </tbody>
     </Table>
   );
-};
+});
 
 export default Content;

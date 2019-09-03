@@ -7,11 +7,11 @@ import {
 } from "reactstrap";
 import { SettingsProps } from "types";
 import { observer } from "mobx-react-lite";
-import { AppStore } from "store";
+import { AppStore } from "Store";
 
 /**
  * ContentSettings
- * 
+ *
  * used for managing users such as deleting or updating
  */
 const Settings: FC<SettingsProps> = observer(props => {

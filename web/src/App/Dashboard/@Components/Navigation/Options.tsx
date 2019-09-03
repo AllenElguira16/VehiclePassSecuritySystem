@@ -7,7 +7,7 @@ import {
 } from "reactstrap";
 // import Axios from "axios";
 import { observer } from "mobx-react-lite";
-import { AppStore } from "store";
+import { AppStore } from "Store";
 import Axios from "axios";
 
 interface Props {

@@ -7,11 +7,12 @@ import Loader from "@Components/Loader";
 // import Page from "./Page";
 import Settings from "./Settings";
 import Header from "./Header";
-import { AppStore } from "store";
+import { AppStore } from "Store";
 import { observer } from "mobx-react-lite";
 
 const Content: FC = observer(() => {
-  const { ContentState, fetchUsers } = useContext(AppStore);
+  const { UserContentState, fetchUsers } = useContext(AppStore);
+  const { isLoading, users } = UserContentState;
   //
   useEffect(() => {
     fetchUsers();
@@ -19,7 +20,7 @@ const Content: FC = observer(() => {
     socket.on("fetchUser", () => {
       fetchUsers();
     });
-  }, [ContentState, fetchUsers]);
+  }, [UserContentState, fetchUsers]);
 
   const formatDate = (date: Date | null): string => {
     return new Date(date as Date).toLocaleDateString();
@@ -37,9 +38,8 @@ const Content: FC = observer(() => {
             <th>Date</th>
             <th>Options</th>
           </tr>
-          {/* {isLoading && } */}
-          {!ContentState.isLoading && ContentState.users.length !== 0 ? (
-            ContentState.users.map((user: User, i: number) => (
+          {!isLoading && users.length !== 0 ? (
+            users.map((user: User, i: number) => (
               <tr key={i} style={{ cursor: "pointer" }}>
                 <td className="align-middle">{user.userId}</td>
                 <td className="align-middle">{user.firstname}</td>
@@ -51,7 +51,7 @@ const Content: FC = observer(() => {
           ) : (
             <tr>
               <td colSpan={5} className="text-center">
-                {ContentState.isLoading ? <Loader></Loader> : <em>Empty</em>}
+                {isLoading ? <Loader></Loader> : <em>Empty</em>}
               </td>
             </tr>
           )}

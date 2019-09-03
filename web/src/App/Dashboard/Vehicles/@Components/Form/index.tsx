@@ -1,8 +1,8 @@
 import React, { useContext, FormEvent, useState } from "react";
-import { FormModal } from "@Components";
+import { FormModal, Input } from "@Components";
 import { observer } from "mobx-react-lite";
 import { AppStore } from "Store";
-import { UncontrolledAlert, FormGroup } from "reactstrap";
+import { Row, Col, UncontrolledAlert, FormGroup } from "reactstrap";
 import Axios from "axios";
 import { Response } from "types";
 import UserInput from "./UserInput";
@@ -17,7 +17,7 @@ const Form = observer(() => {
   const toggler = () => {
     toggle = !toggle;
     if (toggle === false)
-      userInput = {
+      UserFormComponentState.userInput = {
         id: "",
         userId: "",
         firstname: "",
@@ -35,10 +35,11 @@ const Form = observer(() => {
     event.preventDefault();
     let response;
     // Check form type
-    if (type === "create") response = await Axios.post("/user", userInput);
-    else if (type === "update") response = await Axios.put("/user", userInput);
+    if (type === "create") response = await Axios.post("/vehicles", userInput);
+    else if (type === "update")
+      response = await Axios.put("/vehicles", userInput);
     else if (type === "delete")
-      response = await Axios.delete(`/user/${userInput.id}`);
+      response = await Axios.delete(`/vehicles/${userInput.id}`);
     // set response
     if (response) {
       if (!response.data.error)

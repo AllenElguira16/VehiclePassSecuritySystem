@@ -10,7 +10,7 @@ import {
   CardHeader
 } from "reactstrap";
 import { IUser } from "types";
-import { AppStore } from "store";
+import { AppStore } from "Store";
 import { observer } from "mobx-react-lite";
 
 const SignIn: React.FC = observer(() => {

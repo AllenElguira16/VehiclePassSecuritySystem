@@ -4,11 +4,11 @@ import { Route, RouteComponentProps, Redirect } from "react-router-dom";
 import { Loader } from "@Components";
 import { DashboardProps } from "types";
 import { observer } from "mobx-react-lite";
-import { AppStore } from "store";
+import { AppStore } from "Store";
 import SignIn from "App/Dashboard/SignIn";
 import Navigation from "./@Components/Navigation";
 import Users from "./User";
-// import Vehicles from "./Vehicles";
+import Vehicles from "./Vehicles";
 
 type Props = RouteComponentProps & DashboardProps;
 
@@ -38,7 +38,7 @@ const Dashboard: React.FC<Props> = observer(props => {
             </CardHeader>
             <CardBody>
               <Route path="/dashboard/users" component={Users} />
-              {/* <Route path="/dashboard/vehicles" component={Vehicles} /> */}
+              <Route path="/dashboard/vehicles" component={Vehicles} />
             </CardBody>
           </Card>
         </Col>

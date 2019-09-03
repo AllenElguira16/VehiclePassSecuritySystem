@@ -93,6 +93,7 @@ export interface User {
 }
 
 export interface Vehicle {
+  id: string;
   plateNumber: string;
   name: string;
   type: string;
@@ -103,4 +104,18 @@ export interface Vehicle {
 export interface Response {
   type: "success" | "danger";
   msg: string;
+}
+
+interface FormComponent {
+  title: string;
+  toggle: boolean;
+  type: "create" | "update" | "delete";
+}
+
+interface UserFormComponentTypes extends FormComponent {
+  userInput: UserInput;
+}
+
+interface VehiclesFormComponentTypes extends FormComponent {
+  vehicles: Vehicle;
 }

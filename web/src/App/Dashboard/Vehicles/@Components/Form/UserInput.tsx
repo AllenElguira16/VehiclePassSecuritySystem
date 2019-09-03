@@ -9,17 +9,46 @@ interface Props {
 }
 
 const UserInput: FC<Props> = observer(({ onInputChange }) => {
-  const { UserFormComponentState } = useContext(AppStore);
+  const { VehiclesFormComponentState } = useContext(AppStore);
+  const { vehicles } = VehiclesFormComponentState;
   return (
     <>
       <Input
         type="text"
         placeholder="Employee ID"
-        name="userId"
+        name="plateNumber"
         onChange={onInputChange}
-        value={UserFormComponentState.userInput.userId}
+        value={vehicles.plateNumber}
       />
-      <Row form={true} className="align-items-center">
+      <Input
+        type="text"
+        placeholder="Employee ID"
+        name="name"
+        onChange={onInputChange}
+        value={vehicles.name}
+      />
+      <Input
+        type="text"
+        placeholder="Employee ID"
+        name="type"
+        onChange={onInputChange}
+        value={vehicles.type}
+      />
+      <Input
+        type="text"
+        placeholder="Employee ID"
+        name="color"
+        onChange={onInputChange}
+        value={vehicles.color}
+      />
+      <Input
+        type="text"
+        placeholder="Employee ID"
+        name="registrationNumber"
+        onChange={onInputChange}
+        value={vehicles.registrationNumber}
+      />
+      {/* <Row form={true} className="align-items-center">
         <Col>
           <Input
             type="text"
@@ -38,7 +67,7 @@ const UserInput: FC<Props> = observer(({ onInputChange }) => {
             value={UserFormComponentState.userInput.lastname}
           />
         </Col>
-      </Row>
+      </Row> */}
     </>
   );
 });
