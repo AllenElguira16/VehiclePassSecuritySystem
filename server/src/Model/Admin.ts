@@ -1,14 +1,14 @@
-import { Model, ObjectID } from "@tsed/mongoose";
-import { Property } from "@tsed/common";
+import { Model, ObjectID } from '@tsed/mongoose';
+import { Property } from '@tsed/common';
 
 @Model()
 export class Admin {
-  @ObjectID("id")
-  public _id: string | undefined;
+  @ObjectID('id')
+  public _id!: string;
 
   @Property()
-  public username: string | undefined;
+  public username!: string;
 
   @Property()
-  public password: string | undefined;
+  public password!: string;
 }

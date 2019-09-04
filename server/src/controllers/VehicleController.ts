@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {
   Controller,
   Get,
@@ -5,12 +7,12 @@ import {
   // Delete,
   // Put,
   Inject,
-  BodyParams
-} from "@tsed/common";
-import { Vehicle } from "../Model/Vehicle";
-import { MongooseModel } from "@tsed/mongoose";
+  BodyParams,
+} from '@tsed/common';
+import { Vehicle } from '../Model/Vehicle';
+import { MongooseModel } from '@tsed/mongoose';
 
-@Controller("/vehicle")
+@Controller('/vehicle')
 class VehicleController {
   constructor(@Inject(Vehicle) private vehicle: MongooseModel<any>) {}
 
@@ -28,7 +30,7 @@ class VehicleController {
         plateNumber,
         type,
         color,
-        registrationNumber
+        registrationNumber,
       });
       vehicle.save((error: any) => {
         if (error) return { error };

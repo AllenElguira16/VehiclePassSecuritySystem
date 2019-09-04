@@ -1,10 +1,11 @@
-import { Controller, Get } from "@tsed/common";
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { Controller, Get } from '@tsed/common';
 // import { Board, Led } from "johnny-five"
 // let board = new Board()
 
-@Controller("/arduino")
+@Controller('/arduino')
 class ArduinoController {
-  @Get("/open-light")
+  @Get('/open-light')
   public openLight() {
     // board.on("ready", () => {
     // const led = new Led(9)
@@ -13,7 +14,7 @@ class ArduinoController {
     //   led.toggle()
     // }, 2000)
     // })
-    return "success!";
+    return 'success!';
   }
 }
 

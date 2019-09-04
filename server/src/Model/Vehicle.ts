@@ -1,9 +1,9 @@
-import { Model, ObjectID } from "@tsed/mongoose";
-import { Property, Default } from "@tsed/common";
+import { Model, ObjectID } from '@tsed/mongoose';
+import { Property, Default } from '@tsed/common';
 
 @Model()
 export class Vehicle {
-  @ObjectID("id")
+  @ObjectID('id')
   public _id: string | undefined;
 
   @Property()
