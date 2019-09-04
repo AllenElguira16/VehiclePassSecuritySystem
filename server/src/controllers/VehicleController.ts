@@ -2,8 +2,8 @@ import {
   Controller,
   Get,
   Post,
-  Delete,
-  Put,
+  // Delete,
+  // Put,
   Inject,
   BodyParams
 } from "@tsed/common";

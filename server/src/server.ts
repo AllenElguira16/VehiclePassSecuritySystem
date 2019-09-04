@@ -64,47 +64,5 @@ export class Server extends ServerLoader {
           }
         })
       );
-
-    // return null;
   }
 }
-// export class Server extends ServerLoader {
-//   private $middlewares: any[] = [];
-
-//   public middleware(middlewares: any[]) {
-//     this.$middlewares = middlewares; // this.$middlewares.push(middlewares);
-//   }
-
-//   public setting(settings: Setting[]) {
-//     settings.forEach(setting => {
-//       this.set(setting.name, setting.value);
-//     });
-//   }
-
-//   public async connectMongoDB(mongoKey: string, config: ConnectionOptions) {
-//     try {
-//       await connect(
-//         mongoKey,
-//         config
-//       );
-//       console.log("MongoDB Connected Successfully");
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-
-//   public $beforeRoutesInit() {
-//     this.use(GlobalAcceptMimesMiddleware);
-//     this.$middlewares.forEach((middlewares: () => void) => {
-//       this.use(middlewares);
-//     });
-//     return null;
-//   }
-
-//   // public start(port: number) {
-//   //   super.addControllers(controllers);
-//   //   this.app.listen(port, () => {
-//   //     console.log(`Server started on port ${port}`);
-//   //   });
-//   // }
-// }
