@@ -8,7 +8,7 @@ const Header: FC = () => {
   const { VehiclesFormComponentState, openVehicleForm } = useContext(AppStore);
 
   const openForm = () => {
-    openVehicleForm("create", "Add User", VehiclesFormComponentState.vehicles);
+    openVehicleForm("create", "Add Vehicles", VehiclesFormComponentState.vehicles);
   };
 
   return (

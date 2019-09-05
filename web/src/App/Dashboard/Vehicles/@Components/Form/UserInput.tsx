@@ -1,5 +1,4 @@
 import React, { FC, FormEvent, useContext } from "react";
-import { Row, Col } from "reactstrap";
 import { observer } from "mobx-react-lite";
 import { AppStore } from "Store";
 import { Input } from "@Components";
@@ -15,35 +14,35 @@ const UserInput: FC<Props> = observer(({ onInputChange }) => {
     <>
       <Input
         type="text"
-        placeholder="Employee ID"
+        placeholder="Plate Number"
         name="plateNumber"
         onChange={onInputChange}
         value={vehicles.plateNumber}
       />
       <Input
         type="text"
-        placeholder="Employee ID"
+        placeholder="Name"
         name="name"
         onChange={onInputChange}
         value={vehicles.name}
       />
       <Input
         type="text"
-        placeholder="Employee ID"
+        placeholder="Type"
         name="type"
         onChange={onInputChange}
         value={vehicles.type}
       />
       <Input
         type="text"
-        placeholder="Employee ID"
+        placeholder="Color"
         name="color"
         onChange={onInputChange}
         value={vehicles.color}
       />
       <Input
         type="text"
-        placeholder="Employee ID"
+        placeholder="Registration Number"
         name="registrationNumber"
         onChange={onInputChange}
         value={vehicles.registrationNumber}

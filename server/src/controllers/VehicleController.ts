@@ -14,7 +14,7 @@ import { MongooseModel } from '@tsed/mongoose';
 
 @Controller('/vehicle')
 class VehicleController {
-  constructor(@Inject(Vehicle) private vehicle: MongooseModel<any>) {}
+  constructor(@Inject(Vehicle) private vehicle: MongooseModel<Vehicle>) {}
 
   @Get()
   public async get() {
@@ -25,19 +25,12 @@ class VehicleController {
   public async create(@BodyParams() params: any) {
     const { name, plateNumber, type, color, registrationNumber } = params;
     if (name && plateNumber && type && color && registrationNumber) {
-      const vehicle = new this.vehicle({
-        name,
-        plateNumber,
-        type,
-        color,
-        registrationNumber,
-      });
-      vehicle.save((error: any) => {
+      await this.vehicle.create(params, (error: any) => {
         if (error) return { error };
-        return { success: true };
       });
+      return { success: 'Created Successfully!' };
     } else {
-      return { error: true };
+      return { error: 'All Fields are Required!' };
     }
   }
 }

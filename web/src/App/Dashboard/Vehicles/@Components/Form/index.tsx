@@ -1,33 +1,35 @@
 import React, { useContext, FormEvent, useState } from "react";
-import { FormModal, Input } from "@Components";
+import { FormModal } from "@Components";
 import { observer } from "mobx-react-lite";
 import { AppStore } from "Store";
-import { Row, Col, UncontrolledAlert, FormGroup } from "reactstrap";
+import { UncontrolledAlert, FormGroup } from "reactstrap";
 import Axios from "axios";
 import { Response } from "types";
 import UserInput from "./UserInput";
 
 const Form = observer(() => {
-  const { UserFormComponentState } = useContext(AppStore);
-  let { toggle, userInput, type, title } = UserFormComponentState;
+  const { VehiclesFormComponentState } = useContext(AppStore);
+  // let { toggle, vehicles, type, title } = VehiclesFormComponentState;
   const [response, setResponse] = useState<Response>({
     msg: "",
     type: "danger"
   });
   const toggler = () => {
-    toggle = !toggle;
-    if (toggle === false)
-      UserFormComponentState.userInput = {
+    VehiclesFormComponentState.toggle = !VehiclesFormComponentState.toggle;
+    if (VehiclesFormComponentState.toggle === false)
+    VehiclesFormComponentState.vehicles = {
         id: "",
-        userId: "",
-        firstname: "",
-        lastname: ""
+        plateNumber: "",
+        name: "",
+        type: "",
+        color: "",
+        registrationNumber: ""
       };
   };
   const onInputChange = (event: FormEvent<HTMLInputElement>) => {
     let { name, value } = event.currentTarget;
-    userInput = {
-      ...userInput,
+    VehiclesFormComponentState.vehicles = {
+      ...VehiclesFormComponentState.vehicles,
       [name]: value
     };
   };
@@ -35,11 +37,11 @@ const Form = observer(() => {
     event.preventDefault();
     let response;
     // Check form type
-    if (type === "create") response = await Axios.post("/vehicles", userInput);
-    else if (type === "update")
-      response = await Axios.put("/vehicles", userInput);
-    else if (type === "delete")
-      response = await Axios.delete(`/vehicles/${userInput.id}`);
+    if (VehiclesFormComponentState.type === "create") response = await Axios.post("/vehicle", VehiclesFormComponentState.vehicles);
+    else if (VehiclesFormComponentState.type === "update")
+      response = await Axios.put("/vehicle", VehiclesFormComponentState.vehicles);
+    else if (VehiclesFormComponentState.type === "delete")
+      response = await Axios.delete(`/vehicle/${VehiclesFormComponentState.vehicles.id}`);
     // set response
     if (response) {
       if (!response.data.error)
@@ -51,12 +53,12 @@ const Form = observer(() => {
 
   return (
     <FormModal
-      title={title}
+      title={VehiclesFormComponentState.title}
       onSubmit={onSubmit}
-      toggle={toggle}
+      toggle={VehiclesFormComponentState.toggle}
       toggler={toggler}
     >
-      {type === "delete" ? (
+      {VehiclesFormComponentState.type === "delete" ? (
         <FormGroup>Are you sure you want to delete?</FormGroup>
       ) : (
         <UserInput onInputChange={onInputChange} />
