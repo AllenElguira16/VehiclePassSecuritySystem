@@ -1,29 +1,21 @@
-import React, { useState } from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  Collapse,
-  Nav,
-  NavItem,
-  NavLink
-} from "reactstrap";
-import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import logo from "Assets/images/LNULogo.webp";
+import React, { useState } from 'react'
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap'
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
+import logo from 'Assets/images/LNULogo.webp'
 
 const Header: React.FC<RouteComponentProps> = props => {
   let [state, setState] = useState({
-    isOpen: false
-  });
+    isOpen: false,
+  })
 
   const toggle = () => {
-    setState({ isOpen: !state.isOpen });
-  };
+    setState({ isOpen: !state.isOpen })
+  }
 
   const isActive = (regex: RegExp | string): boolean => {
-    const uriMatcher = props.location.pathname.match(regex);
-    return uriMatcher !== null;
-  };
+    const uriMatcher = props.location.pathname.match(regex)
+    return uriMatcher !== null
+  }
 
   return (
     <Navbar
@@ -32,18 +24,12 @@ const Header: React.FC<RouteComponentProps> = props => {
       className="justify-content-between shadow-sm"
       tag="header"
       sticky="top"
+      id="header"
       light
     >
-      <NavbarBrand
-        tag={Link}
-        to="/"
-        className="d-flex align-items-center"
-        tabIndex={-1}
-      >
+      <NavbarBrand tag={Link} to="/" className="d-flex align-items-center" tabIndex={-1}>
         <img src={logo} alt="Lyceum-Northwestern University" />
-        <span className="ml-2 d-none d-sm-inline">
-          Vehicle Pass Security System
-        </span>
+        <span className="ml-2 d-none d-sm-inline">Vehicle Pass Security System</span>
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={state.isOpen} navbar>
@@ -54,39 +40,24 @@ const Header: React.FC<RouteComponentProps> = props => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
-              tag={Link}
-              to="/dashboard"
-              tabIndex={-1}
-              active={isActive("dashboard")}
-            >
+            <NavLink tag={Link} to="/dashboard" tabIndex={-1} active={isActive('dashboard')}>
               Dashboard
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
-              tag={Link}
-              to="/vehicle-pass"
-              tabIndex={-1}
-              active={isActive("vehicle-pass")}
-            >
+            <NavLink tag={Link} to="/vehicle-pass" tabIndex={-1} active={isActive('vehicle-pass')}>
               Vehicle Pass
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
-              tag={Link}
-              to="/about-us"
-              tabIndex={-1}
-              active={isActive("about-us")}
-            >
+            <NavLink tag={Link} to="/about-us" tabIndex={-1} active={isActive('about-us')}>
               About Us
             </NavLink>
           </NavItem>
         </Nav>
       </Collapse>
     </Navbar>
-  );
-};
+  )
+}
 
-export default withRouter(Header);
+export default withRouter(Header)

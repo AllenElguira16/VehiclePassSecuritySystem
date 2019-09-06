@@ -1,48 +1,53 @@
-import { observable } from "mobx";
-import { UserFormComponentTypes, VehiclesFormComponentTypes } from "types";
+import { observable } from 'mobx'
+import { UserFormComponentTypes, VehiclesFormComponentTypes } from 'types'
 
 class State {
   // @observable isLoading: boolean = false;
   @observable DashboardState = {
     isLoading: true,
-    isLoggedIn: false
-  };
+    isLoggedIn: false,
+  }
 
   @observable UserContentState = {
     isLoading: true,
-    users: []
-  };
+    users: [],
+  }
 
   @observable VehiclesContentState = {
     isLoading: true,
-    vehicles: []
-  };
+    vehicles: [],
+  }
 
   @observable UserFormComponentState: UserFormComponentTypes = {
-    title: "",
-    type: "create",
+    title: '',
+    type: 'create',
     toggle: false,
     userInput: {
-      id: "",
-      userId: "",
-      firstname: "",
-      lastname: ""
-    }
-  };
+      id: '',
+      userId: '',
+      firstname: '',
+      lastname: '',
+    },
+  }
 
   @observable VehiclesFormComponentState: VehiclesFormComponentTypes = {
-    title: "",
-    type: "create",
+    title: '',
+    type: 'create',
     toggle: false,
     vehicles: {
-      id: "",
-      plateNumber: "",
-      name: "",
-      type: "",
-      color: "",
-      registrationNumber: ""
-    }
-  };
+      id: '',
+      plateNumber: '',
+      name: '',
+      type: '',
+      color: '',
+      registrationNumber: '',
+    },
+  }
+
+  @observable QRCodeModalState = {
+    isOpen: false,
+    currentVehicleID: '',
+  }
 }
 
-export default State;
+export default State
