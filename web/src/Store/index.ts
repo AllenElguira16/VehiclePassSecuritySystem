@@ -50,6 +50,18 @@ class Action extends State {
   }
 
   @action.bound
+  emptyVehicles = () => {
+    this.VehiclesFormComponentState.vehicles = {
+      id: '',
+      plateNumber: '',
+      name: '',
+      type: '',
+      color: '',
+      registrationNumber: '',
+    }
+  }
+
+  @action.bound
   closeFormInput = () => {}
 
   @action.bound

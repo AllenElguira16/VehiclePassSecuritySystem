@@ -1,21 +1,21 @@
 import React, { FC, useContext, useEffect } from 'react'
-import { Table, Button } from 'reactstrap'
+import { Table } from 'reactstrap'
 import { Vehicle } from 'types'
 import Loader from '@Components/Loader'
 import { observer } from 'mobx-react-lite'
 import { AppStore } from 'Store'
+import Action from './Actions'
 
 const Content: FC = observer(() => {
   const { fetchVehicles, VehiclesContentState } = useContext(AppStore)
   const { isLoading, vehicles } = VehiclesContentState
-  const { QRModalOpen } = useContext(AppStore)
 
   useEffect(() => {
     fetchVehicles()
   }, [fetchVehicles])
 
   return (
-    <Table striped responsive>
+    <Table striped responsive size="sm">
       <tbody>
         <tr>
           <th>Plate Number</th>
@@ -33,9 +33,7 @@ const Content: FC = observer(() => {
               <td className="align-middle">{vehicle.type}</td>
               <td className="align-middle">{vehicle.color}</td>
               <td className="align-middle">{vehicle.registrationNumber}</td>
-              <td className="align-middle">
-                <Button onClick={() => QRModalOpen(vehicle.id)}>QRCode</Button>
-              </td>
+              <Action vehicle={vehicle}></Action>
             </tr>
           ))
         ) : (

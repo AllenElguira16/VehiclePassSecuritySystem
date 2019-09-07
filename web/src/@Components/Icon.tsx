@@ -1,8 +1,8 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, FC } from 'react'
 
 interface Props {
-  name: string;
-  size: number;
+  name: string
+  size?: number
 }
 
 /**
@@ -11,17 +11,17 @@ interface Props {
  * For easy icon integrationg with material-icons package
  * @param props Props from parent
  */
-const Icon = (props: Props) => {
+const Icon: FC<Props> = ({ size, name }) => {
   // Styles
   const styles: CSSProperties = {
-    fontSize: props.size
-  };
+    fontSize: size ? size : 24,
+  }
   // Render
   return (
     <i className="material-icons" style={styles}>
-      {props.name}
+      {name}
     </i>
-  );
-};
+  )
+}
 
-export default Icon;
+export default Icon

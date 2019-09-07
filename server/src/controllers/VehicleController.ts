@@ -8,6 +8,8 @@ import {
   // Put,
   Inject,
   BodyParams,
+  PathParams,
+  Delete,
 } from '@tsed/common';
 import { Vehicle } from '../Model/Vehicle';
 import { MongooseModel } from '@tsed/mongoose';
@@ -25,13 +27,29 @@ class VehicleController {
   public async create(@BodyParams() params: any) {
     const { name, plateNumber, type, color, registrationNumber } = params;
     if (name && plateNumber && type && color && registrationNumber) {
-      await this.vehicle.create(params, (error: any) => {
-        if (error) return { error };
-      });
+      // Check PlateNumbers' Uniqueness
+      const plateNumberMatcher = await this.vehicle.findOne({ plateNumber }).exec();
+      if (plateNumberMatcher) return { error: 'Plate Number is not unique' };
+      const registrationNumberMatcher = await this.vehicle.findOne({ registrationNumber }).exec();
+      if (registrationNumberMatcher) return { error: 'Registration Number is not unique' };
+      // Create Vehicle
+      const vehicle = await this.vehicle.create(params);
+      if (vehicle.errors) return { error: vehicle.errors };
       return { success: 'Created Successfully!' };
     } else {
       return { error: 'All Fields are Required!' };
     }
+  }
+
+  @Delete('/:id')
+  public async delete(@PathParams() { id }: { id: string }): Promise<any> {
+    if (id) {
+      this.vehicle.findByIdAndDelete(id, error => {
+        if (error) return { error };
+      });
+      return { success: 'Deleted Successfully!' };
+    }
+    return { error: 'Error while deleting' };
   }
 }
 
