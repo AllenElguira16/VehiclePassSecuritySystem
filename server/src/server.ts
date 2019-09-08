@@ -6,16 +6,23 @@ import cors from 'cors';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
+// import config from './config';
 const mongoInstance = connectMongo(session);
+// let isProd;
+
+// if (process.env) {
+//   isProd = process.env.NODE_ENV;
+// }
 
 @ServerSettings({
   rootDir: __dirname,
   acceptMimes: ['accept/json'],
-  httpPort: 8000,
-  httpsPort: 8080,
+  httpPort: process.env.PORT || 8000,
+  httpsPort: process.env.PORT || 8080,
   socketIO: {},
   mount: {
-    '/api': '${rootDir}/Controllers/**/*.ts',
+    // '/api': '${rootDir}/Controllers/**/*.ts',
+    '/': '${rootDir}/Controllers/**/*.ts',
   },
   mongoose: {
     url:
@@ -36,7 +43,12 @@ export class Server extends ServerLoader {
       .use(express.json())
       .use(
         cors({
-          origin: ['http://192.168.100.5:19000', 'http://192.168.100.5:3000', 'http://localhost:3000'],
+          origin: [
+            'https://vehicle-pass-security-system.herokuapp.com',
+            'http://192.168.100.5:19000',
+            'http://192.168.100.5:3000',
+            'http://localhost:3000',
+          ],
           credentials: true,
           optionsSuccessStatus: 200,
         }),
@@ -50,8 +62,8 @@ export class Server extends ServerLoader {
             mongooseConnection: mongoose.connection,
           }),
           cookie: {
-            sameSite: true,
-            secure: false,
+            // sameSite: true,
+            secure: 'auto',
           },
         }),
       );
