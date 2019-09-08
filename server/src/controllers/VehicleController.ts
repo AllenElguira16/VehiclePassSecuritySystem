@@ -23,6 +23,11 @@ class VehicleController {
     return await this.vehicle.find();
   }
 
+  @Get('/check/:id')
+  public async check(@PathParams() { id }: any) {
+    return id;
+  }
+
   @Post()
   public async create(@BodyParams() params: any) {
     const { name, plateNumber, type, color, registrationNumber } = params;

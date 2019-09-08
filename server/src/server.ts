@@ -13,7 +13,8 @@ const mongoInstance = connectMongo(session);
 @ServerSettings({
   rootDir: __dirname,
   acceptMimes: ['accept/json'],
-  httpPort: '127.0.0.1:8000',
+  httpPort: 8000,
+  httpsPort: 8080,
   socketIO: {},
   mount: {
     '/api': '${rootDir}/Controllers/**/*.ts',
