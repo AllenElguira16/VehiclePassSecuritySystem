@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import { Server as overnightjsServer } from "@overnightjs/core";
 import { ServerLoader, ServerSettings, GlobalAcceptMimesMiddleware } from '@tsed/common';
 import '@tsed/mongoose';
 import '@tsed/socketio';
@@ -30,7 +28,7 @@ const mongoInstance = connectMongo(session);
   },
 })
 export class Server extends ServerLoader {
-  public $beforeRoutesInit(): void | Promise<any> {
+  public $beforeRoutesInit(): void | Promise<void> {
     this.set('trust proxy', 1);
     this.set('json spaces', 2);
     this.use(GlobalAcceptMimesMiddleware)
@@ -39,7 +37,6 @@ export class Server extends ServerLoader {
       .use(
         cors({
           origin: ['http://192.168.100.5:19000', 'http://192.168.100.5:3000', 'http://localhost:3000'],
-          methods: ['GET', 'POST', 'DELETE', 'PUT'],
           credentials: true,
           optionsSuccessStatus: 200,
         }),

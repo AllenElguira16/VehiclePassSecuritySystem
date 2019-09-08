@@ -11,8 +11,11 @@ interface Props {
 
 const Action: FC<Props> = observer(({ vehicle }) => {
   const { QRModalOpen, openVehicleForm } = useContext(AppStore)
-  const onDelete = () => {
+  const openDeleteForm = () => {
     openVehicleForm('delete', `Delete ${vehicle.name}`, vehicle)
+  }
+  const openEditForm = () => {
+    openVehicleForm('update', `Update ${vehicle.name}`, vehicle)
   }
   return (
     <UncontrolledDropdown tag="td">
@@ -21,8 +24,8 @@ const Action: FC<Props> = observer(({ vehicle }) => {
       </DropdownToggle>
       <DropdownMenu>
         <DropdownItem onClick={() => QRModalOpen(vehicle.id)}>QRCode</DropdownItem>
-        <DropdownItem onClick={() => QRModalOpen(vehicle.id)}>Edit</DropdownItem>
-        <DropdownItem onClick={onDelete}>Delete</DropdownItem>
+        <DropdownItem onClick={openEditForm}>Edit</DropdownItem>
+        <DropdownItem onClick={openDeleteForm}>Delete</DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>
   )

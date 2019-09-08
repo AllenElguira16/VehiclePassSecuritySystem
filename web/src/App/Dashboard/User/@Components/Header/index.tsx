@@ -5,10 +5,10 @@ import { AppStore } from 'Store'
 // import AddUser from "./AddUser";
 
 const Header: FC = () => {
-  const { VehiclesFormComponentState, openVehicleForm } = useContext(AppStore)
+  const { UserFormComponentState, openFormInput } = useContext(AppStore)
 
   const openForm = () => {
-    openVehicleForm('create', 'Add Vehicles', VehiclesFormComponentState.vehicles)
+    openFormInput('create', 'Add User', UserFormComponentState.userInput)
   }
 
   return (

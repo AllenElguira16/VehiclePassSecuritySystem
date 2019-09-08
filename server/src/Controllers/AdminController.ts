@@ -38,7 +38,7 @@ class AdminController {
     if (username && password) {
       const hashedPassword = await hash(password, 10);
       const admin = new this.model({ username, password: hashedPassword });
-      admin.save((error: string) => {
+      admin.save(error => {
         if (error) return { error };
         return { success: true };
       });

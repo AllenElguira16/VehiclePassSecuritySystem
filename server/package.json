@@ -4,7 +4,8 @@
   "description": "Backend services for vehicle pass security system",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon"
+    "start": "npx nodemon",
+    "build": "tsc"
   },
   "author": "Allen Elguira",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "@tsed/mongoose": "^5.27.5",
     "@tsed/socketio": "^5.27.5",
     "bcryptjs": "^2.4.3",
+    "connect-mongo": "^3.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
@@ -37,7 +39,6 @@
     "@typescript-eslint/eslint-plugin": "^2.1.0",
     "@typescript-eslint/parser": "^2.1.0",
     "clear": "^0.1.0",
-    "connect-mongo": "^3.0.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-google": "^0.14.0",
@@ -54,10 +55,13 @@
   },
   "nodemonConfig": {
     "watch": [
-      "./src"
+      "src"
     ],
     "ext": "ts",
-    "exec": "npx clear && eslint --color ./src/**/*.ts && ts-node src/index.ts",
+    "ignore": [
+      "./src/**/*.d.ts"
+    ],
+    "exec": "clear && eslint --color ./src/**/*.ts && clear && ts-node src/index.ts",
     "quiet": true
   }
 }

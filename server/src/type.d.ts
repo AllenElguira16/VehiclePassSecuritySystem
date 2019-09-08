@@ -4,10 +4,18 @@ export interface Admin {
   password: string;
 }
 
-export interface User {
+export interface UserInterface {
   userId: string;
   firstname: string;
   lastname: string;
+}
+
+export interface VehicleInterface {
+  name: string;
+  plateNumber: string;
+  type: string;
+  color: string;
+  registrationNumber: string;
 }
 
 export interface Setting {

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {
   Controller,
   Get,
@@ -10,26 +8,37 @@ import {
   BodyParams,
   PathParams,
   Delete,
+  Put,
 } from '@tsed/common';
 import { Vehicle } from '../Model/Vehicle';
 import { MongooseModel } from '@tsed/mongoose';
+import { VehicleInterface, Response } from 'type';
+
+interface PathParamsInterface {
+  id: string;
+  value: string;
+}
+
+interface BodyParamsInterface extends VehicleInterface {
+  id: string;
+}
 
 @Controller('/vehicle')
 class VehicleController {
   constructor(@Inject(Vehicle) private vehicle: MongooseModel<Vehicle>) {}
 
   @Get()
-  public async get() {
+  public async get(): Promise<Vehicle[]> {
     return await this.vehicle.find();
   }
 
   @Get('/check/:id')
-  public async check(@PathParams() { id }: any) {
+  public check(@PathParams() { id }: PathParamsInterface): string {
     return id;
   }
 
   @Post()
-  public async create(@BodyParams() params: any) {
+  public async create(@BodyParams() params: BodyParamsInterface): Promise<Response> {
     const { name, plateNumber, type, color, registrationNumber } = params;
     if (name && plateNumber && type && color && registrationNumber) {
       // Check PlateNumbers' Uniqueness
@@ -41,13 +50,25 @@ class VehicleController {
       const vehicle = await this.vehicle.create(params);
       if (vehicle.errors) return { error: vehicle.errors };
       return { success: 'Created Successfully!' };
-    } else {
-      return { error: 'All Fields are Required!' };
     }
+    return { error: 'All Fields are Required!' };
+  }
+
+  @Put()
+  public async update(@BodyParams() params: BodyParamsInterface): Promise<Response> {
+    const { id, name, plateNumber, type, color, registrationNumber } = params;
+    if (name && plateNumber && type && color && registrationNumber) {
+      const vehicle = await this.vehicle.findByIdAndUpdate(id, params);
+      if (vehicle) {
+        if (vehicle.errors) return { error: vehicle.errors };
+        return { success: 'Updated Successfully!' };
+      }
+    }
+    return { error: 'All Fields are Required!' };
   }
 
   @Delete('/:id')
-  public async delete(@PathParams() { id }: { id: string }): Promise<any> {
+  public async delete(@PathParams() { id }: { id: string }): Promise<Response> {
     if (id) {
       this.vehicle.findByIdAndDelete(id, error => {
         if (error) return { error };
