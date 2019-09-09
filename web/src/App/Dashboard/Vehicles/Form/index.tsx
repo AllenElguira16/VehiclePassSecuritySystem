@@ -17,14 +17,10 @@ const Form = observer(() => {
   const toggler = () => {
     VehiclesFormComponentState.toggle = !VehiclesFormComponentState.toggle
     if (VehiclesFormComponentState.toggle === false) {
-      VehiclesFormComponentState.vehicles = {
-        id: '',
-        plateNumber: '',
-        name: '',
-        type: '',
-        color: '',
-        registrationNumber: '',
-      }
+      setResponse({
+        msg: '',
+        type: 'danger',
+      })
     }
   }
   const onInputChange = (event: FormEvent<HTMLInputElement>) => {
@@ -46,11 +42,11 @@ const Form = observer(() => {
       response = await Axios.delete(`/vehicle/${VehiclesFormComponentState.vehicles.id}`)
     // set response
     if (response) {
+      emptyVehicles()
+      fetchVehicles()
       if (!response.data.error) setResponse({ type: 'success', msg: response.data.success })
       else if (response.data.error) setResponse({ type: 'danger', msg: response.data.error })
     }
-    emptyVehicles()
-    fetchVehicles()
   }
 
   return (
@@ -61,11 +57,17 @@ const Form = observer(() => {
       toggler={toggler}
     >
       {VehiclesFormComponentState.type === 'delete' ? (
-        <FormGroup>Are you sure you want to delete?</FormGroup>
+        response.msg.length !== 0 ? (
+          <FormGroup>{response.msg}</FormGroup>
+        ) : (
+          <FormGroup>Are you sure you want to delete?</FormGroup>
+        )
       ) : (
-        <UserInput onInputChange={onInputChange} />
+        <>
+          <UserInput onInputChange={onInputChange} />
+          {response.msg.length !== 0 && <UncontrolledAlert color={response.type}>{response.msg}</UncontrolledAlert>}
+        </>
       )}
-      {response.msg.length !== 0 && <UncontrolledAlert color={response.type}>{response.msg}</UncontrolledAlert>}
     </FormModal>
   )
 })

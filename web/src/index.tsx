@@ -6,7 +6,8 @@ import * as serviceWorker from './serviceWorker'
 import Axios from 'axios'
 import { BrowserRouter } from 'react-router-dom'
 
-Axios.defaults.baseURL = 'https://vpss-server.herokuapp.com'
+// Axios.defaults.baseURL = 'https://vpss-server.herokuapp.com'
+Axios.defaults.baseURL = 'http://192.168.100.5:8000'
 Axios.defaults.withCredentials = true
 
 ReactDOM.render(

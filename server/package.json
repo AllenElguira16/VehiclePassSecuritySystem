@@ -51,6 +51,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.3.0",
+    "tsconfig-paths": "^3.8.0",
     "typescript": "^3.6.2"
   },
   "nodemonConfig": {
@@ -61,7 +62,20 @@
     "ignore": [
       "./src/**/*.d.ts"
     ],
-    "exec": "clear && eslint --color ./src/**/*.ts && clear && ts-node src/index.ts",
+    "exec": "clear && eslint --color ./src/**/*.ts && clear && ts-node -r tsconfig-paths/register src/index.ts",
     "quiet": true
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "rules": {}
   }
 }

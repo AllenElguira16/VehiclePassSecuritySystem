@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Inject, Session, BodyParams } from '@tsed/common';
 import { hash, compare } from 'bcryptjs';
 import { MongooseModel } from '@tsed/mongoose';
-import { Admin } from '../Model/Admin';
+import { Admin } from 'Model/Admin';
 import { SessionInterface, AdminParams, Response } from 'type';
 
 @Controller('/admin')

@@ -1,34 +1,34 @@
-import React, { useEffect, useContext } from "react";
-import { Container, Card, CardBody, Col, CardHeader } from "reactstrap";
-import { Route, RouteComponentProps, Redirect } from "react-router-dom";
-import { Loader } from "@Components";
-import { DashboardProps } from "types";
-import { observer } from "mobx-react-lite";
-import { AppStore } from "Store";
-import SignIn from "App/Dashboard/SignIn";
-import Navigation from "./@Components/Navigation";
-import Users from "./User";
-import Vehicles from "./Vehicles";
+import React, { useEffect, useContext } from 'react'
+import { Container, Card, CardBody, Col, CardHeader } from 'reactstrap'
+import { Route, RouteComponentProps, Redirect } from 'react-router-dom'
+import { Loader } from '@Components'
+import { DashboardProps } from 'types'
+import { observer } from 'mobx-react-lite'
+import { AppStore } from 'Store'
+import SignIn from 'App/Dashboard/SignIn'
+import Navigation from './@Components/Navigation'
+import Users from './User'
+import Vehicles from './Vehicles'
 
-type Props = RouteComponentProps & DashboardProps;
+type Props = RouteComponentProps & DashboardProps
 
 const Dashboard: React.FC<Props> = observer(props => {
-  const { DashboardState, getLoginState } = useContext(AppStore);
-  const uriMatch = props.location.pathname.match(/dashboard$/);
-  let render;
+  const { DashboardState, getLoginState } = useContext(AppStore)
+  const uriMatch = props.location.pathname.match(/dashboard$/)
+  let render
 
   useEffect(() => {
     const checkLoginState = async () => {
-      getLoginState();
-    };
-    checkLoginState();
-  }, [DashboardState, getLoginState]);
+      getLoginState()
+    }
+    checkLoginState()
+  }, [DashboardState, getLoginState])
 
   if (!DashboardState.isLoading) {
     if (!DashboardState.isLoggedIn) {
-      render = <Route component={SignIn} />;
+      render = <Route component={SignIn} />
     } else if (uriMatch !== null) {
-      render = <Redirect to="/dashboard/users" />;
+      render = <Redirect to="/dashboard/users" />
     } else {
       render = (
         <Col lg={12}>
@@ -42,17 +42,17 @@ const Dashboard: React.FC<Props> = observer(props => {
             </CardBody>
           </Card>
         </Col>
-      );
+      )
     }
   } else {
-    render = <Loader />;
+    render = <Loader />
   }
 
   return (
     <Container fluid className="horizontal-center py-5">
       {render}
     </Container>
-  );
-});
+  )
+})
 
-export default Dashboard;
+export default Dashboard

@@ -1,13 +1,8 @@
-import React, { FC, useContext } from "react";
-import {
-  UncontrolledDropdown,
-  DropdownMenu,
-  DropdownToggle,
-  DropdownItem
-} from "reactstrap";
-import { SettingsProps } from "types";
-import { observer } from "mobx-react-lite";
-import { AppStore } from "Store";
+import React, { FC, useContext } from 'react'
+import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap'
+import { SettingsProps } from 'types'
+import { observer } from 'mobx-react-lite'
+import { AppStore } from 'Store'
 
 /**
  * ContentSettings
@@ -16,15 +11,15 @@ import { AppStore } from "Store";
  */
 const Settings: FC<SettingsProps> = observer(props => {
   // Initialize AppStore
-  const { openFormInput } = useContext(AppStore);
+  const { openUserForm } = useContext(AppStore)
   // func that handles the deletion of user
   const onDelete = async () => {
-    openFormInput("delete", "Delete User", props.user);
-  };
+    openUserForm('delete', 'Delete User', props.user)
+  }
   // func that handles the updates of user
   const onEdit = async () => {
-    openFormInput("update", "Update User", props.user);
-  };
+    openUserForm('update', 'Update User', props.user)
+  }
   // Render Func
   return (
     <>
@@ -39,7 +34,7 @@ const Settings: FC<SettingsProps> = observer(props => {
         </DropdownMenu>
       </UncontrolledDropdown>
     </>
-  );
-});
+  )
+})
 
-export default Settings;
+export default Settings

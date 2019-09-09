@@ -21,7 +21,6 @@ const mongoInstance = connectMongo(session);
   httpsPort: process.env.PORT || 8080,
   socketIO: {},
   mount: {
-    // '/api': '${rootDir}/Controllers/**/*.ts',
     '/': '${rootDir}/Controllers/**/*.ts',
   },
   mongoose: {

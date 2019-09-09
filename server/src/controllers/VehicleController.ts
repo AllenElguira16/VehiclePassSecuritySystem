@@ -10,7 +10,7 @@ import {
   Delete,
   Put,
 } from '@tsed/common';
-import { Vehicle } from '../Model/Vehicle';
+import { Vehicle } from 'Model/Vehicle';
 import { MongooseModel } from '@tsed/mongoose';
 import { VehicleInterface, Response } from 'type';
 

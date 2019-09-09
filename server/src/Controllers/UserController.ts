@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Delete, Put, Inject, BodyParams, PathParams } from '@tsed/common';
-import { User } from '../Model/User';
+import { User } from 'Model/User';
 import { MongooseModel } from '@tsed/mongoose';
-import { MySocketService } from '../Services/Socket';
+// import { MySocketService } from 'Services/Socket';
 import { Response, UserInterface } from 'type';
 
 interface PathParamsInterface {
@@ -15,7 +15,7 @@ interface BodyParamsInterface extends UserInterface {
 
 @Controller('/user')
 class UserController {
-  constructor(@Inject(User) private user: MongooseModel<User>, private socket: MySocketService) {}
+  constructor(@Inject(User) private user: MongooseModel<User>) {}
 
   @Get()
   public async getUser(): Promise<User[]> {
@@ -24,11 +24,9 @@ class UserController {
 
   @Get('/:value')
   public async getUserBySearch(@PathParams() { value }: PathParamsInterface): Promise<User[]> {
-    // if (value) {
     return await this.user.find({
       userId: new RegExp(`^${value}`, 'i'),
     });
-    // }
   }
 
   @Post()
@@ -40,7 +38,6 @@ class UserController {
     if (match.length !== 0) return { error: 'User already exists' };
     const user = new this.user({ userId, firstname, lastname });
     user.save(error => ({ error }));
-    if (this.socket.nsp) this.socket.nsp.emit('fetchUser');
     return { success: 'Created Successfully' };
   }
 
@@ -51,7 +48,7 @@ class UserController {
     this.user.findByIdAndUpdate(id, { userId, firstname, lastname }, error => {
       if (error) return { error };
     });
-    if (this.socket.nsp) this.socket.nsp.emit('fetchUser');
+    // if (this.socket.nsp) this.socket.nsp.emit('fetchUser');
     return { success: 'Updated Successfully' };
   }
 
@@ -60,7 +57,7 @@ class UserController {
     this.user.findByIdAndRemove(params.id, error => {
       if (error) return { error };
     });
-    if (this.socket.nsp) this.socket.nsp.emit('fetchUser');
+    // if (this.socket.nsp) this.socket.nsp.emit('fetchUser');
     return { success: 'Deleted Successfully' };
   }
 }

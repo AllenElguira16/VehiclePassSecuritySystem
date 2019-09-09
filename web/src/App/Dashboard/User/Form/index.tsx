@@ -8,7 +8,7 @@ import { Response } from 'types'
 import UserInput from './UserInput'
 
 const Form = observer(() => {
-  const { UserFormComponentState } = useContext(AppStore)
+  const { UserFormComponentState, emptyUser, fetchUsers } = useContext(AppStore)
   const [response, setResponse] = useState<Response>({
     msg: '',
     type: 'danger',
@@ -16,12 +16,10 @@ const Form = observer(() => {
   const toggler = () => {
     UserFormComponentState.toggle = !UserFormComponentState.toggle
     if (UserFormComponentState.toggle === false)
-      UserFormComponentState.userInput = {
-        id: '',
-        userId: '',
-        firstname: '',
-        lastname: '',
-      }
+      setResponse({
+        msg: '',
+        type: 'danger',
+      })
   }
   const onInputChange = (event: FormEvent<HTMLInputElement>) => {
     let { name, value } = event.currentTarget
@@ -41,6 +39,8 @@ const Form = observer(() => {
       response = await Axios.delete(`/user/${UserFormComponentState.userInput.id}`)
     // set response
     if (response) {
+      emptyUser()
+      fetchUsers()
       if (!response.data.error) setResponse({ type: 'success', msg: response.data.success })
       else if (response.data.error) setResponse({ type: 'danger', msg: response.data.error })
     }

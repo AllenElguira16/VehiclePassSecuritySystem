@@ -34,11 +34,21 @@ class Action extends State {
   }
 
   @action.bound
-  openFormInput = (type: UserFormComponentTypes['type'], title: string, userInput: UserInput) => {
+  openUserForm = (type: UserFormComponentTypes['type'], title: string, userInput: UserInput) => {
     this.UserFormComponentState.toggle = true
     this.UserFormComponentState.title = title
     this.UserFormComponentState.type = type
     this.UserFormComponentState.userInput = userInput
+  }
+
+  @action.bound
+  emptyUser = () => {
+    this.UserFormComponentState.userInput = {
+      id: '',
+      userId: '',
+      firstname: '',
+      lastname: '',
+    }
   }
 
   @action.bound
