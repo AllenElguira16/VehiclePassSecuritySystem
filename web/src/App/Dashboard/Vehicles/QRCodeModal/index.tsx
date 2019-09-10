@@ -1,9 +1,10 @@
 import React, { useContext, FC } from 'react'
-import QRCode from 'qrcode.react'
 import { ModalBody, Button, ModalFooter, Modal } from 'reactstrap'
+import { QRCode } from 'react-qrcode-logo'
+import LNULogo from 'Assets/images/LNULogoFrontPage.webp'
 import printjs from 'print-js'
-import { AppStore } from 'Store'
 import { observer } from 'mobx-react-lite'
+import { AppStore } from 'Store'
 
 interface Props {
   // value: string
@@ -30,7 +31,7 @@ const QRCodeModal: FC<Props> = observer(() => {
     <>
       <Modal isOpen={QRCodeModalState.isOpen} toggle={QRModalClose}>
         <ModalBody id="modal-body">
-          <QRCode value={QRCodeModalState.currentVehicleID} size={450} />
+          <QRCode value={QRCodeModalState.currentVehicleID} logoImage={LNULogo} size={450} />
         </ModalBody>
 
         <ModalFooter>

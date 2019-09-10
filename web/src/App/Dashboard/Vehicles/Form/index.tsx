@@ -1,10 +1,10 @@
 import React, { useContext, FormEvent, useState } from 'react'
-import { FormModal } from '@Components'
-import { observer } from 'mobx-react-lite'
-import { AppStore } from 'Store'
 import { UncontrolledAlert, FormGroup } from 'reactstrap'
 import Axios from 'axios'
+import { observer } from 'mobx-react-lite'
+import { AppStore } from 'Store'
 import { Response } from 'types'
+import { FormModal } from '@Components'
 import UserInput from './UserInput'
 
 const Form = observer(() => {

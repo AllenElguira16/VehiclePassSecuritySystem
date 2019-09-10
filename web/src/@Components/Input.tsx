@@ -1,12 +1,6 @@
-import React, { FC } from "react";
-import {
-  FormGroup,
-  Input as FormInput,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText
-} from "reactstrap";
-import { InputComponentProps } from "types";
+import React, { FC } from 'react'
+import { FormGroup, Input as FormInput, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap'
+import { InputComponentProps } from 'types'
 /**
  * A Input Component with mix-ins
  *
@@ -16,7 +10,7 @@ import { InputComponentProps } from "types";
 const Input: FC<InputComponentProps> = props => {
   // Checks value if its undefined then will throw error
   if (props.value === undefined) {
-    throw new Error("Value should not be undefined");
+    throw new Error('Value should not be undefined')
   }
 
   return (
@@ -31,7 +25,10 @@ const Input: FC<InputComponentProps> = props => {
           onChange={props.onChange}
           value={props.value}
           autoComplete="off"
-        />
+          defaultValue={props.defaultValue}
+        >
+          {props.children}
+        </FormInput>
         {props.icon && (
           <InputGroupAddon addonType={props.icon.position}>
             <InputGroupText>
@@ -41,7 +38,7 @@ const Input: FC<InputComponentProps> = props => {
         )}
       </InputGroup>
     </FormGroup>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input
