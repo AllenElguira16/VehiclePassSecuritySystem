@@ -75,10 +75,10 @@ class Action extends State {
   closeFormInput = () => {}
 
   @action.bound
-  fetchVehicles = async () => {
+  fetchVehicles = async (search?: string) => {
     this.VehiclesContentState.isLoading = true
     if (this.VehiclesContentState.isLoading) {
-      const { data } = await Axios.get('/vehicle')
+      const { data } = await Axios.get(search ? `/vehicle/${search}` : '/vehicle')
       this.VehiclesContentState.vehicles = data
     }
     this.VehiclesContentState.isLoading = false

@@ -17,6 +17,7 @@ import { VehicleInterface, Response } from 'type';
 interface PathParamsInterface {
   id: string;
   value: string;
+  search: string;
 }
 
 interface BodyParamsInterface extends VehicleInterface {
@@ -30,6 +31,11 @@ class VehicleController {
   @Get()
   public async get(): Promise<Vehicle[]> {
     return await this.vehicle.find();
+  }
+
+  @Get('/:search')
+  public async search(@PathParams() { search }: PathParamsInterface): Promise<Vehicle[]> {
+    return await this.vehicle.find({ plateNumber: { $regex: `.*${search}.*` } }).exec();
   }
 
   @Get('/check/:id')
