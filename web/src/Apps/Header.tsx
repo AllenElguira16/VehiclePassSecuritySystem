@@ -1,65 +1,40 @@
-import React, { useState } from 'react'
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink, Container } from 'reactstrap'
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
-import logo from 'Assets/images/LNULogo.webp'
+import React, { FC } from 'react'
+import { AppBar, Toolbar, Typography, IconButton, makeStyles, CssBaseline } from '@material-ui/core'
+import { Menu as MenuIcon } from '@material-ui/icons'
 
-const Header: React.FC<RouteComponentProps> = props => {
-  let [state, setState] = useState({
-    isOpen: false,
-  })
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  appBar: {
+    background: '#FFF',
+    color: '#000',
+  },
+}))
 
-  const toggle = () => {
-    setState({ isOpen: !state.isOpen })
-  }
-
-  const isActive = (regex: RegExp | string): boolean => {
-    const uriMatcher = props.location.pathname.match(regex)
-    return uriMatcher !== null
-  }
-
+const Header: FC = () => {
+  const styles = useStyles()
   return (
-    <Navbar
-      color="white"
-      expand="lg"
-      className="justify-content-between shadow-sm"
-      tag="header"
-      sticky="top"
-      id="header"
-      light
-    >
-      <Container>
-        <NavbarBrand tag={Link} to="/" className="d-flex align-items-center" tabIndex={-1}>
-          <img src={logo} alt="Lyceum-Northwestern University" />
-          <span className="ml-2 d-none d-sm-inline">Vehicle Pass Security System</span>
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink tag={Link} to="/" tabIndex={-1} active={isActive(/\/$/)}>
-                Home
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/dashboard" tabIndex={-1} active={isActive('dashboard')}>
-                Dashboard
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/vehicle-pass" tabIndex={-1} active={isActive('vehicle-pass')}>
-                Vehicle Pass
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/about-us" tabIndex={-1} active={isActive('about-us')}>
-                About Us
-              </NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Container>
-    </Navbar>
+    <div className={styles.root}>
+      <CssBaseline></CssBaseline>
+      <AppBar position="relative" className={styles.appBar}>
+        <Toolbar>
+          <IconButton edge="start" className={styles.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={styles.title}>
+            Vehicle Pass Security System
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </div>
   )
 }
 
-export default withRouter(Header)
+export default Header
