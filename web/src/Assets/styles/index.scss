@@ -27,6 +27,15 @@ body,
   // background-color: ;
 }
 
+.card-collections {
+  .col {
+    @extend .mb-5;
+    .card {
+      @extend .h-100;
+    }
+  }
+}
+
 .lnu-text {
   font-family: 'Times New Roman', Times, serif;
 }
