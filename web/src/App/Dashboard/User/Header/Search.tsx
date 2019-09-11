@@ -1,5 +1,6 @@
-import React, { useState, FC, FormEvent } from "react";
-import Input from "@Components/Input";
+import React, { useState, FC, FormEvent, useContext } from 'react'
+import Input from '@Components/Input'
+import { AppStore } from 'Store'
 
 interface Props {
   // value: string;
@@ -7,11 +8,13 @@ interface Props {
 }
 
 const Search: FC<Props> = () => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('')
+  const { fetchUsers } = useContext(AppStore)
   const onInputChange = async (event: FormEvent<HTMLInputElement>) => {
-    let { value } = event.currentTarget;
-    setSearch(value);
-  };
+    let { value } = event.currentTarget
+    setSearch(value)
+    fetchUsers(value)
+  }
 
   return (
     <Input
@@ -19,11 +22,11 @@ const Search: FC<Props> = () => {
       placeholder="search"
       onChange={onInputChange}
       icon={{
-        position: "prepend",
-        iconName: "search"
+        position: 'prepend',
+        iconName: 'search',
       }}
     />
-  );
-};
+  )
+}
 
-export default Search;
+export default Search

@@ -1,12 +1,12 @@
 import React, { FC, useContext, useEffect } from 'react'
 import { Table } from 'reactstrap'
 import { Vehicle } from 'types'
-import Loader from '@Components/Loader'
-import { observer } from 'mobx-react-lite'
+import { Loader } from '@Components'
+import { observer } from 'mobx-react'
 import { AppStore } from 'Store'
 import Action from './Actions'
 
-const Content: FC = observer(() => {
+const Content: FC = function() {
   const { fetchVehicles, VehiclesContentState } = useContext(AppStore)
   const { isLoading, vehicles } = VehiclesContentState
 
@@ -46,6 +46,6 @@ const Content: FC = observer(() => {
       </tbody>
     </Table>
   )
-})
+}
 
-export default Content
+export default observer(Content)

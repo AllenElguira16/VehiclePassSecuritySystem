@@ -24,10 +24,10 @@ class Action extends State {
   }
 
   @action.bound
-  fetchUsers = async () => {
+  fetchUsers = async (search?: string) => {
     this.UserContentState.isLoading = true
     if (this.UserContentState.isLoading) {
-      const { data } = await Axios.get('/user')
+      const { data } = await Axios.get(search ? `/user/${search}` : '/user')
       this.UserContentState.users = data
     }
     this.UserContentState.isLoading = false
