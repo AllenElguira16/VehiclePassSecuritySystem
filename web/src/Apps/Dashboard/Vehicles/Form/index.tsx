@@ -42,10 +42,11 @@ const Form = observer(() => {
       response = await Axios.delete(`/vehicle/${VehiclesFormComponentState.vehicles.id}`)
     // set response
     if (response) {
-      emptyVehicles()
-      fetchVehicles()
-      if (!response.data.error) setResponse({ type: 'success', msg: response.data.success })
-      else if (response.data.error) setResponse({ type: 'danger', msg: response.data.error })
+      if (!response.data.error) {
+        emptyVehicles()
+        fetchVehicles()
+        setResponse({ type: 'success', msg: response.data.success })
+      } else if (response.data.error) setResponse({ type: 'danger', msg: response.data.error })
     }
   }
 

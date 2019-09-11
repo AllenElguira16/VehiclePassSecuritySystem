@@ -14,7 +14,7 @@ const LandingPage: FC = () => {
         </Col>
         <Col lg={5}>
           <h1 className="font-weight-light">Vehicle Pass Security System</h1>
-          <p>A Better Security System for Lyceans who enters in the campus which owns a vehicles</p>
+          <p>Stay secured, stay assured</p>
         </Col>
       </Row>
       <Row className="card-collections">

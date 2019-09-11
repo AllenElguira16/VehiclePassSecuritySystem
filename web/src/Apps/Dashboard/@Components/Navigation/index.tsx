@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { Nav, NavItem, NavLink } from "reactstrap";
-import { NavLink as Link, withRouter } from "react-router-dom";
-import Options from "./Options";
+import React, { FC } from 'react'
+import { Nav, NavItem, NavLink } from 'reactstrap'
+import { NavLink as Link, withRouter } from 'react-router-dom'
+import Options from './Options'
 /**
  * Dashboard Components
  *
@@ -11,15 +11,9 @@ const Navigation: FC = () => {
   return (
     <Nav tabs card>
       <NavItem>
-        <NavLink
-          tag={Link}
-          to="/dashboard/users"
-          tabIndex={-1}
-          className="vertical-centered"
-          activeClassName="active"
-        >
+        <NavLink tag={Link} to="/dashboard/users" tabIndex={-1} className="vertical-centered" activeClassName="active">
           <i className="material-icons pr-2">person</i>
-          <span>Employee</span>
+          <span>Users</span>
         </NavLink>
       </NavItem>
       <NavItem>
@@ -36,7 +30,7 @@ const Navigation: FC = () => {
       </NavItem>
       <Options />
     </Nav>
-  );
-};
+  )
+}
 
-export default withRouter(Navigation);
+export default withRouter(Navigation)

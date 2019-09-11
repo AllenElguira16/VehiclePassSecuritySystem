@@ -1,13 +1,11 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import LandingPage from "./LandingPage";
+import React, { FC } from 'react'
 
-export default () => {
+const Home: FC = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" component={LandingPage} />
-      </Switch>
-    </BrowserRouter>
-  );
-};
+    <>
+      <div>Hello</div>
+    </>
+  )
+}
+
+export default Home

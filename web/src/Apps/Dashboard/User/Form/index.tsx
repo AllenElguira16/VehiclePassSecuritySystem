@@ -39,10 +39,11 @@ const Form = observer(() => {
       response = await Axios.delete(`/user/${UserFormComponentState.userInput.id}`)
     // set response
     if (response) {
-      emptyUser()
-      fetchUsers()
-      if (!response.data.error) setResponse({ type: 'success', msg: response.data.success })
-      else if (response.data.error) setResponse({ type: 'danger', msg: response.data.error })
+      if (!response.data.error) {
+        setResponse({ type: 'success', msg: response.data.success })
+        emptyUser()
+        fetchUsers()
+      } else if (response.data.error) setResponse({ type: 'danger', msg: response.data.error })
     }
   }
 
