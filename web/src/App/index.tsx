@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 //
-import Header from 'Apps/Header'
-import Footer from 'Apps/Footer'
+import Header from 'App/Header'
+import Footer from 'App/Footer'
 
 // Page components
 import Home from './Home'
