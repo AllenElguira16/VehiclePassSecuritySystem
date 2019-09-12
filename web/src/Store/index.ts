@@ -24,13 +24,19 @@ class Action extends State {
   }
 
   @action.bound
-  fetchUsers = async (search?: string) => {
-    this.UserContentState.isLoading = true
-    if (this.UserContentState.isLoading) {
-      const { data } = await Axios.get(search ? `/user/${search}` : '/user')
-      this.UserContentState.users = data
+  fetchUsers = async (params?: Partial<User>) => {
+    try {
+      this.UserContentState.isLoading = true
+      if (this.UserContentState.isLoading) {
+        const { data } = await Axios.post('/user/fetch', params).catch(error => {
+          throw new Error(error)
+        })
+        if (data) this.UserContentState.users = data
+      }
+      this.UserContentState.isLoading = false
+    } catch (error) {
+      console.error(error)
     }
-    this.UserContentState.isLoading = false
   }
 
   @action.bound

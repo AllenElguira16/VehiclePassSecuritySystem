@@ -4,7 +4,6 @@ import { Table } from 'reactstrap'
 import { Loader } from '@Components'
 import { observer } from 'mobx-react-lite'
 // Local Imports
-import { User } from 'types'
 import { AppStore } from 'Store'
 import Form from './Form'
 import Settings from './Settings'
@@ -29,7 +28,7 @@ const Employee: FC = observer(() => {
         <tbody>
           <TableHeader />
           {!isLoading && users.length !== 0 ? (
-            users.map((user: User, i: number) => (
+            users.map((user, i) => (
               <tr key={i} style={{ cursor: 'pointer' }}>
                 <td className="align-middle">{user.userId}</td>
                 <td className="align-middle">{user.firstname}</td>

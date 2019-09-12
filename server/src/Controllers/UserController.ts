@@ -17,9 +17,13 @@ interface BodyParamsInterface extends UserInterface {
 class UserController {
   constructor(@Inject(User) private user: MongooseModel<User>) {}
 
-  @Get()
-  public async getUser(): Promise<User[]> {
-    return await this.user.find().exec();
+  @Post('/fetch')
+  public async getUser(@BodyParams() params: BodyParamsInterface): Promise<User[]> {
+    if (Object.keys(params).length === 0) return await this.user.find().exec();
+    let dbParams: keyof UserInterface = 'userId';
+    Object.keys(params).map(async key => (dbParams = key as keyof UserInterface));
+    const search = params[dbParams];
+    return await this.user.find({ [dbParams]: { $regex: `.*${search}.*` } }).exec();
   }
 
   @Get('/:value')

@@ -45,8 +45,8 @@ class VehicleController {
 
   @Post()
   public async create(@BodyParams() params: BodyParamsInterface): Promise<Response> {
-    const { name, plateNumber, type, color, registrationNumber } = params;
-    if (name && plateNumber && type && color && registrationNumber) {
+    const { userId, name, plateNumber, type, color, registrationNumber } = params;
+    if (userId && name && plateNumber && type && color && registrationNumber) {
       // Check PlateNumbers' Uniqueness
       const plateNumberMatcher = await this.vehicle.findOne({ plateNumber }).exec();
       if (plateNumberMatcher) return { error: 'Plate Number is not unique' };

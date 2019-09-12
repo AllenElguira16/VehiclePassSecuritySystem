@@ -1,5 +1,5 @@
 import { observable } from 'mobx'
-import { UserFormComponentTypes, VehiclesFormComponentTypes } from 'types'
+import { UserFormComponentTypes, VehiclesFormComponentTypes, User } from 'types'
 
 class State {
   // @observable isLoading: boolean = false;
@@ -8,7 +8,7 @@ class State {
     isLoggedIn: false,
   }
 
-  @observable UserContentState = {
+  @observable UserContentState: { isLoading: boolean; users: User[] } = {
     isLoading: true,
     users: [],
   }

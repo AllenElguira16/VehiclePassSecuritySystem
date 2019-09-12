@@ -9,6 +9,9 @@ export class Vehicle {
   public _id: string | undefined;
 
   @Property()
+  public userId: string | undefined;
+
+  @Property()
   public name: string | undefined;
 
   @Property()

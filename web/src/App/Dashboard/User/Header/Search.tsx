@@ -13,7 +13,7 @@ const Search: FC<Props> = () => {
   const onInputChange = async (event: FormEvent<HTMLInputElement>) => {
     let { value } = event.currentTarget
     setSearch(value)
-    fetchUsers(value)
+    fetchUsers({ userId: value })
   }
 
   return (

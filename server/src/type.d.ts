@@ -11,6 +11,7 @@ export interface UserInterface {
 }
 
 export interface VehicleInterface {
+  userId: string;
   name: string;
   plateNumber: string;
   type: string;

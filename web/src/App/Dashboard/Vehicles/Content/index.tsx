@@ -15,9 +15,10 @@ const Content: FC = function() {
   }, [fetchVehicles])
 
   return (
-    <Table striped responsive size="sm">
+    <Table striped size="sm">
       <tbody>
         <tr>
+          <th>User ID</th>
           <th>Plate Number</th>
           <th>Name</th>
           <th>Type</th>
@@ -28,17 +29,18 @@ const Content: FC = function() {
         {!isLoading && vehicles.length !== 0 ? (
           vehicles.map((vehicle: Vehicle, i: number) => (
             <tr key={i} style={{ cursor: 'pointer' }}>
+              <td className="align-middle">{vehicle.userId}</td>
               <td className="align-middle">{vehicle.plateNumber}</td>
               <td className="align-middle">{vehicle.name}</td>
               <td className="align-middle">{vehicle.type}</td>
               <td className="align-middle">{vehicle.color}</td>
               <td className="align-middle">{vehicle.registrationNumber}</td>
-              <Action vehicle={vehicle}></Action>
+              <Action vehicle={vehicle} />
             </tr>
           ))
         ) : (
           <tr>
-            <td colSpan={6} className="text-center">
+            <td colSpan={7} className="text-center">
               {isLoading ? <Loader /> : <em>Empty</em>}
             </td>
           </tr>
