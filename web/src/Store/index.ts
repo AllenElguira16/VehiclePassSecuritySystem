@@ -1,7 +1,7 @@
 import { action } from 'mobx'
 import { createContext } from 'react'
-import { UserInput, IUser, Vehicle, UserFormComponentTypes, VehiclesFormComponentTypes } from 'types'
-import Axios from 'axios'
+import { UserInput, IUser, Vehicle, UserFormComponentTypes, VehiclesFormComponentTypes, User } from 'types'
+import Axios, { AxiosResponse } from 'axios'
 import State from './State'
 
 // configure({ enforceActions: true });
@@ -63,6 +63,7 @@ class Action extends State {
   emptyVehicles = () => {
     this.VehiclesFormComponentState.vehicles = {
       id: '',
+      userId: '',
       plateNumber: '',
       name: '',
       type: '',
@@ -93,6 +94,12 @@ class Action extends State {
   QRModalOpen = (id: string) => {
     this.QRCodeModalState.currentVehicleID = id
     this.QRCodeModalState.isOpen = true
+  }
+
+  @action.bound
+  fetchUserID = async (value: string): Promise<User[]> => {
+    const { data }: AxiosResponse<User[]> = await Axios.get(`/user/get-id/${value}`)
+    return data
   }
 }
 

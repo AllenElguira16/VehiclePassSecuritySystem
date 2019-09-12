@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { AppStore } from 'Store'
 import { Input } from '@Components'
 import { Row, Col } from 'reactstrap'
+import SearchUser from './SearchUser'
 
 interface Props {
   onInputChange(e: FormEvent<HTMLInputElement>): void
@@ -15,6 +16,7 @@ const UserInput: FC<Props> = observer(({ onInputChange }) => {
   const vehicleColors = ['Blue', 'Red', 'Green', 'Yellow', 'White']
   return (
     <>
+      <SearchUser />
       <Input type="text" placeholder="Name" name="name" onChange={onInputChange} value={vehicles.name} />
       <Row form>
         <Col>

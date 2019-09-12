@@ -29,6 +29,11 @@ class UserController {
     });
   }
 
+  @Get('/get-id/:id')
+  public async getID(@PathParams() { id }: PathParamsInterface): Promise<User[]> {
+    return await this.user.find({ userId: { $regex: `.*${id}.*` } }).exec();
+  }
+
   @Post()
   public async addUser(@BodyParams() params: BodyParamsInterface): Promise<Response> {
     const { userId, firstname, lastname } = params;

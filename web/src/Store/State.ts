@@ -36,6 +36,7 @@ class State {
     toggle: false,
     vehicles: {
       id: '',
+      userId: '',
       plateNumber: '',
       name: '',
       type: '',

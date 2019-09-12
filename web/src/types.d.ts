@@ -94,6 +94,7 @@ export interface User {
 
 export interface Vehicle {
   id: string
+  userId: string
   plateNumber: string
   name: string
   type: string
