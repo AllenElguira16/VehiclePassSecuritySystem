@@ -120,3 +120,12 @@ interface UserFormComponentTypes extends FormComponent {
 interface VehiclesFormComponentTypes extends FormComponent {
   vehicles: Vehicle
 }
+
+interface AccountSettingsStateInterface {
+  isOpen: boolean
+  admin: {
+    id: string
+    username: string
+    password: string
+  }
+}
