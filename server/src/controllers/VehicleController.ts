@@ -62,9 +62,9 @@ class VehicleController {
 
   @Put()
   public async update(@BodyParams() params: BodyParamsInterface): Promise<Response> {
-    const { id, name, plateNumber, type, color, registrationNumber } = params;
-    if (name && plateNumber && type && color && registrationNumber) {
-      const vehicle = await this.vehicle.findByIdAndUpdate(id, params);
+    const { id, userId, name, plateNumber, type, color, registrationNumber } = params;
+    if (userId && name && plateNumber && type && color && registrationNumber) {
+      const vehicle = await this.vehicle.findByIdAndUpdate(id, params).exec();
       if (vehicle) {
         if (vehicle.errors) return { error: vehicle.errors };
         return { success: 'Updated Successfully!' };

@@ -24,7 +24,7 @@ const Employee: FC = observer(() => {
   return (
     <>
       <Header />
-      <Table striped responsive size="sm">
+      <Table striped size="lg">
         <tbody>
           <TableHeader />
           {!isLoading && users.length !== 0 ? (

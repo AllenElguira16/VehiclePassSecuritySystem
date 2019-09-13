@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Nav, NavItem, NavLink } from 'reactstrap'
 import { NavLink as Link, withRouter } from 'react-router-dom'
 import Options from './Options'
+import AccountSettings from './AccountSettings'
 /**
  * Dashboard Components
  *
@@ -28,6 +29,7 @@ const Navigation: FC = () => {
           <span>Vehicles</span>
         </NavLink>
       </NavItem>
+      <AccountSettings />
       <Options />
     </Nav>
   )

@@ -9,6 +9,10 @@ body,
   @extend .h-100;
 }
 
+.btn {
+  @extend .btn-raised;
+}
+
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -73,12 +77,12 @@ body,
 }
 
 // Dark Mode
-.dark {
-  .card-body {
-    * {
-      color: #ffffff;
-    }
-    background: #303030;
-  }
-  background: #303030;
-}
+// .dark {
+// .card-body {
+//   * {
+//     color: #ffffff;
+//   }
+//   background: #303030;
+// }
+// background: #303030;
+// }

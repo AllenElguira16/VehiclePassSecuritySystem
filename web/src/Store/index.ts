@@ -107,6 +107,12 @@ class Action extends State {
     const { data }: AxiosResponse<User[]> = await Axios.get(`/user/get-id/${value}`)
     return data
   }
+
+  @action.bound
+  updateAdmin = async (params: { id: string; username: string; password: string }) => {
+    const { data } = await Axios.put(`/admin/update`, params)
+    return data
+  }
 }
 
 export const AppStore = createContext(new Action())

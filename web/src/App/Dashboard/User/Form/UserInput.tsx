@@ -1,20 +1,20 @@
-import React, { FC, FormEvent, useContext } from "react";
-import { Row, Col } from "reactstrap";
-import { observer } from "mobx-react-lite";
-import { AppStore } from "Store";
-import { Input } from "@Components";
+import React, { FC, FormEvent, useContext } from 'react'
+import { Row, Col } from 'reactstrap'
+import { observer } from 'mobx-react-lite'
+import { AppStore } from 'Store'
+import { Input } from '@Components'
 
 interface Props {
-  onInputChange(e: FormEvent<HTMLInputElement>): void;
+  onInputChange(e: FormEvent<HTMLInputElement>): void
 }
 
 const UserInput: FC<Props> = observer(({ onInputChange }) => {
-  const { UserFormComponentState } = useContext(AppStore);
+  const { UserFormComponentState } = useContext(AppStore)
   return (
     <>
       <Input
         type="text"
-        placeholder="Employee ID"
+        placeholder="User ID"
         name="userId"
         onChange={onInputChange}
         value={UserFormComponentState.userInput.userId}
@@ -40,7 +40,7 @@ const UserInput: FC<Props> = observer(({ onInputChange }) => {
         </Col>
       </Row>
     </>
-  );
-});
+  )
+})
 
-export default UserInput;
+export default UserInput

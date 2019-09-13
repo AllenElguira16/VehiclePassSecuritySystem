@@ -1,5 +1,5 @@
 import { observable } from 'mobx'
-import { UserFormComponentTypes, VehiclesFormComponentTypes, User } from 'types'
+import { UserFormComponentTypes, VehiclesFormComponentTypes, User, AccountSettingsStateInterface } from 'types'
 
 class State {
   // @observable isLoading: boolean = false;
@@ -48,6 +48,15 @@ class State {
   @observable QRCodeModalState = {
     isOpen: false,
     currentVehicleID: '',
+  }
+
+  @observable AccountSettingsState: AccountSettingsStateInterface = {
+    isOpen: false,
+    admin: {
+      id: '',
+      username: '',
+      password: '',
+    },
   }
 }
 
