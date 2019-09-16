@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StatusBar, StyleSheet, Button } from "react-native";
 // import { ThemeProvider, Header, Theme } from "react-native-elements";
-import { BarCodeScanner } from "expo-barcode-scanner";
+import { BarCodeScanner, BarCodeScannedCallback } from "expo-barcode-scanner";
 import { askAsync, CAMERA } from "expo-permissions";
 import Axios from "axios";
 
@@ -23,15 +23,16 @@ export default () => {
     getPermission();
   }, []);
 
-  const handleBarCodeScanned = async (barcode: any) => {
+  const handleBarCodeScanned: BarCodeScannedCallback = async barcode => {
     if (!state.scanned) {
       setState({
         ...state,
         scanned: true
       });
-      // console.log(data);
-      const { data } = await Axios.get(`/vehicle/check/${barcode.data}`);
-      console.log(data);
+      console.log(`/vehicle/check/${barcode.data}`);
+      // const { data } = await Axios.get(`/vehicle/check/${barcode.data}`);
+      // if (data.error) console.log("An error occured");
+      // else console.log(data.success);
     }
   };
 

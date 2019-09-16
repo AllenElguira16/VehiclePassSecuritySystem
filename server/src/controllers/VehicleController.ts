@@ -39,8 +39,12 @@ class VehicleController {
   }
 
   @Get('/check/:id')
-  public check(@PathParams() { id }: PathParamsInterface): string {
-    return id;
+  public async check(@PathParams() { id }: PathParamsInterface): Promise<Response> {
+    // const vehicle = await this.vehicle.findById(id).exec();
+    // if (vehicle) {
+    //   if (vehicle.errors) return { error: 'Not match' };
+    // }
+    return { success: id };
   }
 
   @Post()
