@@ -18,7 +18,7 @@ const LandingPage: FC = () => {
         </Col>
       </Row>
       <Row className="card-collections">
-        <Col>
+        <Col lg={4}>
           <Card>
             <CardBody>
               <h4>What is Vehicle Pass Security System?</h4>
@@ -31,7 +31,7 @@ const LandingPage: FC = () => {
             </CardFooter>
           </Card>
         </Col>
-        <Col>
+        <Col lg={4}>
           <Card>
             <CardBody>
               <h4>What is Vehicle Pass?</h4>
@@ -45,7 +45,7 @@ const LandingPage: FC = () => {
             </CardFooter>
           </Card>
         </Col>
-        <Col>
+        <Col lg={4}>
           <Card>
             <CardBody>
               <h4>How does it work?</h4>

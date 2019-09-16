@@ -33,7 +33,7 @@ body,
 }
 
 .card-collections {
-  .col {
+  [class^='col'] {
     @extend .mb-5;
     .card {
       @extend .h-100;
@@ -75,6 +75,15 @@ body,
   @extend .justify-content-center;
   min-height: inherit;
 }
+
+// .table-responsive .dropdown-menu {
+//   position: static !important;
+// }
+
+// .table-responsive {
+//   overflow-x: scroll;
+//   overflow-y: hidden;
+// }
 
 // Dark Mode
 // .dark {

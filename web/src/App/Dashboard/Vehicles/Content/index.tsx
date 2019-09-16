@@ -15,7 +15,7 @@ const Content: FC = function() {
   }, [fetchVehicles])
 
   return (
-    <Table striped size="sm">
+    <Table striped responsive size="lg">
       <tbody>
         <tr>
           <th>User ID</th>
