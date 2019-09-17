@@ -29,7 +29,7 @@ export default () => {
         ...state,
         scanned: true
       });
-      console.log(`/vehicle/check/${barcode.data}`);
+      Axios.post("/arduino/open");
       // const { data } = await Axios.get(`/vehicle/check/${barcode.data}`);
       // if (data.error) console.log("An error occured");
       // else console.log(data.success);
