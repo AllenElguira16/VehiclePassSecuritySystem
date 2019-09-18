@@ -3,6 +3,8 @@ import { User } from 'Model/User';
 import { MongooseModel } from '@tsed/mongoose';
 // import { MySocketService } from 'Services/Socket';
 import { Response, UserInterface } from 'type';
+import { ObjectId } from 'mongodb';
+// import { ObjectID } from 'bson';
 
 interface PathParamsInterface {
   id: string;
@@ -31,6 +33,14 @@ class UserController {
     return await this.user.find({
       userId: new RegExp(`^${value}`, 'i'),
     });
+  }
+
+  @Post('/check')
+  public async check(@BodyParams() { id }: BodyParamsInterface): Promise<Response> {
+    if (!ObjectId.isValid(id)) return { error: 'Not a valid ID' };
+    const user = await this.user.findById(new ObjectId(id)).exec();
+    if (user && user.errors) return { error: 'Not match' };
+    return { success: true };
   }
 
   @Get('/get-id/:id')

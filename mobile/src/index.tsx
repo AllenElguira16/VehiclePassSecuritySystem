@@ -6,10 +6,13 @@
 import { registerRootComponent } from "expo";
 import Axios from "axios";
 import App from "./App";
-
+import Constants from "expo-constants";
+const { manifest } = Constants;
 const isProd = !__DEV__;
 
-Axios.defaults.baseURL = isProd ? "" : "http://192.168.43.41:8000";
+// if (manifest.debuggerHost) {
+Axios.defaults.baseURL = isProd ? "" : "http://192.168.100.5:8000";
 Axios.defaults.withCredentials = true;
+// }
 
 registerRootComponent(App);

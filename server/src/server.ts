@@ -42,14 +42,19 @@ export class Server extends ServerLoader {
       .use(express.json())
       .use(
         cors({
-          origin: [
-            'https://vehicle-pass-security-system.herokuapp.com',
-            'http://192.168.100.5:19000',
-            'http://192.168.100.5:3000',
-            'http://192.168.43.41:19000',
-            'http://192.168.43.41:3000',
-            'http://localhost:3000',
-          ],
+          origin: (origin, callback) => {
+            const whiteList = [
+              'https://vehicle-pass-security-system.herokuapp.com',
+              'http://192.168.100.5',
+              'http://localhost',
+            ];
+            if (origin) {
+              const parsedOrigin = origin.replace(/(https?:\/\/.+)\:.+/, '$1');
+              if (whiteList.indexOf(parsedOrigin) === -1 || !origin) return callback(new Error('Not allowed by cors'));
+              // else callback(new Error('Not allowed by cors'));
+            }
+            return callback(null, true);
+          },
           credentials: true,
           optionsSuccessStatus: 200,
         }),

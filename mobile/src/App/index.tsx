@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StatusBar, StyleSheet, Button } from "react-native";
 // import { ThemeProvider, Header, Theme } from "react-native-elements";
+import { Constants } from "expo";
 import { BarCodeScanner, BarCodeScannedCallback } from "expo-barcode-scanner";
 import { askAsync, CAMERA } from "expo-permissions";
 import Axios from "axios";
@@ -29,11 +30,26 @@ export default () => {
         ...state,
         scanned: true
       });
-      Axios.post("/arduino/open");
-      // const { data } = await Axios.get(`/vehicle/check/${barcode.data}`);
-      // if (data.error) console.log("An error occured");
-      // else console.log(data.success);
+      // console.log();
+      const { data } = await Axios.post("/user/check", { id: barcode.data });
+      if (data.error) console.log("An error occured");
+      else console.log(Axios.post("/arduino/open"));
     }
+  };
+
+  const stripSlashes = (str: string) => {
+    return (str + "").replace(/\\(.?)/g, (s, n1) => {
+      switch (n1) {
+        case "\\":
+          return "\\";
+        case "0":
+          return "\u0000";
+        case "":
+          return "";
+        default:
+          return n1;
+      }
+    });
   };
 
   // if (state.hasCameraPermission === null)
@@ -50,6 +66,7 @@ export default () => {
     >
       {!state.scanned && (
         <BarCodeScanner
+          type={BarCodeScanner.Constants.Type.front}
           onBarCodeScanned={handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />

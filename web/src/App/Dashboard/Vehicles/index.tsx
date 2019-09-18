@@ -4,7 +4,7 @@ import Content from './Content'
 // import Axios, { AxiosResponse } from "axios";
 import Header from './Header'
 import Form from './Form'
-import QRCodeModal from './QRCodeModal'
+// import QRCodeModal from './QRCodeModal'
 
 const Vehicles: FC = () => {
   // const [vehicles, setVehicles] = useState<Vehicle[]>([]);
@@ -14,7 +14,7 @@ const Vehicles: FC = () => {
       <Header />
       <Content />
       <Form />
-      <QRCodeModal />
+      {/* <QRCodeModal /> */}
     </>
   )
 }

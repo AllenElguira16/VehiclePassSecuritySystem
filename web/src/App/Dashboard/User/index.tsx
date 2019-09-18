@@ -9,6 +9,7 @@ import Form from './Form'
 import Settings from './Settings'
 import Header from './Header'
 import TableHeader from './TableHeader'
+import QRCodeModal from './QRCodeModal'
 
 const Employee: FC = observer(() => {
   const { UserContentState, fetchUsers } = useContext(AppStore)
@@ -46,7 +47,8 @@ const Employee: FC = observer(() => {
           )}
         </tbody>
       </Table>
-      <Form></Form>
+      <Form />
+      <QRCodeModal />
     </>
   )
 })

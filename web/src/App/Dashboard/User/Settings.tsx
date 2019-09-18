@@ -11,7 +11,7 @@ import { AppStore } from 'Store'
  */
 const Settings: FC<SettingsProps> = observer(props => {
   // Initialize AppStore
-  const { openUserForm } = useContext(AppStore)
+  const { openUserForm, QRModalOpen } = useContext(AppStore)
   // func that handles the deletion of user
   const onDelete = async () => {
     openUserForm('delete', 'Delete User', props.user)
@@ -28,7 +28,7 @@ const Settings: FC<SettingsProps> = observer(props => {
           <i className="material-icons">settings</i>
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem>Vehicles</DropdownItem>
+          <DropdownItem onClick={() => QRModalOpen(props.user.id)}>Print</DropdownItem>
           <DropdownItem onClick={onEdit}>Edit</DropdownItem>
           <DropdownItem onClick={onDelete}>Delete</DropdownItem>
         </DropdownMenu>
