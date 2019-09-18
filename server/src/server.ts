@@ -46,6 +46,8 @@ export class Server extends ServerLoader {
             'https://vehicle-pass-security-system.herokuapp.com',
             'http://192.168.100.5:19000',
             'http://192.168.100.5:3000',
+            'http://192.168.43.41:19000',
+            'http://192.168.43.41:3000',
             'http://localhost:3000',
           ],
           credentials: true,
