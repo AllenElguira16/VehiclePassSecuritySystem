@@ -9,6 +9,7 @@ import SignIn from 'App/Dashboard/SignIn'
 import Navigation from './@Components/Navigation'
 import Users from './User'
 import Vehicles from './Vehicles'
+import History from './History'
 
 type Props = RouteComponentProps & DashboardProps
 
@@ -39,6 +40,7 @@ const Dashboard: React.FC<Props> = observer(props => {
             <CardBody>
               <Route path="/dashboard/users" component={Users} />
               <Route path="/dashboard/vehicles" component={Vehicles} />
+              <Route path="/dashboard/history" component={History} />
             </CardBody>
           </Card>
         </Col>
