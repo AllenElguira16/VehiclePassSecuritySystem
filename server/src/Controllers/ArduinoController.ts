@@ -19,6 +19,16 @@ class ArduinoController {
     led.on();
     setTimeout(() => led.off(), 10000);
   }
+
+  /**
+   * Warn
+   */
+  @Post('/warn')
+  public warn(): void {
+    const led = new Led(12);
+    led.on();
+    setTimeout(() => led.off(), 10000);
+  }
 }
 
 export default ArduinoController;

@@ -32,24 +32,9 @@ export default () => {
       });
       // console.log();
       const { data } = await Axios.post("/user/check", { id: barcode.data });
-      if (data.error) console.log("An error occured");
-      else console.log(Axios.post("/arduino/open"));
+      if (data.error) Axios.post("/arduino/warn");
+      else Axios.post("/arduino/open");
     }
-  };
-
-  const stripSlashes = (str: string) => {
-    return (str + "").replace(/\\(.?)/g, (s, n1) => {
-      switch (n1) {
-        case "\\":
-          return "\\";
-        case "0":
-          return "\u0000";
-        case "":
-          return "";
-        default:
-          return n1;
-      }
-    });
   };
 
   // if (state.hasCameraPermission === null)
@@ -66,7 +51,7 @@ export default () => {
     >
       {!state.scanned && (
         <BarCodeScanner
-          type={BarCodeScanner.Constants.Type.front}
+          // type={BarCodeScanner.Constants.Type.front}
           onBarCodeScanned={handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />

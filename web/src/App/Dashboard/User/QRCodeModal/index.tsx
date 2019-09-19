@@ -15,16 +15,27 @@ interface Props {
 const QRCodeModal: FC<Props> = observer(() => {
   const { QRCodeModalState, QRModalClose } = useContext(AppStore)
   const print = () => {
-    var elem = document.querySelector('#modal-body')
-
+    const elem = document.querySelector('#modal-body')
     if (elem) {
-      var canvasElem: any = elem.children[0]
+      const canvasElem = elem.getElementsByTagName('canvas')
       printjs({
-        printable: canvasElem.toDataURL(),
+        printable: resize(canvasElem[0], 250, 250),
         type: 'image',
-        maxWidth: 500,
+        maxWidth: 300,
       })
     }
+  }
+
+  const resize = (base64: CanvasImageSource, width: number, height: number): string => {
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+
+    canvas.width = width
+    canvas.height = height
+
+    if (ctx) ctx.drawImage(base64, 0, 0, width, height)
+
+    return canvas.toDataURL()
   }
 
   return (
