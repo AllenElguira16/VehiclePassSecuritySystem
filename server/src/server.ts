@@ -1,18 +1,12 @@
 import { ServerLoader, ServerSettings, GlobalAcceptMimesMiddleware } from '@tsed/common';
 import '@tsed/mongoose';
-// import '@tsed/socketio';
 import express from 'express';
+import helmet from 'helmet';
 import cors from 'cors';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
-// import config from './config';
 const mongoInstance = connectMongo(session);
-// let isProd;
-
-// if (process.env) {
-//   isProd = process.env.NODE_ENV;
-// }
 
 @ServerSettings({
   rootDir: __dirname,
@@ -40,6 +34,7 @@ export class Server extends ServerLoader {
     this.use(GlobalAcceptMimesMiddleware)
       .use(express.urlencoded({ extended: true }))
       .use(express.json())
+      .use(helmet())
       .use(
         cors({
           origin: (origin, callback) => {

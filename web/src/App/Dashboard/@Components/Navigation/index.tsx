@@ -29,18 +29,6 @@ const Navigation: FC = () => {
           <span>Vehicles</span>
         </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink
-          tag={Link}
-          to="/dashboard/history"
-          tabIndex={-1}
-          className="vertical-centered"
-          activeClassName="active"
-        >
-          <i className="material-icons pr-2">history</i>
-          <span>History</span>
-        </NavLink>
-      </NavItem>
       <AccountSettings />
       <Options />
     </Nav>
