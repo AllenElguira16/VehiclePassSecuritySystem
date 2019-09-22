@@ -46,7 +46,6 @@ export class Server extends ServerLoader {
             if (origin) {
               const parsedOrigin = origin.replace(/(https?:\/\/.+)\:.+/, '$1');
               if (whiteList.indexOf(parsedOrigin) === -1 || !origin) return callback(new Error('Not allowed by cors'));
-              // else callback(new Error('Not allowed by cors'));
             }
             return callback(null, true);
           },
