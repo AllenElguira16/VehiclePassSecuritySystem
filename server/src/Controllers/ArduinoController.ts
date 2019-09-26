@@ -1,5 +1,5 @@
-import { Controller, Post } from '@tsed/common';
-import { Board, Led } from 'johnny-five';
+import { Controller, Post, Get } from '@tsed/common';
+import { Board, Led, Servo } from 'johnny-five';
 
 @Controller('/arduino')
 class ArduinoController {
@@ -28,6 +28,19 @@ class ArduinoController {
     const led = new Led(12);
     led.on();
     setTimeout(() => led.off(), 10000);
+  }
+
+  @Get('/motor')
+  public motor(): void {
+    const servo = new Servo({
+      pin: 11,
+      startAt: 90,
+    });
+    // Pull up
+    setTimeout(() => servo.to(0), 8000);
+    // Pull down
+    servo.home();
+    // servo.to();
   }
 }
 
