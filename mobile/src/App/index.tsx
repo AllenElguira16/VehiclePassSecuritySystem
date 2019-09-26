@@ -33,9 +33,9 @@ export default () => {
         scanned: true
       });
       const { data } = await Axios.post("/user/check", { id: barcode.data });
-      if (data.error) Axios.post("/arduino/warn");
+      if (data.error) Axios.get("/arduino/warn");
       else {
-        await Axios.post("/arduino/open");
+        await Axios.get("/arduino/open");
         Alert.alert("Alert", "Msg");
       }
       setTimeout(() => {

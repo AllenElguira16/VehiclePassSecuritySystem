@@ -1,4 +1,4 @@
-import { Controller, Post, Get } from '@tsed/common';
+import { Controller, Get } from '@tsed/common';
 import { Board, Led, Servo } from 'johnny-five';
 
 @Controller('/arduino')
@@ -10,38 +10,43 @@ class ArduinoController {
     new Board();
   }
 
+  private timeout = 8000;
+
   /**
    * Open boom barrier
    */
-  @Post('/open')
+  @Get('/open')
   public openBoomBarrier(): void {
     const led = new Led(13);
     led.on();
-    setTimeout(() => led.off(), 10000);
+    setTimeout(() => led.off(), this.timeout);
+    const servo = new Servo({
+      pin: 11,
+      startAt: 90,
+    });
+    setTimeout(() => servo.to(0), this.timeout); // Pull up
+    servo.home(); // Pull down
   }
 
   /**
    * Warn
    */
-  @Post('/warn')
+  @Get('/warn')
   public warn(): void {
     const led = new Led(12);
     led.on();
-    setTimeout(() => led.off(), 10000);
+    setTimeout(() => led.off(), this.timeout);
   }
 
-  @Get('/motor')
-  public motor(): void {
-    const servo = new Servo({
-      pin: 11,
-      startAt: 90,
-    });
-    // Pull up
-    setTimeout(() => servo.to(0), 8000);
-    // Pull down
-    servo.home();
-    // servo.to();
-  }
+  // @Get('/motor')
+  // public motor(): void {
+  //   const servo = new Servo({
+  //     pin: 11,
+  //     startAt: 90,
+  //   });
+  //   setTimeout(() => servo.to(0), 8000); // Pull up
+  //   servo.home(); // Pull down
+  // }
 }
 
 export default ArduinoController;
