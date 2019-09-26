@@ -40,6 +40,7 @@ export class Server extends ServerLoader {
           origin: (origin, callback) => {
             const whiteList = [
               'https://vehicle-pass-security-system.herokuapp.com',
+              'http://192.168.100.10',
               'http://192.168.100.5',
               'http://localhost',
             ];
