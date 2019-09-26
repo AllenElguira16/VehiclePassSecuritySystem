@@ -1,5 +1,5 @@
 import { Controller, Post, Get } from '@tsed/common';
-import { Board, Led, Motor } from 'johnny-five';
+import { Board, Led, Servo } from 'johnny-five';
 
 @Controller('/arduino')
 class ArduinoController {
@@ -31,9 +31,16 @@ class ArduinoController {
   }
 
   @Get('/motor')
-  public openMotor(): void {
-    const motor = new Motor([3, 12]);
-    motor.reverse(255);
+  public motor(): void {
+    const servo = new Servo({
+      pin: 11,
+      startAt: 90,
+    });
+    // Pull up
+    setTimeout(() => servo.to(0), 8000);
+    // Pull down
+    servo.home();
+    // servo.to();
   }
 }
 
