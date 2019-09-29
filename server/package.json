@@ -15,6 +15,7 @@
     "@tsed/di": "^5.31.2",
     "@tsed/mongoose": "^5.31.2",
     "@tsed/socketio": "^5.31.2",
+    "ajv": "^6.10.2",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.0.0",
     "cors": "^2.8.5",
