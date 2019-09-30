@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FC } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 //
@@ -11,7 +11,7 @@ import AboutUs from './AboutUs'
 import VehiclePass from './VehiclePass'
 import Dashboard from './Dashboard'
 
-const App: React.FC = () => {
+const App: FC = () => {
   const [height, setHeight] = useState(0)
 
   useEffect(() => {
