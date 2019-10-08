@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ReactStrap from 'Reactstrap/App'
+// import ReactStrap from 'Reactstrap/App'
 import App from 'App'
 import * as serviceWorker from './serviceWorker'
 import Axios from 'axios'
@@ -14,7 +14,7 @@ Axios.defaults.withCredentials = true
 
 ReactDOM.render(
   <BrowserRouter>
-    <Route exact path="/" component={App} />
+    <Route path="/" component={App} />
     {/* <Route exact path="/reactstrap" render={() => <ReactStrap />} /> */}
     {/* <App /> */}
   </BrowserRouter>,
