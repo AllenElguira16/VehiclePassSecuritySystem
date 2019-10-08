@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import App from 'App'
 import * as serviceWorker from './serviceWorker'
 import Axios from 'axios'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 const { NODE_ENV } = process.env
 const isProd = NODE_ENV === 'production'
@@ -14,9 +14,7 @@ Axios.defaults.withCredentials = true
 
 ReactDOM.render(
   <BrowserRouter>
-    <Route path="/" component={App} />
-    {/* <Route exact path="/reactstrap" render={() => <ReactStrap />} /> */}
-    {/* <App /> */}
+    <App />
   </BrowserRouter>,
   document.getElementById('root'),
 )

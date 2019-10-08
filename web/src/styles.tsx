@@ -4,6 +4,11 @@ export const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
+  mainContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -17,15 +22,29 @@ export const useStyles = makeStyles(theme => ({
   card: {
     padding: theme.spacing(3),
     height: '100%',
-    // paddingRight: theme.spacing(3),
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardContent: {
+    marginBottom: 'auto',
   },
   darkToggler: {
     position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
+  pageContainer: {
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
+  },
   footer: {
-    marginTop: theme.spacing(4),
-    padding: theme.spacing(2, 4),
+    marginTop: 'auto',
+    padding: theme.spacing(4),
+  },
+  signInContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: theme.spacing(4),
   },
 }))

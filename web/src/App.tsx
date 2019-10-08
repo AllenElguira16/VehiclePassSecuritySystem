@@ -30,19 +30,21 @@ const App: FC = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Header />
-      <Container>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/vehicle-pass" component={VehiclePass} />
-        <Route exact path="/about-us" component={AboutUs} />
-      </Container>
-      <Fab color="inherit" aria-label="toggle-dark" className={styles.darkToggler}>
+      <div className={styles.mainContainer}>
+        <Header />
+        <Container component="main" className={styles.pageContainer}>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/vehicle-pass" component={VehiclePass} />
+          <Route exact path="/about-us" component={AboutUs} />
+        </Container>
+        <Footer />
+      </div>
+      <Fab color="primary" variant="extended" aria-label="toggle-dark" className={styles.darkToggler}>
         <Tooltip title="Toggle Dark">
-          <Switch checked={dark} onChange={toggleDark} value="checkedA" />
+          <Switch checked={dark} onChange={toggleDark} value="checkedA" id="dark-switch" />
         </Tooltip>
       </Fab>
-      <Footer />
     </MuiThemeProvider>
   )
 }

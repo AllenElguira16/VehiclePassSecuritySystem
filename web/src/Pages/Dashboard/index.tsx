@@ -1,7 +1,12 @@
-import React, { FC } from "react";
+import React, { FC } from 'react'
+import SignIn from 'Components/Forms/SignIn'
 
 const Dashboard: FC = () => {
-  return <>Dashboard</>
+  return (
+    <>
+      <SignIn />
+    </>
+  )
 }
 
-export default Dashboard;
+export default Dashboard

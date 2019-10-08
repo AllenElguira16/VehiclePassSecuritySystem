@@ -9,7 +9,7 @@ const Home: FC = () => {
 
   return (
     <>
-      <Grid container className={styles.gridContainer} alignItems="center" spacing={4}>
+      <Grid container alignItems="center" spacing={4}>
         <Grid item md={7}>
           <img src={LNUBanner} alt="LNU Front Gate" style={{ width: '100%' }} />
         </Grid>
@@ -23,7 +23,7 @@ const Home: FC = () => {
       <Grid container className={styles.gridContainer} alignItems="stretch" spacing={4}>
         <Grid item md={4}>
           <Card className={styles.card}>
-            <CardContent>
+            <CardContent className={styles.cardContent}>
               <Typography variant="h5" gutterBottom>
                 What is Vehicle Pass Security System
               </Typography>
@@ -41,7 +41,7 @@ const Home: FC = () => {
         </Grid>
         <Grid item md={4}>
           <Card className={styles.card}>
-            <CardContent>
+            <CardContent className={styles.cardContent}>
               <Typography variant="h5" gutterBottom>
                 What is Vehicle Pass?
               </Typography>
@@ -59,7 +59,7 @@ const Home: FC = () => {
         </Grid>
         <Grid item md={4}>
           <Card className={styles.card}>
-            <CardContent>
+            <CardContent className={styles.cardContent}>
               <Typography variant="h5" gutterBottom>
                 How does it work?
               </Typography>
