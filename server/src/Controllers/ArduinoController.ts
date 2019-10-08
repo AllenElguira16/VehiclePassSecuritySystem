@@ -7,7 +7,7 @@ class ArduinoController {
    * Initialize Board
    */
   constructor() {
-    new Board();
+    // new Board();
   }
 
   private timeout = 8000;

@@ -1,7 +1,12 @@
-import React, { FC } from "react";
+import React, { FC } from 'react'
+import Header from 'Components/Header'
 
-const Dashboard: FC = () => {
-  return <>Dashboard</>
+const Home: FC = () => {
+  return (
+    <>
+      <Header />
+    </>
+  )
 }
 
-export default Dashboard;
+export default Home
