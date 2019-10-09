@@ -1,11 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { Person, Dashboard, History } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 import { useStyles } from 'styles'
+import { MainState } from 'Pages/Dashboard/state'
+import { observer } from 'mobx-react-lite'
 
 const Navigation: FC = () => {
   const styles = useStyles()
+  const { state } = useContext(MainState)
   const navList = [
     {
       name: 'Dashboard',
@@ -26,11 +29,13 @@ const Navigation: FC = () => {
 
   return (
     <Drawer
-      className={styles.drawer}
-      variant="permanent"
+      className={state.isNavOpen ? styles.drawerOpen : styles.drawerClose}
+      variant="persistent"
       classes={{
         paper: styles.drawerPaper,
       }}
+      open={state.isNavOpen}
+      anchor="left"
     >
       <div className={styles.toolbar} />
       <List>
@@ -45,4 +50,4 @@ const Navigation: FC = () => {
   )
 }
 
-export default Navigation
+export default observer(Navigation)

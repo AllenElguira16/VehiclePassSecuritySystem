@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import { Grid, Typography, Divider, Paper, Button } from '@material-ui/core'
 import { useStyles } from 'styles'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const Footer: FC = () => {
   const styles = useStyles()
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
   return (
     <Paper className={styles.footer} elevation={15} component="footer">
       <Grid container justify="center">
@@ -17,7 +17,9 @@ const Footer: FC = () => {
           <Divider />
           <Typography align="center">BSIT Students &copy; {currentYear}</Typography>
           <Typography align="center">
-            <Button component={Link} to="/dashboard">Enter as Admin</Button>
+            <Button component={Link} to="/dashboard">
+              Enter as Admin
+            </Button>
           </Typography>
         </Grid>
       </Grid>

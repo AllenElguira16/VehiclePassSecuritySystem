@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
-import { useStyles } from 'styles'
+// import { useStyles } from 'styles'
 import { Route } from 'react-router-dom'
 import Users from './Users'
 
 const Main: FC = () => {
-  const styles = useStyles()
+  // const styles = useStyles()
 
   return (
     <>

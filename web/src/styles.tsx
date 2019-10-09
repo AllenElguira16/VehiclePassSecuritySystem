@@ -6,6 +6,11 @@ export const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
+  dashboardContainer: {
+    display: 'flex',
+    // flexDirection: 'column',
+    minHeight: '100vh',
+  },
   mainContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -18,6 +23,10 @@ export const useStyles = makeStyles(theme => ({
     // marginBottom: theme.spacing(4),
     zIndex: theme.zIndex.drawer + 1,
   },
+  footer: {
+    marginTop: 'auto',
+    padding: theme.spacing(4),
+  },
   title: {
     flexGrow: 1,
   },
@@ -26,7 +35,7 @@ export const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(5),
   },
   cardGrid: {
-    width: '100%'
+    width: '100%',
   },
   card: {
     padding: theme.spacing(3),
@@ -46,10 +55,6 @@ export const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
   },
-  footer: {
-    marginTop: 'auto',
-    padding: theme.spacing(4),
-  },
   signInContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -59,8 +64,12 @@ export const useStyles = makeStyles(theme => ({
   active: {
     background: theme.palette.primary.dark,
   },
-  drawer: {
+  drawerOpen: {
     width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerClose: {
+    width: 0,
     flexShrink: 0,
   },
   drawerPaper: {

@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import SignIn from 'Pages/Dashboard/SignIn'
 import { SignInState } from './SignIn/state'
 import { CircularProgress, Grid } from '@material-ui/core'
@@ -13,6 +13,7 @@ import { useStyles } from 'styles'
 const Dashboard: FC = () => {
   const { state, getSignInState } = useContext(SignInState)
   const { isLoading, isLoggedIn } = state
+  const [isOpen, setOpenValue] = useState(false)
   const styles = useStyles()
 
   useEffect(() => {
@@ -20,9 +21,9 @@ const Dashboard: FC = () => {
   }, [getSignInState])
 
   return (
-    <div className={styles.mainContainer}>
+    <div className={styles.dashboardContainer}>
       <Header />
-      <Navigation />
+      <Route path="/dashboard" render={() => isLoggedIn && <Navigation />} />
       <main className={styles.dashboardContent}>
         <div className={styles.toolbar} />
         {!isLoading ? (
