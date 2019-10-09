@@ -47,4 +47,7 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     padding: theme.spacing(4),
   },
+  active: {
+    background: theme.palette.primary.dark,
+  },
 }))

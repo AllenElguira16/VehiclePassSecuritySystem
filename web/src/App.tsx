@@ -2,11 +2,13 @@ import React, { FC, useState } from 'react'
 import { MuiThemeProvider, createMuiTheme, CssBaseline, Container, Fab, Switch, Tooltip } from '@material-ui/core'
 import { useStyles } from 'styles'
 import { Route } from 'react-router-dom'
+// Pages
 import VehiclePass from 'Pages/VehiclePass'
 import Dashboard from 'Pages/Dashboard'
-import Header from 'Components/Common/Header'
 import AboutUs from 'Pages/AboutUs'
 import Home from 'Pages/Home'
+// Components
+import Header from 'Components/Common/Header'
 import Footer from 'Components/Common/Footer'
 
 const App: FC = () => {
@@ -34,7 +36,7 @@ const App: FC = () => {
         <Header />
         <Container component="main" className={styles.pageContainer}>
           <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/:subpages" component={Dashboard} />
           <Route exact path="/vehicle-pass" component={VehiclePass} />
           <Route exact path="/about-us" component={AboutUs} />
         </Container>

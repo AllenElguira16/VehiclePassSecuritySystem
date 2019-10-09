@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import ReactStrap from 'Reactstrap/App'
 import App from 'App'
 import * as serviceWorker from './serviceWorker'
 import Axios from 'axios'
