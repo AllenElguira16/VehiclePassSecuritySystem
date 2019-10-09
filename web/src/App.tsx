@@ -1,15 +1,10 @@
 import React, { FC, useState } from 'react'
-import { MuiThemeProvider, createMuiTheme, CssBaseline, Container, Fab, Switch, Tooltip } from '@material-ui/core'
+import { MuiThemeProvider, createMuiTheme, CssBaseline, Fab, Switch, Tooltip } from '@material-ui/core'
 import { useStyles } from 'styles'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 // Pages
-import VehiclePass from 'Pages/VehiclePass'
 import Dashboard from 'Pages/Dashboard'
-import AboutUs from 'Pages/AboutUs'
-import Home from 'Pages/Home'
-// Components
-import Header from 'Components/Common/Header'
-import Footer from 'Components/Common/Footer'
+import Main from 'Pages/Main';
 
 const App: FC = () => {
   const styles = useStyles()
@@ -32,16 +27,10 @@ const App: FC = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <div className={styles.mainContainer}>
-        <Header />
-        <Container component="main" className={styles.pageContainer}>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard/:subpages" component={Dashboard} />
-          <Route exact path="/vehicle-pass" component={VehiclePass} />
-          <Route exact path="/about-us" component={AboutUs} />
-        </Container>
-        <Footer />
-      </div>
+      <Route exact path="/dashboard/:subpages" component={Dashboard} />
+      <Route exact path="/dashboard" render={() => <Redirect to="/dashboard/users" />} />
+
+      <Route exact path="/:subpages" component={Main} />
       <Fab color="primary" variant="extended" aria-label="toggle-dark" className={styles.darkToggler}>
         <Tooltip title="Toggle Dark">
           <Switch checked={dark} onChange={toggleDark} value="checkedA" id="dark-switch" />

@@ -18,7 +18,6 @@ const Dashboard: FC = () => {
     return <CircularProgress />
   }
   return <Route path="/dashboard" render={() => (!isLoggedIn ? <SignIn /> : <Main />)} />
-  // return <>{isLoading ? <CircularProgress /> : <SignIn />}</>
 }
 
 export default observer(Dashboard)
