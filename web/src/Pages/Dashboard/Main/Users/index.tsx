@@ -13,7 +13,7 @@ const Users: FC = () => {
 
   return (
     <>
-      <form>
+      {/* <form>
         <Grid alignItems="center" justify="space-between" container>
           <Grid item>
             <TextField
@@ -31,10 +31,10 @@ const Users: FC = () => {
             </Button>
           </Grid>
         </Grid>
-      </form>
-      <Paper>
-        <UsersTable />
-      </Paper>
+      </form> */}
+      {/* <Paper> */}
+      <UsersTable />
+      {/* </Paper> */}
     </>
   )
 }
