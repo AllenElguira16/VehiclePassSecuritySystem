@@ -1,19 +1,19 @@
-import React, { FC } from "react";
-import { Container } from "@material-ui/core";
-import { Route } from "react-router";
-import { useStyles } from "styles";
+import React, { FC } from 'react'
+import { Container } from '@material-ui/core'
+import { Route } from 'react-router'
+import { useStyles } from 'styles'
 // Pages
-import VehiclePass from "./VehiclePass";
-import AboutUs from "./AboutUs";
-import Home from "./Home";
+import VehiclePass from './VehiclePass'
+import AboutUs from './AboutUs'
+import Home from './Home'
 // Components
-import Header from "Components/Common/Header";
-import Footer from "Components/Common/Footer";
+import Header from 'Components/Common/Header'
+import Footer from 'Components/Common/Footer'
 
 const Main: FC = () => {
-  const styles = useStyles();
+  const styles = useStyles()
   return (
-    <div className={styles.mainContainer}>
+    <div className={styles.root}>
       <Header />
       <Container component="main" className={styles.pageContainer}>
         <Route exact path="/" component={Home} />
@@ -25,4 +25,4 @@ const Main: FC = () => {
   )
 }
 
-export default Main;
+export default Main

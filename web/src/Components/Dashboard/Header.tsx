@@ -1,13 +1,13 @@
-import React, { FC } from "react";
-import { AppBar, Typography, Container, Toolbar } from "@material-ui/core";
-import logo from "Reactstrap/Assets/images/LNULogo.webp"
-import { useStyles } from "styles";
+import React, { FC } from 'react'
+import { AppBar, Typography, Container, Toolbar } from '@material-ui/core'
+import logo from 'Reactstrap/Assets/images/LNULogo.webp'
+import { useStyles } from 'styles'
 
 const Header: FC = () => {
-  const styles = useStyles();
+  const styles = useStyles()
 
   return (
-    <AppBar color="inherit" position="static" className={styles.header}>
+    <AppBar position="fixed" color="inherit" className={styles.header}>
       <Container>
         <Toolbar>
           <img src={logo} alt="Logo" className={styles.menuButton} />
@@ -20,4 +20,4 @@ const Header: FC = () => {
   )
 }
 
-export default Header;
+export default Header

@@ -11,7 +11,7 @@ const Header: FC = () => {
   // const ButtonLink = <Button color="inherit" component={Link} to="" />;
 
   return (
-    <AppBar color="inherit" position="static">
+    <AppBar color="inherit" position="sticky" className={styles.header}>
       <Container>
         <Toolbar>
           <img src={logo} alt="Logo" className={styles.menuButton} />

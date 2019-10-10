@@ -1,19 +1,22 @@
 import { makeStyles } from '@material-ui/core'
 
+const drawerWidth = 200
+
 export const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
   mainContainer: {
     display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
+    // flexDirection: 'column',
+    // minHeight: '100vh',
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   header: {
-    marginBottom: theme.spacing(4)
+    // marginBottom: theme.spacing(4),
+    zIndex: theme.zIndex.drawer + 1,
   },
   title: {
     flexGrow: 1,
@@ -53,4 +56,16 @@ export const useStyles = makeStyles(theme => ({
   active: {
     background: theme.palette.primary.dark,
   },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  dashboardContent: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  toolbar: theme.mixins.toolbar,
 }))
