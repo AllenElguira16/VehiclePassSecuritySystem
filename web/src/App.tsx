@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { MuiThemeProvider, createMuiTheme, CssBaseline, Fab, Switch, Tooltip } from '@material-ui/core'
 import { useStyles } from 'styles'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Switch as RouteSwitch, BrowserRouter } from 'react-router-dom'
 // Pages
 import Dashboard from 'Pages/Dashboard'
 import Main from 'Pages/Main';
@@ -24,18 +24,22 @@ const App: FC = () => {
     },
   })
 
+  const darkToggle = <Fab color="primary" variant="extended" aria-label="toggle-dark" className={styles.darkToggler}>
+    <Tooltip title="Toggle Dark">
+      <Switch checked={dark} onChange={toggleDark} value="checkedA" id="dark-switch" />
+    </Tooltip>
+  </Fab>
+
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Route exact path="/dashboard/:subpages" component={Dashboard} />
-      <Route exact path="/dashboard" render={() => <Redirect to="/dashboard/users" />} />
-
-      <Route exact path="/:subpages" component={Main} />
-      <Fab color="primary" variant="extended" aria-label="toggle-dark" className={styles.darkToggler}>
-        <Tooltip title="Toggle Dark">
-          <Switch checked={dark} onChange={toggleDark} value="checkedA" id="dark-switch" />
-        </Tooltip>
-      </Fab>
+      <BrowserRouter>
+        <RouteSwitch>
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/" component={Main} />
+        </RouteSwitch>
+        {darkToggle}
+      </BrowserRouter>
     </MuiThemeProvider>
   )
 }

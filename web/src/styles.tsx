@@ -12,6 +12,9 @@ export const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  header: {
+    marginBottom: theme.spacing(4)
+  },
   title: {
     flexGrow: 1,
   },

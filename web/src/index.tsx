@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import App from 'App'
 import * as serviceWorker from './serviceWorker'
 import Axios from 'axios'
-import { BrowserRouter } from 'react-router-dom'
 
 const { NODE_ENV } = process.env
 const isProd = NODE_ENV === 'production'
@@ -12,9 +11,7 @@ Axios.defaults.baseURL = isProd ? 'https://vpss-server.herokuapp.com' : 'http://
 Axios.defaults.withCredentials = true
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <App />,
   document.getElementById('root'),
 )
 

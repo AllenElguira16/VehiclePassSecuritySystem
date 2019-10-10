@@ -10,7 +10,7 @@ const SignIn: FunctionComponent = () => {
   const styles = useStyles()
 
   return (
-    <Grid container justify="center" spacing={8}>
+    <Grid container justify="center" spacing={2}>
       <Grid item md={6}>
         <Paper className={styles.signInContainer}>
           <Avatar>

@@ -1,12 +1,14 @@
 import React, { FC } from "react";
-import Header from "Components/Common/Header";
 import { Container } from "@material-ui/core";
 import { Route } from "react-router";
-import { Home } from "@material-ui/icons";
+import { useStyles } from "styles";
+// Pages
 import VehiclePass from "./VehiclePass";
 import AboutUs from "./AboutUs";
+import Home from "./Home";
+// Components
+import Header from "Components/Common/Header";
 import Footer from "Components/Common/Footer";
-import { useStyles } from "styles";
 
 const Main: FC = () => {
   const styles = useStyles();
