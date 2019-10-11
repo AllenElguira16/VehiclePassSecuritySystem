@@ -13,7 +13,7 @@ import Footer from 'Components/Common/Footer'
 const Main: FC = () => {
   const styles = useStyles()
   return (
-    <div className={styles.root}>
+    <div className={styles.mainContainer}>
       <Header />
       <Container component="main" className={styles.pageContainer}>
         <Route exact path="/" component={Home} />

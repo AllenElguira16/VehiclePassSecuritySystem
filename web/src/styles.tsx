@@ -8,8 +8,8 @@ export const useStyles = makeStyles(theme => ({
   },
   mainContainer: {
     display: 'flex',
-    // flexDirection: 'column',
-    // minHeight: '100vh',
+    flexDirection: 'column',
+    minHeight: '100vh',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -24,6 +24,9 @@ export const useStyles = makeStyles(theme => ({
   gridContainer: {
     // alignItems: 'center',
     marginTop: theme.spacing(5),
+  },
+  cardGrid: {
+    width: '100%'
   },
   card: {
     padding: theme.spacing(3),

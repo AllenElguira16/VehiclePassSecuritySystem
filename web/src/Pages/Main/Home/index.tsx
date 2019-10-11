@@ -21,7 +21,7 @@ const Home: FC = () => {
         </Grid>
       </Grid>
       <Grid container className={styles.gridContainer} alignItems="stretch" spacing={4}>
-        <Grid item md={4}>
+        <Grid item md={4} className={styles.cardGrid}>
           <Card className={styles.card}>
             <CardContent className={styles.cardContent}>
               <Typography variant="h5" gutterBottom>
@@ -39,7 +39,7 @@ const Home: FC = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={4} className={styles.cardGrid}>
           <Card className={styles.card}>
             <CardContent className={styles.cardContent}>
               <Typography variant="h5" gutterBottom>
@@ -57,7 +57,7 @@ const Home: FC = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={4} className={styles.cardGrid}>
           <Card className={styles.card}>
             <CardContent className={styles.cardContent}>
               <Typography variant="h5" gutterBottom>
