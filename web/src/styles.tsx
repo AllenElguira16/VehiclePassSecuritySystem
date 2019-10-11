@@ -8,13 +8,13 @@ export const useStyles = makeStyles(theme => ({
   },
   dashboardContainer: {
     display: 'flex',
-    // flexDirection: 'column',
     minHeight: '100vh',
+    flexDirection: 'column',
   },
   mainContainer: {
     display: 'flex',
-    flexDirection: 'column',
     minHeight: '100vh',
+    flexDirection: 'column',
   },
   menuButton: {
     marginRight: theme.spacing(2),

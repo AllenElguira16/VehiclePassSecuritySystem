@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useContext } from 'react'
-import { Paper, TextField, Grid, Button } from '@material-ui/core'
+import { Paper, TextField, Grid, Button, Typography, IconButton, InputAdornment, Container } from '@material-ui/core'
 import { UsersState } from './state'
 import { observer } from 'mobx-react-lite'
 import UsersTable from './UsersTable'
+import { AddBox, Search } from '@material-ui/icons'
 
 const Users: FC = () => {
   const { fetchUsers } = useContext(UsersState)
@@ -32,9 +33,31 @@ const Users: FC = () => {
           </Grid>
         </Grid>
       </form> */}
-      {/* <Paper> */}
-      <UsersTable />
-      {/* </Paper> */}
+      <Paper>
+        <Container>
+          <Grid alignItems="center" justify="space-between" spacing={4} container>
+            <Grid item>
+              <Typography variant="h5">Users</Typography>
+            </Grid>
+            <Grid item>
+              <TextField
+                InputProps={{
+                  placeholder: 'Search',
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <IconButton>
+                <AddBox />
+              </IconButton>
+            </Grid>
+          </Grid>
+        </Container>
+        <UsersTable />
+      </Paper>
     </>
   )
 }

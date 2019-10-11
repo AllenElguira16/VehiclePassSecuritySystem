@@ -8,10 +8,9 @@ interface UserState {
   users: User[]
 }
 
-type SortType = 'ascending' | 'descending'
+type SortType = 'asc' | 'desc'
 
 interface CheckSorted {
-  _id?: string
   userId: SortType
   firstname: SortType
   lastname: SortType
@@ -27,10 +26,10 @@ class State {
 
   @observable
   public checkSorted: CheckSorted = {
-    userId: 'descending',
-    firstname: 'descending',
-    lastname: 'descending',
-    dateCreated: 'descending',
+    userId: 'desc',
+    firstname: 'desc',
+    lastname: 'desc',
+    dateCreated: 'desc',
   }
 
   @action.bound
@@ -51,11 +50,16 @@ class State {
   handleSort = (key: UsersTableHeader['key']) => {
     const currentSortType = this.checkSorted[key]
     const sorted = this.userState.users.slice().sort((a, b) => {
-      this.checkSorted[key] = currentSortType === 'descending' ? 'ascending' : 'descending'
-      if (a[key] < b[key]) return currentSortType === 'descending' ? -1 : 1
-      else return currentSortType === 'descending' ? 1 : -1
+      this.checkSorted[key] = currentSortType === 'desc' ? 'asc' : 'desc'
+      if (a[key] < b[key]) return currentSortType === 'desc' ? -1 : 1
+      else return currentSortType === 'desc' ? 1 : -1
     })
     this.userState.users = sorted
+  }
+
+  @action.bound
+  checkSortType = (key: UsersTableHeader['key']): SortType => {
+    return this!.checkSorted[key]
   }
 }
 

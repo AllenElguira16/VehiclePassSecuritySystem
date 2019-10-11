@@ -15,6 +15,7 @@ const Main: FC = () => {
   return (
     <div className={styles.mainContainer}>
       <Header />
+      <div className={styles.toolbar} />
       <Container component="main" className={styles.pageContainer}>
         <Route exact path="/" component={Home} />
         <Route exact path="/vehicle-pass" component={VehiclePass} />

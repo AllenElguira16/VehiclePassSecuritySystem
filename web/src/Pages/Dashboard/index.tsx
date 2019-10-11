@@ -1,7 +1,7 @@
-import React, { FC, useContext, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import SignIn from 'Pages/Dashboard/SignIn'
 import { SignInState } from './SignIn/state'
-import { CircularProgress, Grid } from '@material-ui/core'
+import { CircularProgress, Grid, Container } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import Main from './Main'
 import { Route } from 'react-router-dom'
@@ -13,7 +13,6 @@ import { useStyles } from 'styles'
 const Dashboard: FC = () => {
   const { state, getSignInState } = useContext(SignInState)
   const { isLoading, isLoggedIn } = state
-  const [isOpen, setOpenValue] = useState(false)
   const styles = useStyles()
 
   useEffect(() => {
@@ -23,19 +22,21 @@ const Dashboard: FC = () => {
   return (
     <div className={styles.dashboardContainer}>
       <Header />
-      <Route path="/dashboard" render={() => isLoggedIn && <Navigation />} />
-      <main className={styles.dashboardContent}>
-        <div className={styles.toolbar} />
-        {!isLoading ? (
-          <Route path="/dashboard" render={() => (!isLoggedIn ? <SignIn /> : <Main />)} />
-        ) : (
-          <Grid container justify="center">
-            <Grid item>
-              <CircularProgress />
+      <div className={styles.toolbar} />
+      <div style={{ display: 'flex' }}>
+        <Route path="/dashboard" render={() => isLoggedIn && <Navigation />} />
+        <main className={styles.dashboardContent}>
+          {!isLoading ? (
+            <Route path="/dashboard" render={() => (!isLoggedIn ? <SignIn /> : <Main />)} />
+          ) : (
+            <Grid container justify="center">
+              <Grid item>
+                <CircularProgress />
+              </Grid>
             </Grid>
-          </Grid>
-        )}
-      </main>
+          )}
+        </main>
+      </div>
     </div>
   )
 }

@@ -12,6 +12,6 @@ export interface UserInput {
 }
 
 export interface UsersTableHeader {
-  key: keyof User
+  key: keyof Omit<User, '_id'>
   name: string
 }
