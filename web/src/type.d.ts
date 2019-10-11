@@ -6,7 +6,7 @@ export interface User {
   dateCreated: Date
 }
 
-export interface UserInput {
+export interface AdminInput {
   username: string
   password: string
 }

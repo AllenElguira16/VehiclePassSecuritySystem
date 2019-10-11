@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx'
 import Axios from 'axios'
-import { UserInput } from 'type'
+import { AdminInput } from 'type'
 import { createContext, ChangeEvent } from 'react'
 
 class State {
@@ -10,7 +10,7 @@ class State {
     isLoggedIn: false,
   }
 
-  private userInput: UserInput = {
+  private userInput: AdminInput = {
     username: '',
     password: '',
   }
@@ -32,7 +32,7 @@ class State {
   }
 
   @action.bound
-  onInputChange = (key: keyof UserInput) => (event: ChangeEvent<HTMLInputElement>) => {
+  onInputChange = (key: keyof AdminInput) => (event: ChangeEvent<HTMLInputElement>) => {
     this.userInput = {
       ...this.userInput,
       [key]: event.currentTarget.value,

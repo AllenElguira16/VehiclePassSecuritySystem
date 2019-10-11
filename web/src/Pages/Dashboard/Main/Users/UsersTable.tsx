@@ -13,6 +13,7 @@ import { Edit, Delete } from '@material-ui/icons'
 import { UsersState } from './state'
 import { observer } from 'mobx-react-lite'
 import { UsersTableHeader } from 'type'
+import AddUser from './AddUser'
 
 const UsersTable: FC = () => {
   const { userState, handleSort, checkSortType } = useContext(UsersState)
@@ -53,7 +54,7 @@ const UsersTable: FC = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {!userState.isLoading ? (
+        {/* {!userState.isLoading ? (
           userState.users.map((user, i) => (
             <TableRow key={i}>
               <TableCell>
@@ -76,7 +77,8 @@ const UsersTable: FC = () => {
               <CircularProgress />
             </TableCell>
           </TableRow>
-        )}
+        )} */}
+        <AddUser />
       </TableBody>
     </Table>
   )
