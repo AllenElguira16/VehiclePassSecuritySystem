@@ -16,15 +16,11 @@ import { UsersTableHeader } from 'type'
 import AddUser from './AddUser'
 
 const UsersTable: FC = () => {
-  const { userState, handleSort, checkSortType } = useContext(UsersState)
+  const { userState, handleSort, checkSortType, formState } = useContext(UsersState)
   const formatDate = (date: Date | null): string => {
     return new Date(date as Date).toLocaleDateString()
   }
   const lists: UsersTableHeader[] = [
-    {
-      key: 'userId',
-      name: 'UserID',
-    },
     {
       key: 'firstname',
       name: 'Firstname',
@@ -32,6 +28,14 @@ const UsersTable: FC = () => {
     {
       key: 'lastname',
       name: 'Lastname',
+    },
+    {
+      key: 'type',
+      name: 'Type',
+    },
+    {
+      key: 'licenseId',
+      name: 'License ID',
     },
     {
       key: 'dateCreated',
@@ -54,7 +58,7 @@ const UsersTable: FC = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {/* {!userState.isLoading ? (
+        {!userState.isLoading ? (
           userState.users.map((user, i) => (
             <TableRow key={i}>
               <TableCell>
@@ -65,9 +69,10 @@ const UsersTable: FC = () => {
                   <Delete />
                 </IconButton>
               </TableCell>
-              <TableCell>{user.userId}</TableCell>
               <TableCell>{user.firstname}</TableCell>
               <TableCell>{user.lastname}</TableCell>
+              <TableCell>{user.type}</TableCell>
+              <TableCell>{user.licenseId}</TableCell>
               <TableCell>{formatDate(user.dateCreated)}</TableCell>
             </TableRow>
           ))
@@ -77,8 +82,8 @@ const UsersTable: FC = () => {
               <CircularProgress />
             </TableCell>
           </TableRow>
-        )} */}
-        <AddUser />
+        )}
+        {formState.isOpen && <AddUser />}
       </TableBody>
     </Table>
   )

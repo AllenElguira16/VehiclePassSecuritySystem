@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx'
 import Axios from 'axios'
-import { User, UsersTableHeader } from 'type'
-import { createContext } from 'react'
+import { User, UsersTableHeader, UserInput } from 'type'
+import { createContext, ChangeEvent } from 'react'
 
 interface UserState {
   isLoading: boolean
@@ -10,11 +10,8 @@ interface UserState {
 
 type SortType = 'asc' | 'desc'
 
-interface CheckSorted {
-  userId: SortType
-  firstname: SortType
-  lastname: SortType
-  dateCreated: SortType
+type CheckSorted = {
+  [k in keyof Omit<User, '_id'>]: SortType
 }
 
 class State {
@@ -23,12 +20,48 @@ class State {
     isLoading: true,
     users: [],
   }
+  private preState = {
+    firstname: '',
+    lastname: '',
+    type: '',
+    licenseId: '',
+  }
+  @observable
+  public formState = {
+    isOpen: false,
+    userInput: this.preState,
+  }
+
+  @action.bound
+  public toggleFormInput = () => {
+    this.formState.isOpen = !this.formState.isOpen
+  }
+
+  @action.bound
+  public onSubmit = async () => {
+    const { data } = await Axios.post('/user', this.formState.userInput)
+    if (data.success) this.fetchUsers()
+  }
+
+  @action.bound
+  public onClear = () => {
+    this.formState.userInput = this.preState
+  }
+
+  @action.bound
+  onChange = (key: keyof UserInput) => (event: ChangeEvent<HTMLInputElement>) => {
+    this.formState.userInput = {
+      ...this.formState.userInput,
+      [key]: event.target.value,
+    }
+  }
 
   @observable
   public checkSorted: CheckSorted = {
-    userId: 'desc',
     firstname: 'desc',
     lastname: 'desc',
+    type: 'desc',
+    licenseId: 'desc',
     dateCreated: 'desc',
   }
 

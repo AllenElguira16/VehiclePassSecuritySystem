@@ -4,7 +4,7 @@ import { createContext } from 'react'
 class State {
   @observable
   public state = {
-    isNavOpen: false,
+    isNavOpen: true,
   }
 
   @action.bound

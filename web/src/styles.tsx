@@ -65,7 +65,7 @@ export const useStyles = makeStyles(theme => ({
     background: theme.palette.primary.dark,
   },
   drawerOpen: {
-    width: drawerWidth,
+    width: theme.spacing(6) * 4,
     flexShrink: 0,
   },
   drawerClose: {
@@ -73,11 +73,16 @@ export const useStyles = makeStyles(theme => ({
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: theme.spacing(6) * 4,
   },
   dashboardContent: {
     flexGrow: 1,
+    marginTop: theme.spacing(3),
     padding: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
 }))

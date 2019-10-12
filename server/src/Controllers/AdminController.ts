@@ -2,7 +2,7 @@ import { Controller, Get, Post, Inject, Session, BodyParams } from '@tsed/common
 import { hash, compare } from 'bcryptjs';
 import { MongooseModel } from '@tsed/mongoose';
 import { Admin } from 'Model/Admin';
-import { SessionInterface, AdminParams, Response } from 'type';
+import { SessionInterface, AdminInput, Response } from 'type';
 
 @Controller('/admin')
 class AdminController {
@@ -17,7 +17,7 @@ class AdminController {
   }
 
   @Post()
-  public async signIn(@BodyParams() params: AdminParams, @Session() session: SessionInterface): Promise<Response> {
+  public async signIn(@BodyParams() params: AdminInput, @Session() session: SessionInterface): Promise<Response> {
     const { username, password } = params;
     const user = await this.model.findOne({ username });
     if (!user) return { error: true };

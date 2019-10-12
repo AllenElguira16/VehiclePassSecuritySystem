@@ -3,7 +3,7 @@ import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui
 import { Person, Dashboard, History } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 import { useStyles } from 'styles'
-import { MainState } from 'Pages/Dashboard/state'
+import { MainState } from 'Pages/Dashboard/Main/state'
 import { observer } from 'mobx-react-lite'
 
 const Navigation: FC = () => {

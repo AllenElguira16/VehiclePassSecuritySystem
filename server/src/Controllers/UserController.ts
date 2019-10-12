@@ -2,7 +2,7 @@ import { Controller, Get, Post, Delete, Put, Inject, BodyParams, PathParams } fr
 import { User } from 'Model/User';
 import { MongooseModel } from '@tsed/mongoose';
 // import { MySocketService } from 'Services/Socket';
-import { Response, UserInterface } from 'type';
+import { Response, UserInput } from 'type';
 import { ObjectId } from 'mongodb';
 // import { ObjectID } from 'bson';
 
@@ -11,7 +11,7 @@ interface PathParamsInterface {
   value: string;
 }
 
-interface BodyParamsInterface extends UserInterface {
+interface BodyParamsInterface extends UserInput {
   id: string;
 }
 
@@ -22,8 +22,8 @@ class UserController {
   @Post('/fetch')
   public async getUser(@BodyParams() params: BodyParamsInterface): Promise<User[]> {
     if (Object.keys(params).length === 0) return await this.user.find().exec();
-    let dbParams: keyof UserInterface = 'userId';
-    Object.keys(params).map(async key => (dbParams = key as keyof UserInterface));
+    let dbParams: keyof UserInput = 'licenseId';
+    Object.keys(params).map(async key => (dbParams = key as keyof UserInput));
     const search = params[dbParams];
     return await this.user.find({ [dbParams]: { $regex: `.*${search}.*` } }).exec();
   }
@@ -50,21 +50,28 @@ class UserController {
 
   @Post()
   public async addUser(@BodyParams() params: BodyParamsInterface): Promise<Response> {
-    const { userId, firstname, lastname } = params;
-    if (userId === '' || firstname === '' || lastname === '') return { error: 'All inputs are required' };
-
-    const match = await this.user.find({ userId });
-    if (match.length !== 0) return { error: 'User already exists' };
-    const user = new this.user({ userId, firstname, lastname });
-    user.save(error => ({ error }));
+    try {
+      const { firstname, lastname, type, licenseId } = params;
+      // return { success: params };
+      if (licenseId === '' || firstname === '' || lastname === '') return { error: 'All inputs are required' };
+      const count = await this.user.countDocuments({ licenseId });
+      // console.log(match);
+      if (count < 0) return { error: 'User already exists' };
+      const user = new this.user({ firstname, lastname, type, licenseId });
+      await user.save();
+      console.log(user);
+      // if (response) return {error: response.}
+    } catch (error) {
+      if (error) return { error };
+    }
     return { success: 'Created Successfully' };
   }
 
   @Put()
   public async updateUser(@BodyParams() params: BodyParamsInterface): Promise<Response> {
-    const { id, userId, firstname, lastname } = params;
-    if (userId === '' || firstname === '' || lastname === '') return { error: 'All inputs are required' };
-    this.user.findByIdAndUpdate(id, { userId, firstname, lastname }, error => {
+    const { id, licenseId, firstname, lastname } = params;
+    if (licenseId === '' || firstname === '' || lastname === '') return { error: 'All inputs are required' };
+    this.user.findByIdAndUpdate(id, { licenseId, firstname, lastname }, error => {
       if (error) return { error };
     });
     // if (this.socket.nsp) this.socket.nsp.emit('fetchUser');

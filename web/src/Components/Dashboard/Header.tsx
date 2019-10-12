@@ -3,7 +3,7 @@ import { AppBar, Typography, Container, Toolbar, IconButton } from '@material-ui
 import logo from 'Reactstrap/Assets/images/LNULogo.webp'
 import { useStyles } from 'styles'
 import { Menu } from '@material-ui/icons'
-import { MainState } from 'Pages/Dashboard/state'
+import { MainState } from 'Pages/Dashboard/Main/state'
 
 const Header: FC = () => {
   const { toggleNav } = useContext(MainState)

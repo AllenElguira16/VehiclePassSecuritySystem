@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
-import { Container, Grid, Typography, TextField, InputAdornment, IconButton } from '@material-ui/core';
-import { Search, AddBox } from '@material-ui/icons';
+import React, { FC, useContext } from 'react'
+import { Container, Grid, Typography, TextField, InputAdornment, IconButton } from '@material-ui/core'
+import { Search, AddBox } from '@material-ui/icons'
+import { UsersState } from './state'
 
 const UsersForm: FC = () => {
+  const { toggleFormInput } = useContext(UsersState)
+
   return (
     <Container>
       <Grid alignItems="center" justify="space-between" spacing={4} container>
@@ -21,7 +24,7 @@ const UsersForm: FC = () => {
                 ),
               }}
             />
-            <IconButton>
+            <IconButton onClick={toggleFormInput}>
               <AddBox />
             </IconButton>
           </Grid>
@@ -31,4 +34,4 @@ const UsersForm: FC = () => {
   )
 }
 
-export default UsersForm;
+export default UsersForm

@@ -1,10 +1,13 @@
 export interface User {
   _id: string
-  userId: string
+  licenseId: string
+  type: 'Employee' | 'Student' | 'Visitor'
   firstname: string
   lastname: string
   dateCreated: Date
 }
+
+export type UserInput = Omit<User, '_id' | 'dateCreated'>
 
 export interface AdminInput {
   username: string

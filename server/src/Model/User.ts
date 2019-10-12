@@ -1,22 +1,23 @@
 import { Model, ObjectID, Unique } from '@tsed/mongoose';
-import { Property, Default, Minimum } from '@tsed/common';
+import { Property, Default } from '@tsed/common';
 
 @Model()
 export class User {
   @ObjectID('id')
-  public _id: string | undefined;
+  public _id!: string;
+
+  @Property()
+  public firstname!: string;
+
+  @Property()
+  public lastname!: string | undefined;
 
   @ObjectID()
   @Unique()
-  public userId: string | undefined;
+  public licenseId!: string;
 
   @Property()
-  @Minimum(2)
-  public firstname: string | undefined;
-
-  @Property()
-  @Minimum(2)
-  public lastname: string | undefined;
+  public type!: string;
 
   @Property()
   @Default(Date.now())
