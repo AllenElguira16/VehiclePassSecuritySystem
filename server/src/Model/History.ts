@@ -1,20 +1,20 @@
-import { Model, ObjectID, Unique } from '@tsed/mongoose';
-import { Property, Default } from '@tsed/common';
+import { Model, ObjectID, Unique } from '@tsed/mongoose'
+import { Property, Default } from '@tsed/common'
 
 @Model()
 export class History {
   @ObjectID('id')
-  public _id: string | undefined;
+  public _id: string | undefined
 
   @ObjectID()
   @Unique()
-  public userId: string | undefined;
+  public userId: string | undefined
 
   @Property()
-  public timeIn: Date | undefined;
+  public timeIn: Date | undefined
 
   @Property()
-  public timeOut: Date | undefined;
+  public timeOut: Date | undefined
 
   // @Property()
   // @Default(Date.now())

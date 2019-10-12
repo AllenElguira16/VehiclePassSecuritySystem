@@ -1,11 +1,11 @@
-import { Controller, Get } from '@tsed/common';
+import { Controller, Get } from '@tsed/common'
 
 @Controller('/')
 class TestController {
   @Get()
   public hello(): string {
-    return 'Hello';
+    return 'Hello'
   }
 }
 
-export default TestController;
+export default TestController

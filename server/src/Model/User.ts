@@ -1,25 +1,27 @@
-import { Model, ObjectID, Unique } from '@tsed/mongoose';
-import { Property, Default } from '@tsed/common';
+import { Model, ObjectID, Unique, MongoosePlugin } from '@tsed/mongoose'
+import { Property, Default } from '@tsed/common'
+import UniquePlugin from 'mongoose-unique-validator'
 
 @Model()
+@MongoosePlugin(UniquePlugin)
 export class User {
   @ObjectID('id')
-  public _id!: string;
+  public _id!: string
 
   @Property()
-  public firstname!: string;
+  public firstname!: string
 
   @Property()
-  public lastname!: string | undefined;
+  public lastname!: string
 
   @ObjectID()
   @Unique()
-  public licenseId!: string;
+  public licenseId!: string
 
   @Property()
-  public type!: string;
+  public type!: string
 
   @Property()
   @Default(Date.now())
-  public dateCreated: Date = new Date();
+  public dateCreated: Date = new Date()
 }

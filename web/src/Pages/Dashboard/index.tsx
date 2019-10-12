@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect } from 'react'
 import SignIn from 'Pages/Dashboard/SignIn'
 import { SignInState } from './SignIn/state'
-import { CircularProgress, Grid, Container } from '@material-ui/core'
+import { CircularProgress, Grid } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import Main from './Main'
 import { Route } from 'react-router-dom'

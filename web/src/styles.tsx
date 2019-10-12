@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-
-const drawerWidth = 200
+import { green, amber } from '@material-ui/core/colors'
 
 export const useStyles = makeStyles(theme => ({
   root: {
@@ -85,4 +84,18 @@ export const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
+  // colors: {
+  success: {
+    backgroundColor: green[600],
+  },
+  error: {
+    backgroundColor: theme.palette.error.dark,
+  },
+  info: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  warning: {
+    backgroundColor: amber[700],
+  },
+  // },
 }))

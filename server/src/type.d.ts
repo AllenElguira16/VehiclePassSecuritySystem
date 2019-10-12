@@ -5,33 +5,33 @@
 // }
 
 export interface User {
-  _id: string;
-  licenseId: string;
-  type: 'Employee' | 'Student' | 'Visitor';
-  firstname: string;
-  lastname: string;
-  dateCreated: Date;
+  _id: string
+  licenseId: string
+  type: 'Employee' | 'Student' | 'Visitor'
+  firstname: string
+  lastname: string
+  dateCreated: Date
 }
 
-export type UserInput = Omit<User, '_id' | 'dateCreated'>;
+export type UserInput = Omit<User, '_id' | 'dateCreated'>
 
 export type AdminInput = {
-  username: string;
-  password: string;
-};
+  username: string
+  password: string
+}
 
 export interface Setting {
-  name: string;
-  value: any;
+  name: string
+  value: any
 }
 
 export interface Response {
-  success?: any;
-  error?: any;
+  success?: any
+  error?: any
 }
 
 export interface SessionInterface {
-  user: AdminInput;
+  user: AdminInput
 }
 // export interface UserInterface {
 //   userId: string;

@@ -1,12 +1,12 @@
-import { ServerLoader, ServerSettings, GlobalAcceptMimesMiddleware } from '@tsed/common';
-import '@tsed/mongoose';
-import express from 'express';
-import helmet from 'helmet';
-import cors from 'cors';
-import session from 'express-session';
-import connectMongo from 'connect-mongo';
-import mongoose from 'mongoose';
-const mongoInstance = connectMongo(session);
+import { ServerLoader, ServerSettings, GlobalAcceptMimesMiddleware } from '@tsed/common'
+import '@tsed/mongoose'
+import express from 'express'
+import helmet from 'helmet'
+import cors from 'cors'
+import session from 'express-session'
+import connectMongo from 'connect-mongo'
+import mongoose from 'mongoose'
+const mongoInstance = connectMongo(session)
 
 @ServerSettings({
   rootDir: __dirname,
@@ -29,8 +29,8 @@ const mongoInstance = connectMongo(session);
 })
 export class Server extends ServerLoader {
   public $beforeRoutesInit(): void | Promise<void> {
-    this.set('trust proxy', 1);
-    this.set('json spaces', 2);
+    this.set('trust proxy', 1)
+    this.set('json spaces', 2)
     this.use(GlobalAcceptMimesMiddleware)
       .use(express.urlencoded({ extended: true }))
       .use(express.json())
@@ -43,12 +43,12 @@ export class Server extends ServerLoader {
               'http://192.168.100.10',
               'http://192.168.100.5',
               'http://localhost',
-            ];
+            ]
             if (origin) {
-              const parsedOrigin = origin.replace(/(https?:\/\/.+)\:.+/, '$1');
-              if (whiteList.indexOf(parsedOrigin) === -1 || !origin) return callback(new Error('Not allowed by cors'));
+              const parsedOrigin = origin.replace(/(https?:\/\/.+)\:.+/, '$1')
+              if (whiteList.indexOf(parsedOrigin) === -1 || !origin) return callback(new Error('Not allowed by cors'))
             }
-            return callback(null, true);
+            return callback(null, true)
           },
           credentials: true,
           optionsSuccessStatus: 200,
@@ -67,6 +67,6 @@ export class Server extends ServerLoader {
             secure: 'auto',
           },
         }),
-      );
+      )
   }
 }

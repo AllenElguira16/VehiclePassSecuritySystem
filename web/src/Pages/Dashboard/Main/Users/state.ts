@@ -1,10 +1,13 @@
 import { action, observable } from 'mobx'
 import Axios from 'axios'
-import { User, UsersTableHeader, UserInput } from 'type'
-import { createContext, ChangeEvent } from 'react'
+import { User, UsersTableHeader } from 'type'
+import { createContext } from 'react'
 
 interface UserState {
   isLoading: boolean
+  page: number
+  keyToEdit: null | number
+  rowsPerPage: number
   users: User[]
 }
 
@@ -18,42 +21,10 @@ class State {
   @observable
   public userState: UserState = {
     isLoading: true,
+    rowsPerPage: 5,
+    page: 0,
+    keyToEdit: null,
     users: [],
-  }
-  private preState = {
-    firstname: '',
-    lastname: '',
-    type: '',
-    licenseId: '',
-  }
-  @observable
-  public formState = {
-    isOpen: false,
-    userInput: this.preState,
-  }
-
-  @action.bound
-  public toggleFormInput = () => {
-    this.formState.isOpen = !this.formState.isOpen
-  }
-
-  @action.bound
-  public onSubmit = async () => {
-    const { data } = await Axios.post('/user', this.formState.userInput)
-    if (data.success) this.fetchUsers()
-  }
-
-  @action.bound
-  public onClear = () => {
-    this.formState.userInput = this.preState
-  }
-
-  @action.bound
-  onChange = (key: keyof UserInput) => (event: ChangeEvent<HTMLInputElement>) => {
-    this.formState.userInput = {
-      ...this.formState.userInput,
-      [key]: event.target.value,
-    }
   }
 
   @observable

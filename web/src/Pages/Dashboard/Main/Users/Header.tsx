@@ -1,10 +1,10 @@
 import React, { FC, useContext } from 'react'
 import { Container, Grid, Typography, TextField, InputAdornment, IconButton } from '@material-ui/core'
 import { Search, AddBox } from '@material-ui/icons'
-import { UsersState } from './state'
+import { UsersTableState } from './UsersTable/state'
 
 const UsersForm: FC = () => {
-  const { toggleFormInput } = useContext(UsersState)
+  const { toggleFormInput } = useContext(UsersTableState)
 
   return (
     <Container>
