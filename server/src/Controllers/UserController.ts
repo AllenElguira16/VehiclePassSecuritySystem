@@ -63,7 +63,7 @@ class UserController {
     } catch (error) {
       if (error) return { error }
     } finally {
-      return { success: 'Created Successfully' }
+      return { success: 'User added!' }
     }
   }
 
@@ -71,15 +71,18 @@ class UserController {
   public async updateUser(@BodyParams() params: BodyParamsInterface): Promise<Response> {
     try {
       // Check inputs
-      const { id, licenseId, firstname, lastname } = params
+      const { id, licenseId, firstname, lastname, type } = params
+      console.log(params)
       if (licenseId === '' || firstname === '' || lastname === '') throw 'All inputs are required'
       // Updating to database
-      await this.user.findByIdAndUpdate(id, { licenseId, firstname, lastname })
+      const user = await this.user.findByIdAndUpdate(id, { firstname, lastname, type, licenseId })
+      if (!user) throw 'Error updating user'
     } catch (error) {
       if (error) return { error }
-    } finally {
-      return { success: 'Updated Successfully' }
     }
+    // finally {
+    return { success: 'User updated!' }
+    // }
   }
 
   @Delete('/:id')

@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { useStyles } from 'styles'
 import { UsersTableState } from './state'
 import { User } from 'type'
+import { UsersState } from '../state'
 // import { User } from 'type'
 
 interface Props {
@@ -14,7 +15,8 @@ interface Props {
 }
 
 const AddUser: FC<Props> = props => {
-  const { onSubmit, onClear, onChange, formState, toggleAlert } = useContext(UsersTableState)
+  const { onSubmit, onClear, onChange, formState, toggleAlert, toggleFormInput } = useContext(UsersTableState)
+  const { userState, fetchUsers } = useContext(UsersState)
   // const {  } = userState;
   const styles = useStyles()
   const { userInput } = formState
@@ -23,22 +25,28 @@ const AddUser: FC<Props> = props => {
   const submit = async () => {
     await onSubmit(props.type, data => {
       if (data.success) {
-        toggleAlert('success', 'User added!')
-        onClear()
+        toggleAlert('success', data.success)
+        if (props.type === 'add') onClear()
+        if (props.type === 'edit') {
+          fetchUsers()
+          userState.keyToEdit = null
+        }
       }
       if (data.error) toggleAlert('error', data.error)
     })
   }
 
+  const onClose = () => {
+    if (userState.keyToEdit !== null) userState.keyToEdit = null
+    else toggleFormInput()
+  }
+
   useEffect(() => {
-    if (props.type === 'edit' && props.user)
-      formState.userInput = {
-        firstname: props.user.firstname,
-        lastname: props.user.lastname,
-        type: props.user.type,
-        licenseId: props.user.licenseId,
-      }
-  }, [])
+    if (props.type === 'edit' && props.user) {
+      const { id, firstname, lastname, type, licenseId } = props.user
+      formState.userInput = { id, firstname, lastname, type, licenseId }
+    }
+  }, [formState, props])
 
   return (
     <TableRow>
@@ -46,7 +54,7 @@ const AddUser: FC<Props> = props => {
         <IconButton onClick={submit}>
           <Check />
         </IconButton>
-        <IconButton onClick={onClear}>
+        <IconButton onClick={onClose}>
           <Clear />
         </IconButton>
       </TableCell>

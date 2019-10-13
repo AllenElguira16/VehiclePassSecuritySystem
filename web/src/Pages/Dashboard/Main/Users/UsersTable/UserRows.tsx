@@ -19,7 +19,7 @@ const UserRows: FC = () => {
       {!isLoading ? (
         users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user, i) =>
           userState.keyToEdit === i ? (
-            <Forms type="edit" user={user} />
+            <Forms type="edit" user={user} key={i} />
           ) : (
             <TableRow key={i}>
               <TableCell>

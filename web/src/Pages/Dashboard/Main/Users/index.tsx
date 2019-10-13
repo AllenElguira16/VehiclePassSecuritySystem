@@ -13,12 +13,17 @@ import Header from './Header'
 import Pagination from './UsersTable/Pagination'
 
 const Users: FC = () => {
-  const { fetchUsers } = useContext(UsersState)
   const { formState, toggleAlert } = useContext(UsersTableState)
+  const { fetchUsers, userState } = useContext(UsersState)
 
   useEffect(() => {
     fetchUsers()
   }, [fetchUsers])
+
+  const toggleAddForm = (): boolean => {
+    // console.log( && userState.keyToEdit )
+    return formState.isOpen && userState.keyToEdit === null
+  }
 
   return (
     <Paper>
@@ -26,11 +31,11 @@ const Users: FC = () => {
       <Table size="small">
         <TableHeader />
         <TableBody>
-          {formState.isOpen && <Forms type="add" />}
+          {toggleAddForm() && <Forms type="add" />}
           <UserRows />
+          <Pagination />
         </TableBody>
       </Table>
-      <Pagination />
       <ModalAlert open={formState.Alert.isOpen} onClose={() => toggleAlert('success', '')} type={formState.Alert.type}>
         {formState.Alert.msg}
       </ModalAlert>

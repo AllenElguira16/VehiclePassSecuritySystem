@@ -1,5 +1,5 @@
 export interface User {
-  _id: string
+  id: string
   licenseId: string
   type: 'Employee' | 'Student' | 'Visitor'
   firstname: string
@@ -7,7 +7,7 @@ export interface User {
   dateCreated: Date
 }
 
-export type UserInput = Omit<User, '_id' | 'dateCreated'>
+export type UserInput = Omit<User, 'dateCreated'>
 
 export interface AdminInput {
   username: string
@@ -15,6 +15,6 @@ export interface AdminInput {
 }
 
 export interface UsersTableHeader {
-  key: keyof Omit<User, '_id'>
+  key: keyof Omit<User, 'id'>
   name: string
 }

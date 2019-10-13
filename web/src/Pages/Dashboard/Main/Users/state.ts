@@ -14,7 +14,7 @@ interface UserState {
 type SortType = 'asc' | 'desc'
 
 type CheckSorted = {
-  [k in keyof Omit<User, '_id'>]: SortType
+  [k in keyof Omit<User, 'id'>]: SortType
 }
 
 class State {

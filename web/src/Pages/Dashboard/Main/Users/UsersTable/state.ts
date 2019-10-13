@@ -15,6 +15,7 @@ interface FormState {
 
 class State {
   private preState: UserInput = {
+    id: '',
     firstname: '',
     lastname: '',
     type: 'Employee',
@@ -48,8 +49,12 @@ class State {
 
   @action.bound
   public onSubmit = async (type: 'add' | 'edit', callback: (response: AxiosResponse['data']) => void) => {
-    const { data } = await Axios.post('/user', this.formState.userInput)
-    callback(data)
+    let dataResponse: AxiosResponse | undefined = undefined
+
+    if (type === 'add') dataResponse = await Axios.post('/user', this.formState.userInput)
+    else if (type === 'edit') dataResponse = await Axios.put('/user', this.formState.userInput)
+
+    if (dataResponse) callback(dataResponse.data)
   }
 
   @action.bound
