@@ -18,3 +18,27 @@ export interface UsersTableHeader {
   key: keyof Omit<User, 'id'>
   name: string
 }
+
+export interface UserState {
+  isLoading: boolean
+  page: number
+  keyToEdit: null | number
+  rowsPerPage: number
+  users: User[]
+}
+
+export type SortType = 'asc' | 'desc'
+
+export type CheckSorted = {
+  [k in keyof Omit<User, 'id'>]: SortType
+}
+
+export interface FormState {
+  Alert: {
+    isOpen: boolean
+    type: 'success' | 'error'
+    msg: string
+  }
+  isOpen: boolean
+  userInput: UserInput
+}

@@ -7,14 +7,15 @@ import { observer } from 'mobx-react-lite'
 import TableHeader from './UsersTable/TableHeader'
 import UserRows from './UsersTable/UserRows'
 import ModalAlert from 'Components/Common/ModalAlert'
-import { UsersTableState } from './UsersTable/state'
 import Forms from './UsersTable/Forms'
 import Header from './Header'
 import Pagination from './UsersTable/Pagination'
 
 const Users: FC = () => {
-  const { formState, toggleAlert } = useContext(UsersTableState)
-  const { fetchUsers, userState } = useContext(UsersState)
+  // const {  } = useContext(UsersTableState)
+  const { formState, toggleAlert, fetchUsers, userState } = useContext(
+    UsersState,
+  )
 
   useEffect(() => {
     fetchUsers()
@@ -36,7 +37,11 @@ const Users: FC = () => {
           <Pagination />
         </TableBody>
       </Table>
-      <ModalAlert open={formState.Alert.isOpen} onClose={() => toggleAlert('success', '')} type={formState.Alert.type}>
+      <ModalAlert
+        open={formState.Alert.isOpen}
+        onClose={() => toggleAlert('success', '')}
+        type={formState.Alert.type}
+      >
         {formState.Alert.msg}
       </ModalAlert>
     </Paper>

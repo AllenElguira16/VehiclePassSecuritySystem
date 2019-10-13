@@ -1,13 +1,26 @@
 import React, { FC, useContext } from 'react'
-import { Container, Grid, Typography, TextField, InputAdornment, IconButton } from '@material-ui/core'
+import {
+  Container,
+  Grid,
+  Typography,
+  TextField,
+  InputAdornment,
+  IconButton,
+} from '@material-ui/core'
 import { Search, AddBox } from '@material-ui/icons'
-import { UsersTableState } from './UsersTable/state'
+import { UsersState } from './state'
 
 const UsersForm: FC = () => {
-  const { toggleFormInput } = useContext(UsersTableState)
+  const { openAddForm, userState, onClear } = useContext(UsersState)
+
+  const toggle = () => {
+    if (userState.keyToEdit !== null) userState.keyToEdit = null
+    openAddForm()
+    onClear()
+  }
 
   return (
-    <Container>
+    <div>
       <Grid alignItems="center" justify="space-between" spacing={4} container>
         <Grid item>
           <Typography variant="h6">Users</Typography>
@@ -24,13 +37,13 @@ const UsersForm: FC = () => {
                 ),
               }}
             />
-            <IconButton onClick={toggleFormInput}>
+            <IconButton onClick={toggle}>
               <AddBox />
             </IconButton>
           </Grid>
         </Grid>
       </Grid>
-    </Container>
+    </div>
   )
 }
 
