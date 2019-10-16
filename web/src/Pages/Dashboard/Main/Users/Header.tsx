@@ -11,16 +11,16 @@ import { Search, AddBox } from '@material-ui/icons'
 import { UsersState } from './state'
 
 const UsersForm: FC = () => {
-  const { openAddForm, userState, onClear } = useContext(UsersState)
+  const { openAddForm, onClear, formState } = useContext(UsersState)
 
   const toggle = () => {
-    if (userState.keyToEdit !== null) userState.keyToEdit = null
+    if (formState.currentKey !== null) formState.currentKey = null
     openAddForm()
     onClear()
   }
 
   return (
-    <div>
+    <Container maxWidth="xl">
       <Grid alignItems="center" justify="space-between" spacing={4} container>
         <Grid item>
           <Typography variant="h6">Users</Typography>
@@ -43,7 +43,7 @@ const UsersForm: FC = () => {
           </Grid>
         </Grid>
       </Grid>
-    </div>
+    </Container>
   )
 }
 

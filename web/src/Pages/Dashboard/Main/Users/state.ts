@@ -20,7 +20,6 @@ class State {
     isLoading: true,
     rowsPerPage: 5,
     page: 0,
-    keyToEdit: null,
     users: [],
   }
   /**
@@ -56,6 +55,8 @@ class State {
     },
     isOpen: false,
     userInput: this.preState,
+    type: 'add', 
+    currentKey: null
   }
   /**
    * fetch users
@@ -102,22 +103,22 @@ class State {
    * Dynamic submit
    */
   @action.bound
-  public onSubmit = (type: 'add' | 'edit') => async () => {
+  public onSubmit = (type: FormState['type']) => async () => {
     let dataResponse: AxiosResponse | undefined = undefined
-    if (type === 'add') {
-      dataResponse = await Axios.post('/user', this.formState.userInput)
-    } else if (type === 'edit') {
-      dataResponse = await Axios.put('/user', this.formState.userInput)
-    }
+    if (type === 'add') dataResponse = await Axios.post('/user', this.formState.userInput)
+    else if (type === 'edit') dataResponse = await Axios.put('/user', this.formState.userInput)
+
     if (dataResponse) {
-      if (dataResponse.data.success) {
-        this.fetchUsers()
-        this.closeAddForm()
-        this.userState.keyToEdit = null
-        this.toggleAlert('success', dataResponse.data.success)
-      } else if (dataResponse.data.error)
-        this.toggleAlert('error', dataResponse.data.error)
+      if (dataResponse.data.success) this.onSuccess(dataResponse) 
+      else if (dataResponse.data.error) this.toggleAlert('error', dataResponse.data.error)
     }
+  }
+
+  private onSuccess(dataResponse: AxiosResponse) {
+    this.fetchUsers()
+    this.closeAddForm()
+    this.formState.currentKey = null
+    this.toggleAlert('success', dataResponse.data.success)
   }
 
   @action.bound
@@ -138,6 +139,7 @@ class State {
   @action.bound
   handleSort = (key: UsersTableHeader['key']) => {
     const currentSortType = this.checkSorted[key]
+    // console.log(currentSortType);
     const sorted = this.userState.users.slice().sort((a, b) => {
       this.checkSorted[key] = currentSortType === 'desc' ? 'asc' : 'desc'
       if (a[key] < b[key]) return currentSortType === 'desc' ? -1 : 1
@@ -146,9 +148,14 @@ class State {
     this.userState.users = sorted
   }
 
-  @action.bound
+  @observable
   checkSortType = (key: UsersTableHeader['key']): SortType => {
     return this!.checkSorted[key]
+  }
+
+  @observable
+  isFormOpen = (): boolean => {
+    return this.formState.isOpen || this.formState.currentKey !== null 
   }
 }
 

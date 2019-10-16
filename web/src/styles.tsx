@@ -15,6 +15,9 @@ export const useStyles = makeStyles(theme => ({
     minHeight: '100vh',
     flexDirection: 'column',
   },
+  // disable: {
+  //   opacity: theme.palette.
+  // },
   menuButton: {
     marginRight: theme.spacing(2),
   },

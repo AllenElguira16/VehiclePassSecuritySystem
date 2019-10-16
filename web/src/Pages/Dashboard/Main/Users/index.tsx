@@ -13,7 +13,7 @@ import Pagination from './UsersTable/Pagination'
 
 const Users: FC = () => {
   // const {  } = useContext(UsersTableState)
-  const { formState, toggleAlert, fetchUsers, userState } = useContext(
+  const { formState, toggleAlert, fetchUsers } = useContext(
     UsersState,
   )
 
@@ -23,7 +23,7 @@ const Users: FC = () => {
 
   const toggleAddForm = (): boolean => {
     // console.log( && userState.keyToEdit )
-    return formState.isOpen && userState.keyToEdit === null
+    return formState.isOpen && formState.currentKey === null
   }
 
   return (

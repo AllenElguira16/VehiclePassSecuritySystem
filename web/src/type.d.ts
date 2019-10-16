@@ -22,7 +22,6 @@ export interface UsersTableHeader {
 export interface UserState {
   isLoading: boolean
   page: number
-  keyToEdit: null | number
   rowsPerPage: number
   users: User[]
 }
@@ -41,4 +40,6 @@ export interface FormState {
   }
   isOpen: boolean
   userInput: UserInput
+  type: 'add' | 'edit' | 'delete'
+  currentKey: null | number
 }

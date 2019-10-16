@@ -5,39 +5,49 @@ import { UsersState } from '../state'
 import { observer } from 'mobx-react-lite'
 import TableProgressBar from 'Components/Common/TableProgressBar'
 import Forms from './Forms'
+import { FormState } from 'type'
 
 const UserRows: FC = () => {
-  const { userState } = useContext(UsersState)
+  const { userState, formState } = useContext(UsersState)
   const { users, isLoading, rowsPerPage, page } = userState
 
   const formatDate = (date: Date | null): string => {
     return new Date(date as Date).toLocaleDateString()
   }
 
+  const onClick = (type: FormState['type'], index: number) => () => {
+    formState.type = type
+    formState.currentKey = index
+  }
+
   return (
     <>
       {!isLoading ? (
-        users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user, i) =>
-          userState.keyToEdit === i ? (
-            <Forms type="edit" user={user} key={i} />
-          ) : (
-            <TableRow key={i}>
-              <TableCell>
-                <IconButton onClick={() => (userState.keyToEdit = i)}>
-                  <Edit />
-                </IconButton>
-                <IconButton>
-                  <Delete />
-                </IconButton>
-              </TableCell>
-              <TableCell align="right">{user.firstname}</TableCell>
-              <TableCell align="right">{user.lastname}</TableCell>
-              <TableCell align="right">{user.type}</TableCell>
-              <TableCell align="right">{user.licenseId}</TableCell>
-              <TableCell align="right">{formatDate(user.dateCreated)}</TableCell>
-            </TableRow>
-          ),
-        )
+        users
+          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          .map((user, i) =>
+            formState.currentKey === i ? (
+              <Forms type={formState.type} user={user} key={i} />
+            ) : (
+              <TableRow key={i}>
+                {/* <TableCell>
+                  <IconButton onClick={onClick('edit', i)}>
+                    <Edit />
+                  </IconButton>
+                  <IconButton onClick={onClick('delete', i)}>
+                    <Delete />
+                  </IconButton>
+                </TableCell> */}
+                <TableCell align="right">{user.firstname}</TableCell>
+                <TableCell align="right">{user.lastname}</TableCell>
+                <TableCell align="right">{user.type}</TableCell>
+                <TableCell align="right">{user.licenseId}</TableCell>
+                <TableCell align="right">
+                  {formatDate(user.dateCreated)}
+                </TableCell>
+              </TableRow>
+            ),
+          )
       ) : (
         <TableProgressBar />
       )}
