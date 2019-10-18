@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react'
 import { AppBar, Typography, Container, Toolbar, IconButton } from '@material-ui/core'
 import logo from 'Reactstrap/Assets/images/LNULogo.webp'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 import { Menu } from '@material-ui/icons'
 import { MainState } from 'Pages/Dashboard/Main/state'
 

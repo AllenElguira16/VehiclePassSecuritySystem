@@ -4,7 +4,7 @@ import { Edit, Delete } from '@material-ui/icons'
 import { UsersState } from '../state'
 import { observer } from 'mobx-react-lite'
 import TableProgressBar from 'Components/Common/TableProgressBar'
-import LNULogo from 'Reactstrap/Assets/images/LNULogo.webp'
+// import LNULogo from 'Reactstrap/Assets/images/LNULogo.webp'
 import Forms from './Forms'
 import { FormState } from 'type'
 
@@ -31,14 +31,14 @@ const UserRows: FC = () => {
               <Forms type={formState.type} user={user} key={i} />
             ) : (
               <TableRow key={i}>
-                {/* <TableCell>
+                <TableCell>
                   <IconButton onClick={onClick('edit', i)}>
                     <Edit />
                   </IconButton>
                   <IconButton onClick={onClick('delete', i)}>
                     <Delete />
                   </IconButton>
-                </TableCell> */}
+                </TableCell>
                 <TableCell align="right">{user.firstname}</TableCell>
                 <TableCell align="right">{user.lastname}</TableCell>
                 <TableCell align="right">{user.type}</TableCell>

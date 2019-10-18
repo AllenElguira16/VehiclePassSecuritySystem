@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import { MuiThemeProvider, createMuiTheme, CssBaseline, Fab, Switch, Tooltip } from '@material-ui/core'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 import { Route, Switch as RouteSwitch, BrowserRouter } from 'react-router-dom'
 // Pages
 import Dashboard from 'Pages/Dashboard'

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Grid, Typography, Divider, Paper, Button } from '@material-ui/core'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 import { Link } from 'react-router-dom'
 
 const Footer: FC = () => {

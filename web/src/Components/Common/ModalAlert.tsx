@@ -1,7 +1,7 @@
 import React, { FC, SyntheticEvent } from 'react'
 import { Snackbar, SnackbarContent } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 
 interface Props {
   type: 'success' | 'error'

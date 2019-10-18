@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { Person, Dashboard, History } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 import { MainState } from 'Pages/Dashboard/Main/state'
 import { observer } from 'mobx-react-lite'
 

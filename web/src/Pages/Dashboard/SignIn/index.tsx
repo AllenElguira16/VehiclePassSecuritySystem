@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from 'react'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 import { Typography, Grid, TextField, Paper, Button, Avatar, FormControlLabel, Checkbox } from '@material-ui/core'
 import { LockOutlined } from '@material-ui/icons'
 import { SignInState } from './state'

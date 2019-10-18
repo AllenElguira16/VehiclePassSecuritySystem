@@ -10,7 +10,7 @@ import {
 import { Check, Clear } from '@material-ui/icons'
 // import { UsersState } from '../state'
 import { observer } from 'mobx-react-lite'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 import { UsersState } from '../state'
 import { User, FormState } from 'type'
 // import { User } from 'type'

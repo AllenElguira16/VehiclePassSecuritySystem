@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Container } from '@material-ui/core'
 import { Route } from 'react-router'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 // Pages
 import VehiclePass from './VehiclePass'
 import AboutUs from './AboutUs'

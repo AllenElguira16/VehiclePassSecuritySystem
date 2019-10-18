@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import LNUBanner from 'Reactstrap/Assets/images/LNUBanner.webp'
 import { Grid, Typography, Card, CardContent, CardActions, Button, Divider } from '@material-ui/core'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 // import Header from 'Components/Header'
 
 const Home: FC = () => {

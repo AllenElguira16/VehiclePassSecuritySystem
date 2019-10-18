@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom'
 import Header from 'Components/Dashboard/Header'
 // import { useStyles } from 'styles'
 import Navigation from 'Components/Dashboard/Navigation'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 
 const Dashboard: FC = () => {
   const { state, getSignInState } = useContext(SignInState)

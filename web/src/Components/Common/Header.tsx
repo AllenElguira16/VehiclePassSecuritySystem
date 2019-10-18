@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, Button, Container } from '@material-ui/cor
 import logo from 'Reactstrap/Assets/images/LNULogo.webp'
 // import { Menu as MenuIcon } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
-import { useStyles } from 'styles'
+import { useStyles } from 'Assets/styles'
 
 const Header: FC = () => {
   const styles = useStyles()
