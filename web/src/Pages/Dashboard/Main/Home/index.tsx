@@ -1,11 +1,10 @@
 import React, { FC } from 'react'
-import { Paper } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
 const Home: FC = () => {
   return (
     <>
-      <Paper>Recent Users</Paper>
-      <Paper>Recent History</Paper>
+      <Typography variant="h2">Welcome! Admin</Typography>
     </>
   )
 }
