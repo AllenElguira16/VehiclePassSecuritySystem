@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react'
 import { TableRow, TableCell, IconButton } from '@material-ui/core'
 import { Edit, Delete } from '@material-ui/icons'
-import { UsersState } from '../state'
+import { UsersState } from './state'
 import { observer } from 'mobx-react-lite'
 import TableProgressBar from 'Components/Common/TableProgressBar'
 // import LNULogo from 'Reactstrap/Assets/images/LNULogo.webp'

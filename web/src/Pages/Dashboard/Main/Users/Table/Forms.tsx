@@ -11,8 +11,10 @@ import { Check, Clear } from '@material-ui/icons'
 // import { UsersState } from '../state'
 import { observer } from 'mobx-react-lite'
 import { useStyles } from 'Assets/styles'
-import { UsersState } from '../state'
+import { UsersState } from './state'
 import { User, FormState } from 'type'
+import Axios, { AxiosResponse } from 'axios'
+import { AlertState } from '../Alert/state'
 // import { User } from 'type'
 
 interface Props {
@@ -22,7 +24,10 @@ interface Props {
 
 const AddUser: FC<Props> = props => {
   // const {  } = useContext(UsersTableState)
-  const { onSubmit, onChange, formState, closeAddForm } = useContext(UsersState)
+  const { onChange, formState, closeAddForm, fetchUsers } = useContext(
+    UsersState,
+  )
+  const { openAlert } = useContext(AlertState)
   const styles = useStyles()
   const { userInput } = formState
   const userType = ['Employee', 'Student', 'Visitor']
@@ -37,6 +42,29 @@ const AddUser: FC<Props> = props => {
       formState.userInput = { id, firstname, lastname, type, licenseId }
     }
   }, [formState, props])
+
+  const onSubmit = (type: FormState['type']) => async () => {
+    let dataResponse: AxiosResponse | undefined = undefined
+    if (type === 'add')
+      dataResponse = await Axios.post('/user', formState.userInput)
+    else if (type === 'edit')
+      dataResponse = await Axios.put('/user', formState.userInput)
+    else if (type === 'delete' && props.user)
+      dataResponse = await Axios.delete(`/user/${props.user.id}`)
+
+    if (dataResponse) {
+      if (dataResponse.data.success) onSuccess(dataResponse)
+      else if (dataResponse.data.error)
+        openAlert('error', dataResponse.data.error)
+    }
+  }
+
+  const onSuccess = (dataResponse: AxiosResponse) => {
+    fetchUsers()
+    closeAddForm()
+    formState.currentKey = null
+    openAlert('success', dataResponse.data.success)
+  }
 
   return (
     <TableRow>

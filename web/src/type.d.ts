@@ -33,13 +33,14 @@ export type CheckSorted = {
 }
 
 export interface FormState {
-  Alert: {
-    isOpen: boolean
-    type: 'success' | 'error'
-    msg: string
-  }
   isOpen: boolean
   userInput: UserInput
   type: 'add' | 'edit' | 'delete'
   currentKey: null | number
+}
+
+export interface Alert {
+  isOpen: boolean
+  type: '' | 'success' | 'error'
+  msg: string
 }

@@ -8,7 +8,7 @@ import {
   IconButton,
 } from '@material-ui/core'
 import { Search, AddBox } from '@material-ui/icons'
-import { UsersState } from './state'
+import { UsersState } from './Table/state'
 
 const UsersForm: FC = () => {
   const { openAddForm, onClear, formState } = useContext(UsersState)

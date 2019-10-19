@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent, useContext } from 'react'
 import { TablePagination, TableRow } from '@material-ui/core'
-import { UsersState } from '../state'
+import { UsersState } from './state'
 import { observer } from 'mobx-react-lite'
 
 const Pagination: FC = () => {

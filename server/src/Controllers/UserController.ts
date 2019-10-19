@@ -120,12 +120,11 @@ class UserController {
     @PathParams() params: PathParamsInterface,
   ): Promise<Response> {
     try {
-      this.user.findByIdAndRemove(params.id)
+      await this.user.findByIdAndRemove(params.id)
     } catch (error) {
       if (error) return { error }
-    } finally {
-      return { success: 'Deleted Successfully' }
     }
+    return { success: 'Deleted Successfully' }
   }
 }
 

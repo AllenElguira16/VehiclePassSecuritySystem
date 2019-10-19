@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { AppBar, Toolbar, Typography, Button, Container } from '@material-ui/core'
-import logo from 'Reactstrap/Assets/images/LNULogo.webp'
+import logo from 'Assets/images/LNULogo.webp'
 // import { Menu as MenuIcon } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 import { useStyles } from 'Assets/styles'

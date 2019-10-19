@@ -48,15 +48,10 @@ class State {
    */
   @observable
   public formState: FormState = {
-    Alert: {
-      isOpen: false,
-      type: 'success',
-      msg: '',
-    },
     isOpen: false,
     userInput: this.preState,
-    type: 'add', 
-    currentKey: null
+    type: 'add',
+    currentKey: null,
   }
   /**
    * fetch users
@@ -87,38 +82,6 @@ class State {
   @action.bound
   public closeAddForm = () => {
     this.formState.isOpen = false
-  }
-  /**
-   * Toggle Alert Modal
-   */
-  @action.bound
-  public toggleAlert = (type: FormState['Alert']['type'], msg: string) => {
-    this.formState.Alert = {
-      isOpen: !this.formState.Alert.isOpen,
-      type,
-      msg,
-    }
-  }
-  /**
-   * Dynamic submit
-   */
-  @action.bound
-  public onSubmit = (type: FormState['type']) => async () => {
-    let dataResponse: AxiosResponse | undefined = undefined
-    if (type === 'add') dataResponse = await Axios.post('/user', this.formState.userInput)
-    else if (type === 'edit') dataResponse = await Axios.put('/user', this.formState.userInput)
-
-    if (dataResponse) {
-      if (dataResponse.data.success) this.onSuccess(dataResponse) 
-      else if (dataResponse.data.error) this.toggleAlert('error', dataResponse.data.error)
-    }
-  }
-
-  private onSuccess(dataResponse: AxiosResponse) {
-    this.fetchUsers()
-    this.closeAddForm()
-    this.formState.currentKey = null
-    this.toggleAlert('success', dataResponse.data.success)
   }
 
   @action.bound
@@ -155,7 +118,7 @@ class State {
 
   @observable
   isFormOpen = (): boolean => {
-    return this.formState.isOpen || this.formState.currentKey !== null 
+    return this.formState.isOpen || this.formState.currentKey !== null
   }
 }
 
