@@ -110,9 +110,7 @@ class UserController {
     } catch (error) {
       if (error) return { error }
     }
-    // finally {
     return { success: 'User updated!' }
-    // }
   }
 
   @Delete('/:id')

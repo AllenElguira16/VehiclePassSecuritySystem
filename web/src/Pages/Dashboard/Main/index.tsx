@@ -1,14 +1,13 @@
 import React, { FC } from 'react'
-// import { useStyles } from 'styles'
 import { Route } from 'react-router-dom'
 import Users from './Users'
+import Home from './Home'
 
 const Main: FC = () => {
-  // const styles = useStyles()
-
   return (
     <>
-      <Route path="/dashboard/users" component={Users} />
+      <Route exact path="/dashboard" component={Home} />
+      <Route exact path="/dashboard/users" component={Users} />
     </>
   )
 }

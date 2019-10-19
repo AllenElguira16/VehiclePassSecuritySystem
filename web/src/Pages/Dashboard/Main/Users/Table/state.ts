@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx'
-import Axios, { AxiosResponse } from 'axios'
+import Axios from 'axios'
 import {
   User,
   UsersTableHeader,
@@ -57,7 +57,7 @@ class State {
    * fetch users
    */
   @action.bound
-  fetchUsers = async (params?: User) => {
+  fetchUsers = async (params?: Partial<User>) => {
     try {
       this.userState.isLoading = true
       if (this.userState.isLoading) {
