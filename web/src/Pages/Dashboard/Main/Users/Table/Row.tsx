@@ -52,7 +52,9 @@ const UserRows: FC = () => {
           )
       ) : (
         <TableRow>
-          <TableCell colSpan={6}>No Records for Users</TableCell>
+          <TableCell colSpan={6} align="center">
+            No Records for Users
+          </TableCell>
         </TableRow>
       )}
     </>
