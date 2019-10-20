@@ -1,10 +1,17 @@
-import React, { FC, useState } from 'react'
-import { MuiThemeProvider, createMuiTheme, CssBaseline, Fab, Switch, Tooltip } from '@material-ui/core'
+import React, { FC, useState, useEffect } from 'react'
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  CssBaseline,
+  Fab,
+  Switch,
+  Tooltip,
+} from '@material-ui/core'
 import { useStyles } from 'Assets/styles'
 import { Route, Switch as RouteSwitch, BrowserRouter } from 'react-router-dom'
 // Pages
 import Dashboard from 'Pages/Dashboard'
-import Main from 'Pages/Main';
+import Main from 'Pages/Main'
 
 const App: FC = () => {
   const styles = useStyles()
@@ -24,11 +31,15 @@ const App: FC = () => {
     },
   })
 
-  const darkToggle = <Fab color="primary" variant="extended" aria-label="toggle-dark" className={styles.darkToggler}>
-    <Tooltip title="Toggle Dark">
-      <Switch checked={dark} onChange={toggleDark} value="checkedA" id="dark-switch" />
-    </Tooltip>
-  </Fab>
+  useEffect(() => {
+    if (localStorage.getItem('dark') === 'true') toggleDarkValue(true)
+    else toggleDarkValue(false)
+  }, [])
+
+  const toggleDarkMode = () => {
+    if (localStorage.getItem('dark')) localStorage.removeItem('dark')
+    else localStorage.setItem('dark', 'true')
+  }
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -38,7 +49,22 @@ const App: FC = () => {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/" component={Main} />
         </RouteSwitch>
-        {darkToggle}
+        <Fab
+          color="primary"
+          // variant="extended"
+          onClick={toggleDarkMode}
+          aria-label="toggle-dark"
+          className={styles.darkToggler}
+        >
+          <Tooltip title="Toggle Dark">
+            <Switch
+              checked={dark}
+              onChange={toggleDark}
+              value="checkedA"
+              id="dark-switch"
+            />
+          </Tooltip>
+        </Fab>
       </BrowserRouter>
     </MuiThemeProvider>
   )

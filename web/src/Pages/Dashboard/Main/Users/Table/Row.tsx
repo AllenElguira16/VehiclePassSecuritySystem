@@ -21,9 +21,10 @@ const UserRows: FC = () => {
     formState.currentKey = index
   }
 
+  if (isLoading) return <TableProgressBar />
   return (
     <>
-      {!isLoading ? (
+      {users.length !== 0 ? (
         users
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((user, i) =>
@@ -50,7 +51,9 @@ const UserRows: FC = () => {
             ),
           )
       ) : (
-        <TableProgressBar />
+        <TableRow>
+          <TableCell colSpan={6}>No Records for Users</TableCell>
+        </TableRow>
       )}
     </>
   )
