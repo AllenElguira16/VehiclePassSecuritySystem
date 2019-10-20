@@ -39,13 +39,11 @@ const UserRows: FC = () => {
                   <Delete />
                 </IconButton>
               </TableCell>
-              <TableCell align="right">{user.firstname}</TableCell>
-              <TableCell align="right">{user.lastname}</TableCell>
-              <TableCell align="right">{user.type}</TableCell>
-              <TableCell align="right">{user.licenseId}</TableCell>
-              <TableCell align="right">
-                {formatDate(user.dateCreated)}
-              </TableCell>
+              <TableCell align="left">{user.licenseId}</TableCell>
+              <TableCell align="left">{user.firstname}</TableCell>
+              <TableCell align="left">{user.lastname}</TableCell>
+              <TableCell align="left">{user.type}</TableCell>
+              <TableCell align="left">{formatDate(user.dateCreated)}</TableCell>
             </TableRow>
           ),
         )

@@ -5,48 +5,30 @@ import {
   TableCell,
   TableSortLabel,
 } from '@material-ui/core'
-import { UsersTableHeader } from 'type'
+import { User } from 'type'
 import { UsersState } from './state'
 import { observer } from 'mobx-react-lite'
 
+type Key = Array<keyof Omit<User, 'id'>>
+
 const TableHeader: FC = () => {
   const { handleSort, checkSortType, isFormOpen } = useContext(UsersState)
-  const lists: UsersTableHeader[] = [
-    {
-      key: 'firstname',
-      name: 'Firstname',
-    },
-    {
-      key: 'lastname',
-      name: 'Lastname',
-    },
-    {
-      key: 'type',
-      name: 'Type',
-    },
-    {
-      key: 'licenseId',
-      name: 'License ID',
-    },
-    {
-      key: 'dateCreated',
-      name: 'Date Created',
-    },
-  ]
+  const key: Key = ['licenseId', 'firstname', 'lastname', 'type', 'dateCreated']
+  const lists = ['License ID', 'Firstname', 'Lastname', 'Type', 'Date Created']
 
   return (
     <TableHead>
       <TableRow>
         <TableCell>Actions</TableCell>
-        {lists.map(tableHeader => (
-          <TableCell key={tableHeader.key} align="right">
+        {lists.map((list, i) => (
+          <TableCell key={i} align="left">
             <TableSortLabel
-              onClick={() => handleSort(tableHeader.key)}
-              direction={checkSortType(tableHeader.key)}
+              onClick={() => handleSort(key[i])}
+              direction={checkSortType(key[i])}
               disabled={isFormOpen()}
               active={!isFormOpen()}
             >
-              {tableHeader.name}
+              {list}
             </TableSortLabel>
           </TableCell>
         ))}

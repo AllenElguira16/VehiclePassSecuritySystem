@@ -10,10 +10,8 @@ import {
 } from '@tsed/common'
 import { User } from 'Model/User'
 import { MongooseModel } from '@tsed/mongoose'
-// import { MySocketService } from 'Services/Socket';
 import { Response, UserInput } from 'type'
 import { ObjectId } from 'mongodb'
-// import { ObjectID } from 'bson';
 
 interface PathParamsInterface {
   id: string
@@ -26,8 +24,12 @@ interface BodyParamsInterface extends UserInput {
 
 @Controller('/user')
 class UserController {
+  // Inject MongooseModel
   constructor(@Inject(User) private user: MongooseModel<User>) {}
-
+  /**
+   * Returns all or search Users base on keyword
+   * @param params userParams
+   */
   @Post('/fetch')
   public async getUser(
     @BodyParams() params: BodyParamsInterface,
@@ -37,18 +39,12 @@ class UserController {
     Object.keys(params).map(async key => (dbParams = key as keyof UserInput))
     const search = params[dbParams]
     return await this.user
-      .find({ [dbParams]: { $regex: `.*${search}.*` } })
+      .find({
+        [dbParams]: {
+          $regex: new RegExp(`.*${search.toLocaleLowerCase()}.*`, 'i'),
+        },
+      })
       .exec()
-  }
-
-  @Get('/:value')
-  public async getUserBySearch(@PathParams()
-  {
-    value,
-  }: PathParamsInterface): Promise<User[]> {
-    return await this.user.find({
-      userId: new RegExp(`^${value}`, 'i'),
-    })
   }
 
   @Post('/check')

@@ -5,24 +5,23 @@ import {
   TableCell,
   TextField,
   MenuItem,
-  Box,
 } from '@material-ui/core'
 import { Check, Clear } from '@material-ui/icons'
-// import { UsersState } from '../state'
 import { observer } from 'mobx-react-lite'
 import { useStyles } from 'Assets/styles'
 import { UsersState } from './state'
-import { User, FormState } from 'type'
+import { User, FormState, UserInput } from 'type'
 import Axios, { AxiosResponse } from 'axios'
 import { AlertState } from '../Alert/state'
-// import { User } from 'type'
 
 interface Props {
   type: FormState['type']
   user?: User
 }
 
-const AddUser: FC<Props> = props => {
+type Key = Array<keyof UserInput>
+
+const Form: FC<Props> = props => {
   // const {  } = useContext(UsersTableState)
   const { onChange, formState, closeAddForm, fetchUsers } = useContext(
     UsersState,
@@ -65,7 +64,8 @@ const AddUser: FC<Props> = props => {
     formState.currentKey = null
     openAlert('success', dataResponse.data.success)
   }
-
+  const keys: Key = ['licenseId', 'firstname', 'lastname']
+  const placeholders = ['License ID', 'Firstname', 'Lastname']
   return (
     <TableRow>
       <TableCell>
@@ -78,23 +78,16 @@ const AddUser: FC<Props> = props => {
       </TableCell>
       {props.type !== 'delete' ? (
         <>
-          <TableCell align="right">
-            <Box width="100%">
+          {keys.map((key, i) => (
+            <TableCell align="left">
               <TextField
-                label="Firstname"
-                value={userInput.firstname}
-                onChange={onChange('firstname')}
+                label={placeholders[i]}
+                value={userInput[key]}
+                onChange={onChange(key)}
               />
-            </Box>
-          </TableCell>
-          <TableCell align="right">
-            <TextField
-              label="Lastname"
-              value={userInput.lastname}
-              onChange={onChange('lastname')}
-            />
-          </TableCell>
-          <TableCell align="right">
+            </TableCell>
+          ))}
+          <TableCell align="left">
             <TextField
               label="Type"
               className={styles.textField}
@@ -109,22 +102,13 @@ const AddUser: FC<Props> = props => {
               ))}
             </TextField>
           </TableCell>
-          <TableCell align="right">
-            <TextField
-              label="License ID"
-              value={userInput.licenseId}
-              onChange={onChange('licenseId')}
-            />
-          </TableCell>
-          <TableCell align="right" />
+          <TableCell align="left" />
         </>
       ) : (
-        <>
-          <TableCell colSpan={4}>Are you sure you want to delete?</TableCell>
-        </>
+        <TableCell colSpan={4}>Are you sure you want to delete?</TableCell>
       )}
     </TableRow>
   )
 }
 
-export default observer(AddUser)
+export default observer(Form)
