@@ -14,12 +14,11 @@ type Key = Array<keyof Omit<User, 'id'>>
 const TableHeader: FC = () => {
   const { handleSort, checkSortType, isFormOpen } = useContext(UsersState)
   const key: Key = ['licenseId', 'firstname', 'lastname', 'type', 'dateCreated']
-  const lists = ['License ID', 'Firstname', 'Lastname', 'Type', 'Date Created']
+  const lists = ['License ID', 'Firstname', 'Lastname', 'Type', 'Date']
 
   return (
     <TableHead>
       <TableRow>
-        <TableCell>Actions</TableCell>
         {lists.map((list, i) => (
           <TableCell key={i} align="left">
             <TableSortLabel
@@ -32,6 +31,7 @@ const TableHeader: FC = () => {
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell>Actions</TableCell>
       </TableRow>
     </TableHead>
   )

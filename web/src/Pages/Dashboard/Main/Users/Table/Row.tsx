@@ -31,6 +31,11 @@ const UserRows: FC = () => {
             <Forms type={formState.type} user={user} key={i} />
           ) : (
             <TableRow key={i}>
+              <TableCell align="left">{user.licenseId}</TableCell>
+              <TableCell align="left">{user.firstname}</TableCell>
+              <TableCell align="left">{user.lastname}</TableCell>
+              <TableCell align="left">{user.type}</TableCell>
+              <TableCell align="left">{formatDate(user.dateCreated)}</TableCell>
               <TableCell>
                 <IconButton onClick={onClick('edit', i)}>
                   <Edit />
@@ -39,11 +44,6 @@ const UserRows: FC = () => {
                   <Delete />
                 </IconButton>
               </TableCell>
-              <TableCell align="left">{user.licenseId}</TableCell>
-              <TableCell align="left">{user.firstname}</TableCell>
-              <TableCell align="left">{user.lastname}</TableCell>
-              <TableCell align="left">{user.type}</TableCell>
-              <TableCell align="left">{formatDate(user.dateCreated)}</TableCell>
             </TableRow>
           ),
         )

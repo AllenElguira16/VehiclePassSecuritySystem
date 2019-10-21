@@ -1,33 +1,47 @@
 import React, { FC } from 'react'
-import { Typography, Grid, Paper, Container } from '@material-ui/core'
+import {
+  Typography,
+  Grid,
+  Container,
+  Card,
+  CardContent,
+} from '@material-ui/core'
 
 const Home: FC = () => {
   return (
     <Container maxWidth="xl">
       <Grid container spacing={2}>
         <Grid item md={3}>
-          <Paper>
-            <Typography variant="h6">Total Users</Typography>
-            <Typography variant="h4">0</Typography>
-          </Paper>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Total Users</Typography>
+              <Typography variant="h4">0</Typography>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <Paper>
-            <Typography variant="h6">Total Users</Typography>
-            <Typography variant="h4">0</Typography>
-          </Paper>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Total Users</Typography>
+              <Typography variant="h4">0</Typography>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <Paper>
-            <Typography variant="h6">Total Users</Typography>
-            <Typography variant="h4">0</Typography>
-          </Paper>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Total Users</Typography>
+              <Typography variant="h4">0</Typography>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item md={3}>
-          <Paper>
-            <Typography variant="h6">Total Users</Typography>
-            <Typography variant="h4">0</Typography>
-          </Paper>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Total Users</Typography>
+              <Typography variant="h4">0</Typography>
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
     </Container>

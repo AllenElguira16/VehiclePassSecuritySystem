@@ -68,14 +68,6 @@ const Form: FC<Props> = props => {
   const placeholders = ['License ID', 'Firstname', 'Lastname']
   return (
     <TableRow>
-      <TableCell>
-        <IconButton onClick={onSubmit(props.type)}>
-          <Check />
-        </IconButton>
-        <IconButton onClick={onClose}>
-          <Clear />
-        </IconButton>
-      </TableCell>
       {props.type !== 'delete' ? (
         <>
           {keys.map((key, i) => (
@@ -107,6 +99,14 @@ const Form: FC<Props> = props => {
       ) : (
         <TableCell colSpan={4}>Are you sure you want to delete?</TableCell>
       )}
+      <TableCell>
+        <IconButton onClick={onSubmit(props.type)}>
+          <Check />
+        </IconButton>
+        <IconButton onClick={onClose}>
+          <Clear />
+        </IconButton>
+      </TableCell>
     </TableRow>
   )
 }

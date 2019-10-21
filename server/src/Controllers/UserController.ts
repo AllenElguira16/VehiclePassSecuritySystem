@@ -75,7 +75,7 @@ class UserController {
         throw 'Inputs are Empty'
       // Check if user exists
       const count = await this.user.countDocuments({ licenseId })
-      if (count !== 0) throw 'User already exists'
+      if (count !== 0) throw `User with license id ${licenseId} exists!`
       // Saving user to database
       const user = new this.user({ firstname, lastname, type, licenseId })
       await user.save()
