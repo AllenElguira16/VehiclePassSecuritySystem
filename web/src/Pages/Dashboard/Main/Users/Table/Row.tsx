@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react'
 import { TableRow, TableCell, IconButton } from '@material-ui/core'
-import { Edit, Delete } from '@material-ui/icons'
+import { Edit, Delete, Print } from '@material-ui/icons'
 import { UsersState } from './state'
 import { observer } from 'mobx-react-lite'
 import TableProgressBar from 'Components/Common/TableProgressBar'
@@ -36,12 +36,15 @@ const UserRows: FC = () => {
               <TableCell align="left">{user.lastname}</TableCell>
               <TableCell align="left">{user.type}</TableCell>
               <TableCell align="left">{formatDate(user.dateCreated)}</TableCell>
-              <TableCell>
+              <TableCell align="right">
                 <IconButton onClick={onClick('edit', i)}>
                   <Edit />
                 </IconButton>
                 <IconButton onClick={onClick('delete', i)}>
                   <Delete />
+                </IconButton>
+                <IconButton>
+                  <Print />
                 </IconButton>
               </TableCell>
             </TableRow>

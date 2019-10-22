@@ -1,5 +1,11 @@
 import React, { FC, useContext } from 'react'
-import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core'
 import { Person, Dashboard, History } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 import { useStyles } from 'Assets/styles'
@@ -38,7 +44,7 @@ const Navigation: FC = () => {
       anchor="left"
     >
       <div className={styles.toolbar} />
-      <List>
+      <List dense>
         {navList.map((nav, i) => (
           <ListItem button key={i} component={Link} to={nav.link}>
             <ListItemIcon>{nav.icon}</ListItemIcon>

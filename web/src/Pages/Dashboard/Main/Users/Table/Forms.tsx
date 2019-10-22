@@ -71,7 +71,7 @@ const Form: FC<Props> = props => {
       {props.type !== 'delete' ? (
         <>
           {keys.map((key, i) => (
-            <TableCell align="left">
+            <TableCell align="left" key={i}>
               <TextField
                 label={placeholders[i]}
                 value={userInput[key]}

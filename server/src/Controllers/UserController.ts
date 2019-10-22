@@ -68,9 +68,12 @@ class UserController {
   public async addUser(
     @BodyParams() params: BodyParamsInterface,
   ): Promise<Response> {
+    const { firstname, lastname, type, licenseId } = params
+    const LicenseFormat = /\w{3}-\w{3}-\w{6}/
     try {
+      if (!LicenseFormat.test(licenseId))
+        throw 'Incorrect license Format, it should be XXX-XXX-XXXXXX'
       // Check if empty
-      const { firstname, lastname, type, licenseId } = params
       if (licenseId === '' || firstname === '' || lastname === '')
         throw 'Inputs are Empty'
       // Check if user exists

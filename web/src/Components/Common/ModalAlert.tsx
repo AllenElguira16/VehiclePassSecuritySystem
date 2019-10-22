@@ -27,12 +27,11 @@ const ModalAlert: FC<Props> = props => {
       autoHideDuration={6000}
       onClose={onClose}
     >
-      {props.type !== '' && (
-        <SnackbarContent
-          className={styles[props.type]}
-          message={props.children}
-        />
-      )}
+      <SnackbarContent
+        style={{ color: '#FFF' }}
+        className={props.type !== '' ? styles[props.type] : ''}
+        message={props.children}
+      />
     </Snackbar>
   )
 }

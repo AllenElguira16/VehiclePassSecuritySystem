@@ -67,15 +67,15 @@ export const useStyles = makeStyles(theme => ({
     background: theme.palette.primary.dark,
   },
   drawerOpen: {
-    width: theme.spacing(6) * 4,
+    width: theme.spacing(5) * 4,
     flexShrink: 0,
+  },
+  drawerPaper: {
+    width: theme.spacing(5) * 4,
   },
   drawerClose: {
     width: 0,
     flexShrink: 0,
-  },
-  drawerPaper: {
-    width: theme.spacing(6) * 4,
   },
   dashboardContent: {
     flexGrow: 1,
