@@ -12,6 +12,7 @@ import { User } from 'Model/User'
 import { MongooseModel } from '@tsed/mongoose'
 import { Response, UserInput } from 'type'
 import { ObjectId } from 'mongodb'
+import { History } from 'Model/History'
 
 interface PathParamsInterface {
   id: string
@@ -25,7 +26,10 @@ interface BodyParamsInterface extends UserInput {
 @Controller('/user')
 class UserController {
   // Inject MongooseModel
-  constructor(@Inject(User) private user: MongooseModel<User>) {}
+  constructor(
+    @Inject(User) private user: MongooseModel<User>,
+    @Inject(History) public history: MongooseModel<History>,
+  ) {}
   /**
    * Returns all or search Users base on keyword
    * @param params userParams
@@ -51,10 +55,33 @@ class UserController {
   public async check(@BodyParams() { id }: BodyParamsInterface): Promise<
     Response
   > {
-    if (!ObjectId.isValid(id)) return { error: 'Not a valid ID' }
-    const user = await this.user.findById(new ObjectId(id)).exec()
-    if (user && user.errors) return { error: 'Not match' }
-    return { success: true }
+    try {
+      if (!ObjectId.isValid(id)) {
+        const createHisory = new this.history({
+          type: 'error',
+          msg: `Invalid ID: ID Entered ${id}`,
+        })
+        await createHisory.save()
+        throw 'Not a valid ID'
+      }
+      const user = await this.user.findById(new ObjectId(id)).exec()
+      if (user && user.errors) {
+        const createHisory = new this.history({
+          type: 'error',
+          msg: `LicenseID Mismatch: ID Entered ${id}`,
+        })
+        await createHisory.save()
+        throw 'Not match'
+      }
+      const createHisory = new this.history({
+        type: 'success',
+        msg: `Vehicle Entery: A user with ID: ${id} has successfully enter the campus`,
+      })
+      await createHisory.save()
+      return { success: true }
+    } catch (error) {
+      return { error }
+    }
   }
 
   @Get('/get-id/:id')

@@ -4,19 +4,21 @@ import { Property, Default } from '@tsed/common'
 @Model()
 export class History {
   @ObjectID('id')
-  public _id: string | undefined
+  public _id!: string
 
   @ObjectID()
   @Unique()
-  public userId: string | undefined
+  public type!: string
 
   @Property()
-  public timeIn: Date | undefined
-
-  @Property()
-  public timeOut: Date | undefined
+  public msg!: string
+  // @Property()
+  // public timeIn!: Date
 
   // @Property()
-  // @Default(Date.now())
-  // public dateCreated: Date = new Date();
+  // public timeOut!: Date
+
+  @Property()
+  @Default(Date.now())
+  public dateCreated: Date = new Date()
 }
