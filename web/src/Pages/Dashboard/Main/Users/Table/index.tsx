@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect } from 'react'
-import { UsersState } from './state'
+import { UsersState } from 'State'
 import Header from './Header'
 import { TableBody, Table as MaterialTable } from '@material-ui/core'
 import Pagination from './Pagination'
@@ -19,7 +19,7 @@ const Table: FC = () => {
   }
 
   return (
-    <MaterialTable size="small">
+    <MaterialTable size="medium">
       <Header />
       <TableBody>
         <Row />

@@ -1,7 +1,7 @@
 import React, { FC, useContext, useState } from 'react'
 import { TableRow, TableCell, IconButton } from '@material-ui/core'
 import { Edit, Delete, Print } from '@material-ui/icons'
-import { UsersState } from './state'
+import { UsersState } from 'State'
 import { observer } from 'mobx-react-lite'
 import TableProgressBar from 'Components/Common/TableProgressBar'
 import Forms from './Forms'
@@ -33,12 +33,22 @@ const UserRows: FC = () => {
             <Forms type={formState.type} user={user} key={i} />
           ) : (
             <TableRow key={i}>
-              <TableCell align="left">{user.licenseId}</TableCell>
-              <TableCell align="left">{user.firstname}</TableCell>
-              <TableCell align="left">{user.lastname}</TableCell>
-              <TableCell align="left">{user.type}</TableCell>
-              <TableCell align="left">{formatDate(user.dateCreated)}</TableCell>
-              <TableCell align="right">
+              <TableCell size="small" align="left">
+                {user.licenseId}
+              </TableCell>
+              <TableCell size="small" align="left">
+                {user.firstname}
+              </TableCell>
+              <TableCell size="small" align="left">
+                {user.lastname}
+              </TableCell>
+              <TableCell size="small" align="left">
+                {user.type}
+              </TableCell>
+              <TableCell size="small" align="left">
+                {formatDate(user.dateCreated)}
+              </TableCell>
+              <TableCell size="small" align="right">
                 <IconButton onClick={onClick('edit', i)}>
                   <Edit />
                 </IconButton>

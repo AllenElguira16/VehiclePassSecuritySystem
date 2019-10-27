@@ -6,15 +6,16 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core'
-import { Person, Dashboard, History } from '@material-ui/icons'
+import { Person, Dashboard, History, ExitToApp, Edit } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 import { useStyles } from 'Assets/styles'
-import { MainState } from 'Pages/Dashboard/Main/state'
+import { MainState, AdminState } from 'State'
 import { observer } from 'mobx-react-lite'
 
 const Navigation: FC = () => {
   const styles = useStyles()
   const { state } = useContext(MainState)
+  const { signOut } = useContext(AdminState)
   const navList = [
     {
       name: 'Dashboard',
@@ -31,6 +32,11 @@ const Navigation: FC = () => {
       link: '/dashboard/history',
       icon: <History />,
     },
+    {
+      name: 'Edit Credentials',
+      link: '/dashboard/edit-credentials',
+      icon: <Edit />,
+    },
   ]
 
   return (
@@ -44,13 +50,21 @@ const Navigation: FC = () => {
       anchor="left"
     >
       <div className={styles.toolbar} />
-      <List dense>
+      <List>
         {navList.map((nav, i) => (
           <ListItem button key={i} component={Link} to={nav.link}>
             <ListItemIcon>{nav.icon}</ListItemIcon>
             <ListItemText primary={nav.name} />
           </ListItem>
         ))}
+      </List>
+      <List style={{ marginTop: 'auto' }}>
+        <ListItem button onClick={signOut}>
+          <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
       </List>
     </Drawer>
   )

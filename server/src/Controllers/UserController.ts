@@ -96,7 +96,7 @@ class UserController {
     @BodyParams() params: BodyParamsInterface,
   ): Promise<Response> {
     const { firstname, lastname, type, licenseId } = params
-    const LicenseFormat = /\w{3}-\w{3}-\w{6}/
+    const LicenseFormat = /^\w{3}-\w{2}-\w{6}$/gm
     try {
       if (!LicenseFormat.test(licenseId))
         throw 'Incorrect license Format, it should be XXX-XXX-XXXXXX'

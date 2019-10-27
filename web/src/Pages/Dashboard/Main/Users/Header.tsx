@@ -1,6 +1,6 @@
 import React, { FC, useContext, ChangeEvent, useState } from 'react'
 import { Search, AddBox } from '@material-ui/icons'
-import { UsersState } from './Table/state'
+import { UsersState } from 'State'
 import {
   Container,
   Grid,
@@ -30,6 +30,9 @@ const UsersForm: FC = () => {
     setSelectType(target.value as SelectType)
   }
 
+  const searchLists = ['licenseId', 'firstname', 'lastname']
+  const searchNames = ['License ID', 'Firstname', 'Lastname']
+
   return (
     <Container maxWidth="xl">
       <Grid alignItems="center" justify="space-between" spacing={4} container>
@@ -50,9 +53,9 @@ const UsersForm: FC = () => {
               onChange={search}
             />
             <TextField select value={selectType} onChange={onSelectType}>
-              {['firstname', 'lastname', 'licenseId'].map((searchType, i) => (
-                <MenuItem key={i} value={searchType}>
-                  {searchType}
+              {searchLists.map((searchList, i) => (
+                <MenuItem key={i} value={searchList}>
+                  {searchNames[i]}
                 </MenuItem>
               ))}
             </TextField>

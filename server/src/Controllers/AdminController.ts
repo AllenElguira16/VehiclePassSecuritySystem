@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Inject, Session, BodyParams } from '@tsed/common'
+import {
+  Controller,
+  Get,
+  Post,
+  Inject,
+  Session,
+  BodyParams,
+  Delete,
+} from '@tsed/common'
 import { hash, compare } from 'bcryptjs'
 import { MongooseModel } from '@tsed/mongoose'
 import { Admin } from 'Model/Admin'
@@ -17,7 +25,10 @@ class AdminController {
   }
 
   @Post()
-  public async signIn(@BodyParams() params: AdminInput, @Session() session: SessionInterface): Promise<Response> {
+  public async signIn(
+    @BodyParams() params: AdminInput,
+    @Session() session: SessionInterface,
+  ): Promise<Response> {
     const { username, password } = params
     const user = await this.model.findOne({ username })
     if (!user) return { error: true }
@@ -27,14 +38,16 @@ class AdminController {
     return { success: true }
   }
 
-  @Post('/logout')
+  @Delete('/logout')
   public logout(@Session() session: SessionInterface): Response {
     delete session.user
     return { success: 'Sign out successfully' }
   }
 
   @Post('/register')
-  public async register(@BodyParams() { username, password }: Admin): Promise<Response> {
+  public async register(@BodyParams() { username, password }: Admin): Promise<
+    Response
+  > {
     if (username && password) {
       const hashedPassword = await hash(password, 10)
       const admin = new this.model({ username, password: hashedPassword })

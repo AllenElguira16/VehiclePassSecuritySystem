@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect } from 'react'
 import SignIn from 'Pages/Dashboard/SignIn'
-import { SignInState } from './SignIn/state'
+import { AdminState } from 'State'
 import { CircularProgress, Grid } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import Main from './Main'
@@ -11,7 +11,7 @@ import Navigation from 'Components/Dashboard/Navigation'
 import { useStyles } from 'Assets/styles'
 
 const Dashboard: FC = () => {
-  const { state, getSignInState } = useContext(SignInState)
+  const { state, getSignInState } = useContext(AdminState)
   const { isLoading, isLoggedIn } = state
   const styles = useStyles()
 
@@ -27,7 +27,10 @@ const Dashboard: FC = () => {
         <Route path="/dashboard" render={() => isLoggedIn && <Navigation />} />
         <main className={styles.dashboardContent}>
           {!isLoading ? (
-            <Route path="/dashboard" render={() => (!isLoggedIn ? <SignIn /> : <Main />)} />
+            <Route
+              path="/dashboard"
+              render={() => (!isLoggedIn ? <SignIn /> : <Main />)}
+            />
           ) : (
             <Grid container justify="center">
               <Grid item>

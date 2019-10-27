@@ -9,7 +9,7 @@ import {
 import { Check, Clear } from '@material-ui/icons'
 import { observer } from 'mobx-react-lite'
 import { useStyles } from 'Assets/styles'
-import { UsersState } from './state'
+import { UsersState } from 'State'
 import { User, FormState, UserInput } from 'type'
 import Axios, { AxiosResponse } from 'axios'
 import { AlertState } from '../Alert/state'
@@ -23,9 +23,13 @@ type Key = Array<keyof UserInput>
 
 const Form: FC<Props> = props => {
   // const {  } = useContext(UsersTableState)
-  const { onChange, formState, closeAddForm, fetchUsers } = useContext(
-    UsersState,
-  )
+  const {
+    onChange,
+    formState,
+    closeAddForm,
+    fetchUsers,
+    userState,
+  } = useContext(UsersState)
   const { openAlert } = useContext(AlertState)
   const styles = useStyles()
   const { userInput } = formState
@@ -56,6 +60,7 @@ const Form: FC<Props> = props => {
       else if (dataResponse.data.error)
         openAlert('error', dataResponse.data.error)
     }
+    userState.page = 0
   }
 
   const onSuccess = (dataResponse: AxiosResponse) => {

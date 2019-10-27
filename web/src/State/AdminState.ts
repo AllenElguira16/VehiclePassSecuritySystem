@@ -26,13 +26,23 @@ class State {
 
   @action.bound
   getSignInState = async () => {
+    this.state.isLoading = true
     let { data } = await Axios.get('/admin/auth')
     if (!data.error) this.state.isLoggedIn = true
+    else this.state.isLoggedIn = false
     this.state.isLoading = false
   }
 
   @action.bound
-  onInputChange = (key: keyof AdminInput) => (event: ChangeEvent<HTMLInputElement>) => {
+  signOut = async () => {
+    let { data } = await Axios.delete('/admin/logout')
+    if (data.success) await this.getSignInState()
+  }
+
+  @action.bound
+  onInputChange = (key: keyof AdminInput) => (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
     this.userInput = {
       ...this.userInput,
       [key]: event.currentTarget.value,
@@ -40,4 +50,4 @@ class State {
   }
 }
 
-export const SignInState = createContext(new State())
+export const AdminState = createContext(new State())

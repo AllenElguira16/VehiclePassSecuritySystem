@@ -6,7 +6,7 @@ import {
   TableSortLabel,
 } from '@material-ui/core'
 import { User } from 'type'
-import { UsersState } from './state'
+import { UsersState } from 'State'
 import { observer } from 'mobx-react-lite'
 
 type Key = Array<keyof Omit<User, 'id'>>

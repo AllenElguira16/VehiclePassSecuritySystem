@@ -20,10 +20,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10
-}
-
 function getModalStyle() {
   const top = 50
   const left = 50
@@ -68,7 +64,12 @@ const ModalQR: FC<Props> = ({ setModalOpen, modalOpen, id }) => {
   const [modalStyle] = useState(getModalStyle)
 
   return (
-    <Modal open={modalOpen} id="qr-modal" onClose={() => setModalOpen(false)}>
+    <Modal
+      style={{ outline: 0 }}
+      open={modalOpen}
+      id="qr-modal"
+      onClose={() => setModalOpen(false)}
+    >
       <Grid
         container
         style={modalStyle}

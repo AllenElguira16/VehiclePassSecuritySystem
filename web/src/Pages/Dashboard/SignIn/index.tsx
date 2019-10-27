@@ -1,12 +1,19 @@
 import React, { FunctionComponent, useContext } from 'react'
 import { useStyles } from 'Assets/styles'
-import { Typography, Grid, TextField, Paper, Button, Avatar, FormControlLabel, Checkbox } from '@material-ui/core'
+import {
+  Typography,
+  Grid,
+  TextField,
+  Paper,
+  Button,
+  Avatar,
+} from '@material-ui/core'
 import { LockOutlined } from '@material-ui/icons'
-import { SignInState } from './state'
+import { AdminState } from 'State'
 import { observer } from 'mobx-react-lite'
 
 const SignIn: FunctionComponent = () => {
-  const { signIn, onInputChange } = useContext(SignInState)
+  const { signIn, onInputChange } = useContext(AdminState)
   const styles = useStyles()
 
   return (
@@ -23,20 +30,23 @@ const SignIn: FunctionComponent = () => {
             <TextField
               onChange={onInputChange('username')}
               margin="normal"
-              variant="outlined"
               label="Username"
               fullWidth
             />
             <TextField
               onChange={onInputChange('password')}
               margin="normal"
-              variant="outlined"
               label="Password"
               type="password"
               fullWidth
             />
-            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button
+              className={styles.marginTopMedium}
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+            >
               Send
             </Button>
           </form>

@@ -67,11 +67,11 @@ export const useStyles = makeStyles(theme => ({
     background: theme.palette.primary.dark,
   },
   drawerOpen: {
-    width: theme.spacing(5) * 4,
+    width: theme.spacing(6) * 4,
     flexShrink: 0,
   },
   drawerPaper: {
-    width: theme.spacing(5) * 4,
+    width: theme.spacing(6) * 4,
   },
   drawerClose: {
     width: 0,
@@ -87,7 +87,9 @@ export const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
-  // colors: {
+  marginTopMedium: {
+    marginTop: theme.spacing(1.6),
+  },
   success: {
     backgroundColor: green[600],
   },

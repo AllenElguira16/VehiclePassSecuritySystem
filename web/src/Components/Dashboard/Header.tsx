@@ -1,9 +1,15 @@
 import React, { FC, useContext } from 'react'
-import { AppBar, Typography, Container, Toolbar, IconButton } from '@material-ui/core'
+import {
+  AppBar,
+  Typography,
+  Container,
+  Toolbar,
+  IconButton,
+} from '@material-ui/core'
 import logo from 'Assets/images/LNULogo.webp'
 import { useStyles } from 'Assets/styles'
 import { Menu } from '@material-ui/icons'
-import { MainState } from 'Pages/Dashboard/Main/state'
+import { MainState } from 'State'
 
 const Header: FC = () => {
   const { toggleNav } = useContext(MainState)
