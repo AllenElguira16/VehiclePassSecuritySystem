@@ -2,14 +2,9 @@ import React, { FC, SyntheticEvent } from 'react'
 import { Snackbar, SnackbarContent } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import { useStyles } from 'Assets/styles'
+import { AlertComponentProps } from 'type'
 
-interface Props {
-  type: 'success' | 'error' | ''
-  open: boolean
-  onClose: () => void
-}
-
-const ModalAlert: FC<Props> = props => {
+const Alert: FC<AlertComponentProps> = props => {
   const styles = useStyles()
   const onClose = (event?: SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') return
@@ -36,4 +31,4 @@ const ModalAlert: FC<Props> = props => {
   )
 }
 
-export default observer(ModalAlert)
+export default observer(Alert)

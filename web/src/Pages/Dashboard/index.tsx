@@ -3,12 +3,14 @@ import SignIn from 'Pages/Dashboard/SignIn'
 import { AdminState } from 'State'
 import { CircularProgress, Grid } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
-import Main from './Main'
 import { Route } from 'react-router-dom'
 import Header from 'Components/Dashboard/Header'
 // import { useStyles } from 'styles'
 import Navigation from 'Components/Dashboard/Navigation'
 import { useStyles } from 'Assets/styles'
+import Home from './Home'
+import Users from './Users'
+import EditCredentials from './EditCredentials'
 
 const Dashboard: FC = () => {
   const { state, getSignInState } = useContext(AdminState)
@@ -27,10 +29,19 @@ const Dashboard: FC = () => {
         <Route path="/dashboard" render={() => isLoggedIn && <Navigation />} />
         <main className={styles.dashboardContent}>
           {!isLoading ? (
-            <Route
-              path="/dashboard"
-              render={() => (!isLoggedIn ? <SignIn /> : <Main />)}
-            />
+            !isLoggedIn ? (
+              <SignIn />
+            ) : (
+              <>
+                <Route exact path="/dashboard" component={Home} />
+                <Route exact path="/dashboard/users" component={Users} />
+                <Route
+                  exact
+                  path="/dashboard/edit-credentials"
+                  component={EditCredentials}
+                />
+              </>
+            )
           ) : (
             <Grid container justify="center">
               <Grid item>

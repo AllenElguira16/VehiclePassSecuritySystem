@@ -44,3 +44,9 @@ export interface Alert {
   type: '' | 'success' | 'error'
   msg: string
 }
+
+export interface AlertComponentProps {
+  type: 'success' | 'error' | ''
+  open: boolean
+  onClose: () => void
+}

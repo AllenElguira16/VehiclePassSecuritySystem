@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react'
-import ModalAlert from 'Components/Common/ModalAlert'
+import ModalAlert from 'Components/Common/Alert'
 import { AlertState } from './state'
 import { observer } from 'mobx-react-lite'
 

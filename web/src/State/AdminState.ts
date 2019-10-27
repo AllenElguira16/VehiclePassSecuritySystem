@@ -21,7 +21,15 @@ class State {
     this.state.isLoading = true
     let { data } = await Axios.post('/admin', this.userInput)
     if (data.success) this.state.isLoggedIn = true
-    this.state.isLoading = false
+  }
+
+  @action.bound
+  update = async () => {
+    // this.state.isLoading = true
+    const { data } = await Axios.put(`/admin`, this.userInput)
+    return data
+    // console.log(data)
+    // this.state.isLoading = false
   }
 
   @action.bound
