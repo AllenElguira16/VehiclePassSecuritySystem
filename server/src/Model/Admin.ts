@@ -4,7 +4,7 @@ import { Property } from '@tsed/common'
 @Model()
 export class Admin {
   @ObjectID('id')
-  public _id!: string
+  public id!: string
 
   @Property()
   public username!: string

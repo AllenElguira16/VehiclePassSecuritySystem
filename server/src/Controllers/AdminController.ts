@@ -6,6 +6,7 @@ import {
   Session,
   BodyParams,
   Delete,
+  Put,
 } from '@tsed/common'
 import { hash, compare } from 'bcryptjs'
 import { MongooseModel } from '@tsed/mongoose'
@@ -14,9 +15,7 @@ import { SessionInterface, AdminInput, Response } from 'type'
 
 @Controller('/admin')
 class AdminController {
-  constructor(@Inject(Admin) private model: MongooseModel<Admin>) {
-    console.log('Initialize')
-  }
+  constructor(@Inject(Admin) private model: MongooseModel<Admin>) {}
 
   @Get('/auth')
   public getAuth(@Session() session: SessionInterface): Response {
@@ -42,6 +41,23 @@ class AdminController {
   public logout(@Session() session: SessionInterface): Response {
     delete session.user
     return { success: 'Sign out successfully' }
+  }
+
+  @Put()
+  public async update(
+    @BodyParams() params: Admin,
+    @Session() session: SessionInterface,
+  ): Promise<Response> {
+    try {
+      const { username, password } = params
+      const { user } = session
+      if (!username && !password) throw 'User Input are empty'
+      const hashedPassword = await hash(params.password, 10)
+      // const admin = this.model.findByIdAndUpdate(user)
+    } catch (error) {
+      return { error }
+    }
+    return { success: 'Updated Successfully' }
   }
 
   @Post('/register')
