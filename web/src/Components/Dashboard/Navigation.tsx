@@ -19,22 +19,22 @@ const Navigation: FC = () => {
   const navList = [
     {
       name: 'Dashboard',
-      link: '/dashboard',
+      link: '/',
       icon: <Dashboard />,
     },
     {
       name: 'Users',
-      link: '/dashboard/users',
+      link: '/users',
       icon: <Person />,
     },
     {
       name: 'History',
-      link: '/dashboard/history',
+      link: '/history',
       icon: <History />,
     },
     {
       name: 'Edit Credentials',
-      link: '/dashboard/edit-credentials',
+      link: '/edit-credentials',
       icon: <Edit />,
     },
   ]

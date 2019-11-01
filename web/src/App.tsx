@@ -46,8 +46,8 @@ const App: FC = () => {
       <CssBaseline />
       <BrowserRouter>
         <RouteSwitch>
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/" component={Main} />
+          <Route path="/" component={Dashboard} />
+          {/* <Route path="/" component={Main} /> */}
         </RouteSwitch>
         <Fab
           color="primary"

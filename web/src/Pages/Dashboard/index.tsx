@@ -26,18 +26,18 @@ const Dashboard: FC = () => {
       <Header />
       <div className={styles.toolbar} />
       <div style={{ display: 'flex' }}>
-        <Route path="/dashboard" render={() => isLoggedIn && <Navigation />} />
+        <Route path="/" render={() => isLoggedIn && <Navigation />} />
         <main className={styles.dashboardContent}>
           {!isLoading ? (
             !isLoggedIn ? (
               <SignIn />
             ) : (
               <>
-                <Route exact path="/dashboard" component={Home} />
-                <Route exact path="/dashboard/users" component={Users} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/users" component={Users} />
                 <Route
                   exact
-                  path="/dashboard/edit-credentials"
+                  path="/edit-credentials"
                   component={EditCredentials}
                 />
               </>
