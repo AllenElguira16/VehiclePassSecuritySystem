@@ -18,9 +18,9 @@ class State {
   @action.bound
   public signIn = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
-    this.state.isLoading = true
+    // this.state.isLoading = true
     let { data } = await Axios.post('/admin', this.userInput)
-    if (data.success) this.state.isLoggedIn = true
+    if (data.success) this.getSignInState()
   }
 
   @action.bound
