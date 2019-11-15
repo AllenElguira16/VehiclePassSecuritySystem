@@ -33,10 +33,13 @@ export default () => {
         scanned: true
       });
       const { data } = await Axios.post("/user/check", { id: barcode.data });
-      if (data.error) Axios.get("/arduino/warn");
-      else {
+      // console.log(barcode)
+      if (data.error) { 
+        Axios.get("/arduino/warn");
+        Alert.alert("Error!", "QRCode is not valid");
+      } else {
         await Axios.get("/arduino/open");
-        Alert.alert("Alert", "Msg");
+        Alert.alert("Success", "You have 10 seconds before the gate closes");
       }
       setTimeout(() => {
         setState({

@@ -17,11 +17,11 @@ const Navigation: FC = () => {
   const { state } = useContext(MainState)
   const { signOut } = useContext(AdminState)
   const navList = [
-    {
-      name: 'Dashboard',
-      link: '/',
-      icon: <Dashboard />,
-    },
+    // {
+    //   name: 'Dashboard',
+    //   link: '/',
+    //   icon: <Dashboard />,
+    // },
     {
       name: 'Users',
       link: '/users',
@@ -33,7 +33,7 @@ const Navigation: FC = () => {
       icon: <History />,
     },
     {
-      name: 'Edit Credentials',
+      name: 'Update Admin',
       link: '/edit-credentials',
       icon: <Edit />,
     },

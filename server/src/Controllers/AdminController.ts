@@ -33,7 +33,7 @@ class AdminController {
     if (!user) return { error: true }
     const isMatch = await compare(password, user.password)
     if (!isMatch) return { error: true }
-    session.user = user
+    session.user = user as SessionInterface['user']
     return { success: true }
   }
 
@@ -52,8 +52,12 @@ class AdminController {
       const { username, password } = params
       const { user } = session
       if (!username && !password) throw 'User Input are empty'
-      const hashedPassword = await hash(params.password, 10)
-      // const admin = this.model.findByIdAndUpdate(user)
+      const hashedPassword = await hash(password, 10)
+      const admin = await this.model.findByIdAndUpdate(user._id, {
+        username, password: hashedPassword
+      })
+      console.log(admin)
+      if (!admin) throw "Error updating admin"
     } catch (error) {
       return { error }
     }

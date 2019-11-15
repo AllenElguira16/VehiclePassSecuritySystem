@@ -45,7 +45,7 @@ const ModalQR: FC<Props> = ({ setModalOpen, modalOpen, id }) => {
       })
     }
   }
-
+  // console.log(id)
   const resize = (
     base64: CanvasImageSource,
     width: number,

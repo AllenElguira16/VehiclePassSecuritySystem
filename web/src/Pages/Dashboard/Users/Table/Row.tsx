@@ -61,7 +61,7 @@ const UserRows: FC = () => {
                 <ModalQR
                   modalOpen={modalOpen}
                   setModalOpen={setModalOpen}
-                  id={user.licenseId}
+                  id={user.id}
                 />
               </TableCell>
             </TableRow>

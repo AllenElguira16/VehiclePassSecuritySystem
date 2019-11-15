@@ -8,9 +8,10 @@ import Header from 'Components/Dashboard/Header'
 // import { useStyles } from 'styles'
 import Navigation from 'Components/Dashboard/Navigation'
 import { useStyles } from 'Assets/styles'
-import Home from './Home'
+// import Home from './Home'
 import Users from './Users'
 import EditCredentials from './EditCredentials'
+import { Redirect } from 'react-router-dom'
 
 const Dashboard: FC = () => {
   const { state, getSignInState } = useContext(AdminState)
@@ -21,6 +22,7 @@ const Dashboard: FC = () => {
     getSignInState()
   }, [getSignInState])
 
+  // if (window.location.href === "/") return <Redirect to="/users"/>
   return (
     <div className={styles.dashboardContainer}>
       <Header />
@@ -33,7 +35,7 @@ const Dashboard: FC = () => {
               <SignIn />
             ) : (
               <>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" render={() => <Redirect to="/users"/>} />
                 <Route exact path="/users" component={Users} />
                 <Route
                   exact

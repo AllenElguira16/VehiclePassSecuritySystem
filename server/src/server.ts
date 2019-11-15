@@ -18,8 +18,10 @@ const mongoInstance = connectMongo(session)
     '/': '${rootDir}/Controllers/**/*.ts',
   },
   mongoose: {
-    url:
-      'mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority',
+    url: 
+    // 'mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority'
+    'mongodb://localhost:27017/vpss'
+    ,
     connectionOptions: {
       useNewUrlParser: true,
       useFindAndModify: false,
@@ -42,6 +44,8 @@ export class Server extends ServerLoader {
               'https://vehicle-pass-security-system.herokuapp.com',
               'http://192.168.100.10',
               'http://192.168.100.5',
+              'http://192.168.0.107',
+              '10.203.1.23',
               'http://localhost',
             ]
             if (origin) {

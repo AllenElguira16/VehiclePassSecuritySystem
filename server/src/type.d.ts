@@ -16,7 +16,7 @@ export interface User {
 export type UserInput = Omit<User, 'id' | 'dateCreated'>
 
 export type AdminInput = {
-  id: string
+  _id: Partial<string>
   username: string
   password: string
 }

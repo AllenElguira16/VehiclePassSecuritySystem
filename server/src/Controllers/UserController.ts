@@ -56,28 +56,29 @@ class UserController {
     Response
   > {
     try {
-      if (!ObjectId.isValid(id)) {
-        const createHisory = new this.history({
-          type: 'error',
-          msg: `Invalid ID: ID Entered ${id}`,
-        })
-        await createHisory.save()
-        throw 'Not a valid ID'
-      }
+      // if (!ObjectId.isValid(id)) {
+      //   const createHisory = new this.history({
+      //     type: 'error',
+      //     msg: `Invalid ID: ID Entered ${id}`,
+      //   })
+      //   await createHisory.save()
+      //   throw 'Not a valid ID'
+      // }
       const user = await this.user.findById(new ObjectId(id)).exec()
+      console.log(user)
       if (user && user.errors) {
-        const createHisory = new this.history({
-          type: 'error',
-          msg: `LicenseID Mismatch: ID Entered ${id}`,
-        })
-        await createHisory.save()
+        // const createHisory = new this.history({
+        //   type: 'error',
+        //   msg: `LicenseID Mismatch: ID Entered ${id}`,
+        // })
+        // await createHisory.save()
         throw 'Not match'
       }
-      const createHisory = new this.history({
-        type: 'success',
-        msg: `Vehicle Entery: A user with ID: ${id} has successfully enter the campus`,
-      })
-      await createHisory.save()
+      // const createHisory = new this.history({
+      //   type: 'success',
+      //   msg: `Vehicle Entery: A user with ID: ${id} has successfully enter the campus`,
+      // })
+      // await createHisory.save()
       return { success: true }
     } catch (error) {
       return { error }
@@ -122,7 +123,7 @@ class UserController {
     try {
       // Check inputs
       const { id, licenseId, firstname, lastname, type } = params
-      console.log(params)
+      // console.log(params)
       if (licenseId === '' || firstname === '' || lastname === '')
         throw 'All inputs are required'
       // Updating to database
