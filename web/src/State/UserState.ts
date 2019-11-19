@@ -2,12 +2,12 @@ import { action, observable } from 'mobx'
 import Axios from 'axios'
 import {
   User,
-  UsersTableHeader,
   UserInput,
   UserState,
   CheckSorted,
   FormState,
   SortType,
+  TableHeader,
 } from 'type'
 import { createContext, ChangeEvent } from 'react'
 
@@ -26,7 +26,7 @@ class State {
    * check sort type on each column
    */
   @observable
-  public checkSorted: CheckSorted = {
+  public checkSorted: CheckSorted<User> = {
     firstname: 'desc',
     lastname: 'desc',
     type: 'desc',
@@ -100,7 +100,7 @@ class State {
   }
 
   @action.bound
-  handleSort = (key: UsersTableHeader['key']) => {
+  handleSort = (key: TableHeader<User>['key']) => {
     const currentSortType = this.checkSorted[key]
     // console.log(currentSortType);
     const sorted = this.userState.users.slice().sort((a, b) => {
@@ -112,7 +112,7 @@ class State {
   }
 
   @observable
-  checkSortType = (key: UsersTableHeader['key']): SortType => {
+  checkSortType = (key: TableHeader<User>['key']): SortType => {
     return this!.checkSorted[key]
   }
 

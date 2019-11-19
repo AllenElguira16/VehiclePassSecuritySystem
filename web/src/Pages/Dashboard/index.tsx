@@ -12,6 +12,7 @@ import { useStyles } from 'Assets/styles'
 import Users from './Users'
 import EditCredentials from './EditCredentials'
 import { Redirect } from 'react-router-dom'
+import History from './History'
 
 const Dashboard: FC = () => {
   const { state, getSignInState } = useContext(AdminState)
@@ -35,8 +36,9 @@ const Dashboard: FC = () => {
               <SignIn />
             ) : (
               <>
-                <Route exact path="/" render={() => <Redirect to="/users"/>} />
+                <Route exact path="/" render={() => <Redirect to="/users" />} />
                 <Route exact path="/users" component={Users} />
+                <Route exact path="/history" component={History} />
                 <Route
                   exact
                   path="/edit-credentials"

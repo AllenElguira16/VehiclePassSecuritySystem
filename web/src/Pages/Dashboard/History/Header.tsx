@@ -4,7 +4,7 @@ import { UsersState } from 'State'
 import {
   Container,
   Grid,
-  // Typography,
+  Typography,
   TextField,
   InputAdornment,
   IconButton,
@@ -35,10 +35,10 @@ const UsersForm: FC = () => {
 
   return (
     <Container maxWidth="xl">
-      <Grid alignItems="center" justify="flex-end" spacing={4} container>
-        {/* <Grid item>
+      <Grid alignItems="center" justify="space-between" spacing={4} container>
+        <Grid item>
           <Typography variant="h6">Users</Typography>
-        </Grid> */}
+        </Grid>
         <Grid item>
           <Grid container alignItems="center">
             <TextField

@@ -11,7 +11,7 @@ import { useStyles } from 'Assets/styles'
 import { Route, Switch as RouteSwitch, BrowserRouter } from 'react-router-dom'
 // Pages
 import Dashboard from 'Pages/Dashboard'
-import Main from 'Pages/Main'
+// import Main from 'Pages/Main'
 
 const App: FC = () => {
   const styles = useStyles()

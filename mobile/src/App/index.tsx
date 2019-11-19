@@ -33,7 +33,7 @@ export default () => {
         scanned: true
       });
       const { data } = await Axios.post("/user/check", { id: barcode.data });
-      // console.log(barcode)
+      console.log(data)
       if (data.error) { 
         Axios.get("/arduino/warn");
         Alert.alert("Error!", "QRCode is not valid");

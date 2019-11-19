@@ -6,7 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core'
-import { Person, Dashboard, History, ExitToApp, Edit } from '@material-ui/icons'
+import { Person, History, ExitToApp, Edit } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 import { useStyles } from 'Assets/styles'
 import { MainState, AdminState } from 'State'

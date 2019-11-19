@@ -33,29 +33,19 @@ const UserRows: FC = () => {
             <Forms type={formState.type} user={user} key={i} />
           ) : (
             <TableRow key={i}>
-              <TableCell size="small" align="left">
-                {user.licenseId}
-              </TableCell>
-              <TableCell size="small" align="left">
-                {user.firstname}
-              </TableCell>
-              <TableCell size="small" align="left">
-                {user.lastname}
-              </TableCell>
-              <TableCell size="small" align="left">
-                {user.type}
-              </TableCell>
-              <TableCell size="small" align="left">
-                {formatDate(user.dateCreated)}
-              </TableCell>
-              <TableCell size="small" align="right">
-                <IconButton onClick={onClick('edit', i)}>
+              <TableCell align="left">{user.licenseId}</TableCell>
+              <TableCell align="left">{user.firstname}</TableCell>
+              <TableCell align="left">{user.lastname}</TableCell>
+              <TableCell align="left">{user.type}</TableCell>
+              <TableCell align="left">{formatDate(user.dateCreated)}</TableCell>
+              <TableCell align="right">
+                <IconButton size="small" onClick={onClick('edit', i)}>
                   <Edit />
                 </IconButton>
-                <IconButton onClick={onClick('delete', i)}>
+                <IconButton size="small" onClick={onClick('delete', i)}>
                   <Delete />
                 </IconButton>
-                <IconButton onClick={() => setModalOpen(true)}>
+                <IconButton size="small" onClick={() => setModalOpen(true)}>
                   <Print />
                 </IconButton>
                 <ModalQR

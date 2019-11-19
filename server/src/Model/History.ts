@@ -6,17 +6,11 @@ export class History {
   @ObjectID('id')
   public _id!: string
 
-  @ObjectID()
-  @Unique()
+  @Property()
   public type!: string
 
   @Property()
   public msg!: string
-  // @Property()
-  // public timeIn!: Date
-
-  // @Property()
-  // public timeOut!: Date
 
   @Property()
   @Default(Date.now())
