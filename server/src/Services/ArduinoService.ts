@@ -1,8 +1,8 @@
-import { Controller, Get } from '@tsed/common'
+import { Service } from '@tsed/common'
 import { Board, Led, Servo } from 'johnny-five'
 
-@Controller('/arduino')
-class ArduinoController {
+@Service()
+class ArduinoService {
   /**
    * Initialize Board
    */
@@ -15,7 +15,6 @@ class ArduinoController {
   /**
    * Open boom barrier
    */
-  @Get('/open')
   public openBoomBarrier(): void {
     const led = new Led(13)
     led.on()
@@ -31,22 +30,11 @@ class ArduinoController {
   /**
    * Warn
    */
-  @Get('/warn')
   public warn(): void {
     const led = new Led(12)
     led.on()
     setTimeout(() => led.off(), this.timeout)
   }
-
-  // @Get('/motor')
-  // public motor(): void {
-  //   const servo = new Servo({
-  //     pin: 11,
-  //     startAt: 90,
-  //   });
-  //   setTimeout(() => servo.to(0), 8000); // Pull up
-  //   servo.home(); // Pull down
-  // }
 }
 
-export default ArduinoController
+export default ArduinoService

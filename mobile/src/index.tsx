@@ -11,6 +11,8 @@ const { manifest } = Constants;
 const isProd = !__DEV__;
 
 // if (manifest.debuggerHost) {
+// Axios.defaults.baseURL = "http://192.168.100.5:8000";
+// Axios.defaults.baseURL = isProd ? "" : "http://192.168.100.5:8000";
 Axios.defaults.baseURL = isProd ? "" : "http://10.203.1.23:8000";
 Axios.defaults.withCredentials = true;
 // }

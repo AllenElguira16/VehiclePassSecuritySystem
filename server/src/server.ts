@@ -1,4 +1,8 @@
-import { ServerLoader, ServerSettings, GlobalAcceptMimesMiddleware } from '@tsed/common'
+import {
+  ServerLoader,
+  ServerSettings,
+  GlobalAcceptMimesMiddleware,
+} from '@tsed/common'
 import '@tsed/mongoose'
 import express from 'express'
 import helmet from 'helmet'
@@ -18,10 +22,9 @@ const mongoInstance = connectMongo(session)
     '/': '${rootDir}/Controllers/**/*.ts',
   },
   mongoose: {
-    url: 
-    // 'mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority'
-    'mongodb://localhost:27017/vpss'
-    ,
+    url:
+      // 'mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority'
+      'mongodb://localhost:27017/vpss',
     connectionOptions: {
       useNewUrlParser: true,
       useFindAndModify: false,
@@ -43,6 +46,7 @@ export class Server extends ServerLoader {
             const whiteList = [
               'https://vehicle-pass-security-system.herokuapp.com',
               'http://192.168.100.10',
+              'http://192.168.100.8',
               'http://192.168.100.5',
               'http://192.168.0.107',
               '10.203.1.23',
@@ -50,7 +54,8 @@ export class Server extends ServerLoader {
             ]
             if (origin) {
               const parsedOrigin = origin.replace(/(https?:\/\/.+)\:.+/, '$1')
-              if (whiteList.indexOf(parsedOrigin) === -1 || !origin) return callback(new Error('Not allowed by cors'))
+              if (whiteList.indexOf(parsedOrigin) === -1 || !origin)
+                return callback(new Error('Not allowed by cors'))
             }
             return callback(null, true)
           },

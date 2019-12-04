@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import { Modal, Grid, Button, makeStyles } from '@material-ui/core'
+import LNULogo from 'Assets/images/LNULogoFrontPage.webp'
 import { QRCode } from 'react-qrcode-logo'
 import printjs from 'print-js'
 
@@ -77,7 +78,7 @@ const ModalQR: FC<Props> = ({ setModalOpen, modalOpen, id }) => {
         spacing={0}
         justify="center"
       >
-        <QRCode value={id} size={400} />
+        <QRCode value={id} size={400} logoImage={LNULogo} />
         <Grid item md={12}>
           <Button onClick={print}>Print</Button>
           <Button onClick={() => setModalOpen(false)}>Cancel</Button>

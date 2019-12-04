@@ -13,6 +13,7 @@ import { MongooseModel } from '@tsed/mongoose'
 import { Response, UserInput } from 'type'
 import { ObjectId } from 'mongodb'
 import { History } from 'Model/History'
+import ArduinoService from 'Services/ArduinoService'
 
 interface PathParamsInterface {
   id: string
@@ -29,6 +30,7 @@ class UserController {
   constructor(
     @Inject(User) private user: MongooseModel<User>,
     @Inject(History) public history: MongooseModel<History>,
+    private readonly arduinoService: ArduinoService,
   ) {}
   /**
    * Returns all or search Users base on keyword
@@ -65,7 +67,6 @@ class UserController {
         throw 'Not a valid ID'
       }
       const user = await this.user.findById(new ObjectId(id)).exec()
-      console.log(user)
       if (user) {
         if (user.errors) {
           const createHisory = new this.history({
@@ -83,8 +84,10 @@ class UserController {
         }
       }
     } catch (error) {
+      if (error) this.arduinoService.warn()
       return { error }
     }
+    this.arduinoService.openBoomBarrier()
     return { success: true }
   }
 
@@ -100,10 +103,10 @@ class UserController {
     @BodyParams() params: BodyParamsInterface,
   ): Promise<Response> {
     const { firstname, lastname, type, licenseId } = params
-    const LicenseFormat = /^\w{3}-\w{2}-\w{6}$/gm
+    // const LicenseFormat = /^\w{3}-\w{2}-\w{6}$/gm
     try {
-      if (!LicenseFormat.test(licenseId))
-        throw 'Incorrect license Format, it should be XXX-XXX-XXXXXX'
+      // if (!LicenseFormat.test(licenseId))
+      //   throw 'Incorrect license Format, it should be XXX-XXX-XXXXXX'
       // Check if empty
       if (licenseId === '' || firstname === '' || lastname === '')
         throw 'Inputs are Empty'
