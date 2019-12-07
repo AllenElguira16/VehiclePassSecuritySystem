@@ -1,7 +1,7 @@
 export interface User {
   id: string
-  licenseId: string
-  type: 'Employee' | 'Student' | 'Visitor'
+  schoolID: string
+  type: 'Employee' | 'Student'
   firstname: string
   lastname: string
   dateCreated: Date

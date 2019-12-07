@@ -14,24 +14,26 @@ class State {
     username: '',
     password: '',
   }
-
+  /**
+   * Signing admin user by sending data to server then wait for response
+   */
   @action.bound
   public signIn = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // this.state.isLoading = true
     let { data } = await Axios.post('/admin', this.userInput)
     if (data.success) this.getSignInState()
   }
-
+  /**
+   * Update admin credentials
+   */
   @action.bound
   update = async () => {
-    // this.state.isLoading = true
     const { data } = await Axios.put(`/admin`, this.userInput)
     return data
-    // console.log(data)
-    // this.state.isLoading = false
   }
-
+  /**
+   * Checks if the admin session is already established
+   */
   @action.bound
   getSignInState = async () => {
     this.state.isLoading = true
@@ -40,13 +42,17 @@ class State {
     else this.state.isLoggedIn = false
     this.state.isLoading = false
   }
-
+  /**
+   * Destroy admin session
+   */
   @action.bound
   signOut = async () => {
     let { data } = await Axios.delete('/admin/logout')
     if (data.success) await this.getSignInState()
   }
-
+  /**
+   * Change admin state
+   */
   @action.bound
   onInputChange = (key: keyof AdminInput) => (
     event: ChangeEvent<HTMLInputElement>,

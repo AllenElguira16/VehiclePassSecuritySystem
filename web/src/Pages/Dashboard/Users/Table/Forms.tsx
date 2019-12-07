@@ -33,7 +33,7 @@ const Form: FC<Props> = props => {
   const { openAlert } = useContext(AlertState)
   const styles = useStyles()
   const { userInput } = formState
-  const userType = ['Employee', 'Student', 'Visitor']
+  const userType = ['Employee', 'Student']
   const onClose = () => {
     if (formState.currentKey !== null) formState.currentKey = null
     closeAddForm()
@@ -41,8 +41,8 @@ const Form: FC<Props> = props => {
 
   useEffect(() => {
     if (props.type === 'edit' && props.user) {
-      const { id, firstname, lastname, type, licenseId } = props.user
-      formState.userInput = { id, firstname, lastname, type, licenseId }
+      const { id, firstname, lastname, type, schoolID } = props.user
+      formState.userInput = { id, firstname, lastname, type, schoolID }
     }
   }, [formState, props])
 
@@ -69,8 +69,8 @@ const Form: FC<Props> = props => {
     formState.currentKey = null
     openAlert('success', dataResponse.data.success)
   }
-  const keys: Key = ['licenseId', 'firstname', 'lastname']
-  const placeholders = ['License ID', 'Firstname', 'Lastname']
+  const keys: Key = ['schoolID', 'firstname', 'lastname']
+  const placeholders = ['School ID', 'Firstname', 'Lastname']
   return (
     <TableRow>
       {props.type !== 'delete' ? (
@@ -102,13 +102,13 @@ const Form: FC<Props> = props => {
           <TableCell align="left" />
         </>
       ) : (
-        <TableCell colSpan={4}>Are you sure you want to delete?</TableCell>
+        <TableCell colSpan={5}>Are you sure you want to delete?</TableCell>
       )}
-      <TableCell>
-        <IconButton onClick={onSubmit(props.type)}>
+      <TableCell align="right">
+        <IconButton size="small" onClick={onSubmit(props.type)}>
           <Check />
         </IconButton>
-        <IconButton onClick={onClose}>
+        <IconButton size="small" onClick={onClose}>
           <Clear />
         </IconButton>
       </TableCell>

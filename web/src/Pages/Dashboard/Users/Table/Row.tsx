@@ -33,7 +33,7 @@ const UserRows: FC = () => {
             <Forms type={formState.type} user={user} key={i} />
           ) : (
             <TableRow key={i}>
-              <TableCell align="left">{user.licenseId}</TableCell>
+              <TableCell align="left">{user.schoolID}</TableCell>
               <TableCell align="left">{user.firstname}</TableCell>
               <TableCell align="left">{user.lastname}</TableCell>
               <TableCell align="left">{user.type}</TableCell>

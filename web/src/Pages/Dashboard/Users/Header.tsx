@@ -10,12 +10,13 @@ import {
   IconButton,
   MenuItem,
 } from '@material-ui/core'
+import { User } from 'type'
 
-type SelectType = 'firstname' | 'lastname' | 'licenseId'
+type Key = keyof Omit<User, 'id'>
 
 const UsersForm: FC = () => {
   const { openAddForm, onClear, formState, fetchUsers } = useContext(UsersState)
-  const [selectType, setSelectType] = useState<SelectType>('licenseId')
+  const [selectType, setSelectType] = useState<Key>('schoolID')
   const toggle = () => {
     if (formState.currentKey !== null) formState.currentKey = null
     openAddForm()
@@ -27,11 +28,11 @@ const UsersForm: FC = () => {
   }
 
   const onSelectType = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    setSelectType(target.value as SelectType)
+    setSelectType(target.value as Key)
   }
 
-  const searchLists = ['licenseId', 'firstname', 'lastname']
-  const searchNames = ['License ID', 'Firstname', 'Lastname']
+  const searchLists: Key[] = ['schoolID', 'firstname', 'lastname']
+  const searchNames = ['School ID', 'Firstname', 'Lastname']
 
   return (
     <Container maxWidth="xl">

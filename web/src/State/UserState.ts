@@ -30,7 +30,7 @@ class State {
     firstname: 'desc',
     lastname: 'desc',
     type: 'desc',
-    licenseId: 'desc',
+    schoolID: 'desc',
     dateCreated: 'desc',
   }
   /**
@@ -41,7 +41,7 @@ class State {
     firstname: '',
     lastname: '',
     type: 'Employee',
-    licenseId: '',
+    schoolID: '',
   }
   /**
    * Form State
@@ -83,12 +83,16 @@ class State {
   public closeAddForm = () => {
     this.formState.isOpen = false
   }
-
+  /**
+   * Clear UserInput state
+   */
   @action.bound
   public onClear = () => {
     this.formState.userInput = this.preState
   }
-
+  /**
+   * Change UserInput based on form-input element
+   */
   @action.bound
   onChange = (key: keyof UserInput) => (
     event: ChangeEvent<HTMLInputElement>,
@@ -98,7 +102,9 @@ class State {
       [key]: event.target.value,
     }
   }
-
+  /**
+   * Sort UserTable row ascending and descending
+   */
   @action.bound
   handleSort = (key: TableHeader<User>['key']) => {
     const currentSortType = this.checkSorted[key]
@@ -110,12 +116,16 @@ class State {
     })
     this.userState.users = sorted
   }
-
+  /**
+   * Check what kind of sort if its ascending or descending
+   */
   @observable
   checkSortType = (key: TableHeader<User>['key']): SortType => {
     return this!.checkSorted[key]
   }
-
+  /**
+   * Returns true if the form is open
+   */
   @observable
   isFormOpen = (): boolean => {
     return this.formState.isOpen || this.formState.currentKey !== null

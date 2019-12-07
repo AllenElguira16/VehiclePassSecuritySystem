@@ -102,5 +102,8 @@ export const useStyles = makeStyles(theme => ({
   warning: {
     backgroundColor: amber[700],
   },
+  tableSortIconStyle: {
+
+  }
   // },
 }))

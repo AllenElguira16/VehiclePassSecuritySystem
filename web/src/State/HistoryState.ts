@@ -17,9 +17,6 @@ type HistoryState = {
 }
 
 class State {
-  /**
-   * User state
-   */
   @observable
   public historyState: HistoryState = {
     isLoading: true,
@@ -27,9 +24,7 @@ class State {
     page: 0,
     histories: [],
   }
-  /**
-   * check sort type on each column
-   */
+
   @observable
   public checkSorted: CheckSorted<History> = {
     msg: 'asc',
@@ -37,9 +32,6 @@ class State {
     dateCreated: 'asc',
   }
 
-  /**
-   * Form State
-   */
   @observable
   public formState: HistoryFormState = {
     isOpen: false,
@@ -48,7 +40,7 @@ class State {
     currentKey: null,
   }
   /**
-   * fetch users
+   * fetch history
    */
   @action.bound
   fetchHistories = async () => {
@@ -77,21 +69,6 @@ class State {
   public closeAddForm = () => {
     this.formState.isOpen = false
   }
-
-  // @action.bound
-  // public onClear = () => {
-  //   this.formState.userInput = this.preState
-  // }
-
-  // @action.bound
-  // onChange = (key: keyof UserInput) => (
-  //   event: ChangeEvent<HTMLInputElement>,
-  // ) => {
-  //   this.formState.userInput = {
-  //     ...this.formState.userInput,
-  //     [key]: event.target.value,
-  //   }
-  // }
 
   @action.bound
   handleSort = (key: TableHeader<History>['key']) => {

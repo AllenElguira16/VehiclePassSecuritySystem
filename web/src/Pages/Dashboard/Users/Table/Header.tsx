@@ -13,8 +13,8 @@ type Key = Array<keyof Omit<User, 'id'>>
 
 const TableHeader: FC = () => {
   const { handleSort, checkSortType, isFormOpen } = useContext(UsersState)
-  const key: Key = ['licenseId', 'firstname', 'lastname', 'type', 'dateCreated']
-  const lists = ['License ID', 'Firstname', 'Lastname', 'Type', 'Date']
+  const key: Key = ['schoolID', 'firstname', 'lastname', 'type', 'dateCreated']
+  const lists = ['School ID', 'Firstname', 'Lastname', 'Type', 'Date']
 
   return (
     <TableHead>

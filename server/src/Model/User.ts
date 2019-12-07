@@ -16,7 +16,7 @@ export class User {
 
   @ObjectID()
   @Unique()
-  public licenseId!: string
+  public schoolID!: string
 
   @Property()
   public type!: string
