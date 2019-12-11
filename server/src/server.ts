@@ -49,6 +49,7 @@ export class Server extends ServerLoader {
               'http://192.168.100.8',
               'http://192.168.100.5',
               'http://192.168.0.107',
+              'http://127.0.0.1',
               '10.203.1.23',
               'http://localhost',
             ]
