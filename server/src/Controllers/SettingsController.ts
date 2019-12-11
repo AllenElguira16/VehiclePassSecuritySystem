@@ -1,14 +1,14 @@
 import { Controller, Get } from '@tsed/common'
-import ArduinoService from 'Services/ArduinoService'
+// import ArduinoService from 'Services/ArduinoService'
 
-@Controller('/')
+@Controller('/settings')
 class SettingsController {
-  constructor(private readonly arduinoService: ArduinoService) {}
+  // constructor(private readonly arduinoService: ArduinoService) {}
 
-  @Get()
-  public hello(): string {
-    return 'Hello'
+  @Get('/get')
+  public getTimeOut() {
+    // return this.arduinoService.timeout
   }
 }
 
-export default TestController
+export default SettingsController

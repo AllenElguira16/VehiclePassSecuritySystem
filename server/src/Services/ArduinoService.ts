@@ -10,7 +10,7 @@ class ArduinoService {
     new Board()
   }
 
-  private timeout = 8000
+  public timeout = 8000
 
   /**
    * Open boom barrier
