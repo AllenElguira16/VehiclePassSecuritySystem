@@ -1,13 +1,20 @@
-import { Controller, Get } from '@tsed/common'
-// import ArduinoService from 'Services/ArduinoService'
+import { Controller, Get, Post, BodyParams } from '@tsed/common'
+import ArduinoService from 'Services/ArduinoService'
+import { Response } from 'type'
 
 @Controller('/settings')
 class SettingsController {
-  // constructor(private readonly arduinoService: ArduinoService) {}
+  constructor(private readonly arduinoService: ArduinoService) {}
 
-  @Get('/get')
+  @Get('/timeout')
   public getTimeOut() {
-    // return this.arduinoService.timeout
+    return { value: this.arduinoService.timeout }
+  }
+
+  @Post('/timeout')
+  public changeTimeOut(@BodyParams() { timeout }: any): Response {
+    this.arduinoService.timeout = timeout
+    return { success: true }
   }
 }
 
