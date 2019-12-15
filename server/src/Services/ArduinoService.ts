@@ -7,7 +7,7 @@ class ArduinoService {
    * Initialize Board
    */
   constructor() {
-    new Board()
+    // new Board()
   }
 
   public timeout = 8000

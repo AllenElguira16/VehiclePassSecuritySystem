@@ -3,6 +3,9 @@ import { Text, Input, Button } from "react-native-elements";
 import { View, Alert, StyleSheet } from "react-native";
 import Axios from "axios";
 
+/**
+ * Settings Page
+ */
 const Settings: FC = () => {
   const [timeout, changeTimeout] = useState("");
 
@@ -13,6 +16,7 @@ const Settings: FC = () => {
     };
     getTimeOut();
   }, []);
+
   /**
    * Change Duration based on the text given by TextInput
    * @param duration value of duration //default 8
@@ -21,6 +25,9 @@ const Settings: FC = () => {
     changeTimeout(duration);
   };
 
+  /**
+   * Submit data to server with axios
+   */
   const onSubmit = async () => {
     const { data } = await Axios.post("/settings/timeout", {
       timeout
