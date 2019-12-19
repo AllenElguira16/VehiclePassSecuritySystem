@@ -23,8 +23,8 @@ const mongoInstance = connectMongo(session)
   },
   mongoose: {
     url:
-      // 'mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority'
-      'mongodb://localhost:27017/vpss',
+      'mongodb+srv://user:user@clustersofstars-renyu.mongodb.net/vehicle-pass-security-system?retryWrites=true&w=majority',
+      // 'mongodb://localhost:27017/vpss',
     connectionOptions: {
       useNewUrlParser: true,
       useFindAndModify: false,
