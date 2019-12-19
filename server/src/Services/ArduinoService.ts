@@ -7,7 +7,10 @@ class ArduinoService {
    * Initialize Board
    */
   constructor() {
-    // new Board()
+    // let board = new Board()
+    // board.on('ready', () => {
+    //   console.log('Ready')
+    // })
   }
 
   public timeout = 8000
