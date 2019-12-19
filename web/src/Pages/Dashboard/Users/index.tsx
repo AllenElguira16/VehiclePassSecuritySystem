@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import Header from './Header'
 import Table from './Table'
 import Alert from './Alert'
+import ModalQR from './ModalQR'
 
 const Users: FC = () => {
   return (
@@ -12,6 +13,7 @@ const Users: FC = () => {
         <Header />
         <Table />
       </Paper>
+      <ModalQR />
       <Alert />
     </>
   )

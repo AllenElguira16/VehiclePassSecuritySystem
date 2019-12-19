@@ -9,7 +9,7 @@
     "lib": ["esnext"],
     // "noEmit": true,
     // "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    // "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

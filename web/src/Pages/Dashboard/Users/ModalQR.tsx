@@ -1,14 +1,10 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useContext } from 'react'
 import { Modal, Grid, Button, makeStyles } from '@material-ui/core'
 import LNULogo from 'Assets/images/LNULogoFrontPage.webp'
 import { QRCode } from 'react-qrcode-logo'
 import printjs from 'print-js'
-
-interface Props {
-  setModalOpen: (val: boolean) => void
-  modalOpen: boolean
-  id: string
-}
+import { ModalState } from 'State/ModalState'
+import { observer } from 'mobx-react-lite'
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -32,7 +28,7 @@ function getModalStyle() {
   }
 }
 
-const ModalQR: FC<Props> = ({ setModalOpen, modalOpen, id }) => {
+const ModalQR: FC = () => {
   const styles = useStyles()
   const print = () => {
     const elem = document.querySelector('#qr-modal')
@@ -63,7 +59,8 @@ const ModalQR: FC<Props> = ({ setModalOpen, modalOpen, id }) => {
     return canvas.toDataURL()
   }
   const [modalStyle] = useState(getModalStyle)
-
+  const { state, setModalOpen } = useContext(ModalState)
+  const { modalOpen, id } = state
   return (
     <Modal
       style={{ outline: 0 }}
@@ -88,4 +85,4 @@ const ModalQR: FC<Props> = ({ setModalOpen, modalOpen, id }) => {
   )
 }
 
-export default ModalQR
+export default observer(ModalQR)
