@@ -13,7 +13,8 @@ import { MongooseModel } from '@tsed/mongoose'
 import { Response, UserInput } from 'type'
 import { ObjectId } from 'mongodb'
 import { History } from 'Model/History'
-import ArduinoService from 'Services/ArduinoService'
+import ArduinoService from 'Providers/ArduinoService'
+import { MySocketService } from 'Providers/SocketService'
 
 interface PathParamsInterface {
   id: string
@@ -30,8 +31,9 @@ class UserController {
   constructor(
     @Inject(User) private user: MongooseModel<User>,
     @Inject(History) public history: MongooseModel<History>,
-    private readonly arduinoService: ArduinoService,
-  ) {}
+    private socketService: MySocketService,
+  ) // private readonly arduinoService: ArduinoService,
+  {}
   /**
    * Returns all or search Users base on keyword
    * @param params userParams
@@ -84,10 +86,12 @@ class UserController {
         }
       }
     } catch (error) {
-      if (error) this.arduinoService.warn()
+      if (error) this.socketService.warn()
+      // if (error) this.arduinoService.warn()
       return { error }
     }
-    this.arduinoService.openBoomBarrier()
+    this.socketService.openBoomBarrier()
+    // this.arduinoService.openBoomBarrier()
     return { success: true }
   }
 

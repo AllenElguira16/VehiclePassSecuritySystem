@@ -1,0 +1,7 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "ignore": ["./src/**/*.d.ts"],
+  "exec": "clear && ts-node src/index.ts",
+  "quiet": true
+}

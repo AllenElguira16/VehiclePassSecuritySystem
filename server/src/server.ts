@@ -17,7 +17,9 @@ const mongoInstance = connectMongo(session)
   acceptMimes: ['accept/json'],
   httpPort: process.env.PORT || 8000,
   httpsPort: process.env.PORT || 8080,
-  // socketIO: {},
+  socketIO: {
+    origins: '*'
+  },
   mount: {
     '/': '${rootDir}/Controllers/**/*.ts',
   },
