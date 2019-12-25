@@ -1,4 +1,12 @@
-import { Namespace, SocketService, Socket, SocketSession } from '@tsed/socketio'
+import {
+  Namespace,
+  SocketService,
+  Socket,
+  SocketSession,
+  Input,
+  Args,
+  Emit,
+} from '@tsed/socketio'
 
 @SocketService()
 export class MySocketService {
@@ -31,5 +39,17 @@ export class MySocketService {
 
   public warn() {
     this.nsp.emit('warn')
+  }
+
+  public askTimeout() {
+    this.nsp.emit('askTimeout')
+  }
+
+  public timeout: number = 8000
+
+  @Input('askTimeout')
+  @Emit('getTimeout')
+  public async getTimeout() {
+    return this.timeout
   }
 }

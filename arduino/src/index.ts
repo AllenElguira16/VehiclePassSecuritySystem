@@ -5,10 +5,12 @@ const socket = io.connect("http://localhost:8000");
 
 let board = new Board();
 board.on("ready", () => {
-  const timeout = 8000;
+  let timeout: number;
 
-  socket.on("askTimeout", () => {
-    socket.emit("timeout", timeout);
+  socket.emit("askTimeout");
+  socket.on("getTimeout", (timeoutValue: number) => {
+    console.log(timeoutValue);
+    timeout = timeoutValue;
   });
 
   socket.on("open", () => {
