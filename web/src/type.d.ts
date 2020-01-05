@@ -63,3 +63,5 @@ export interface AlertComponentProps {
   open: boolean
   onClose: () => void
 }
+
+export type ThemeColor = 'dark' | 'light'

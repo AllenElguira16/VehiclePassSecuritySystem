@@ -4,7 +4,7 @@ import App from 'App'
 import * as serviceWorker from './serviceWorker'
 import Axios from 'axios'
 
-const { NODE_ENV } = process.env
+// const { NODE_ENV } = process.env
 // Axios.defaults.baseURL = 'http://192.168.100.5:8000'
 Axios.defaults.baseURL = 'http://localhost:8000'
 
