@@ -15,6 +15,7 @@ import Alert from 'App/Components/Alert'
 import { Alert as AlertStateProps } from 'type'
 
 const EditCredentials: FC = () => {
+  const styles = useStyles()
   const { onInputChange, update } = useContext(AdminState)
   const [alertState, setAlertState] = useState<AlertStateProps>({
     type: '',
@@ -22,7 +23,6 @@ const EditCredentials: FC = () => {
     msg: '',
   })
 
-  const styles = useStyles()
   const onUpdate = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
     const response = await update()

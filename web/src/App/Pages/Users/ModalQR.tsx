@@ -69,9 +69,9 @@ const ModalQR: FC = () => {
       onClose={() => setModalOpen(false)}
     >
       <Grid
+        className={styles.paper}
         container
         style={modalStyle}
-        className={styles.paper}
         spacing={0}
         justify="center"
       >

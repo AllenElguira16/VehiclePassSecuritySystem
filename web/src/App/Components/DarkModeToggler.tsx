@@ -20,11 +20,10 @@ const DarkModeToggler: FC<Props> = props => {
 
   return (
     <Fab
+      className={styles.darkToggler}
       color="primary"
-      // variant="extended"
       onClick={toggleDarkMode}
       aria-label="toggle-dark"
-      className={styles.darkToggler}
     >
       <Tooltip title="Toggle Dark">
         <Switch

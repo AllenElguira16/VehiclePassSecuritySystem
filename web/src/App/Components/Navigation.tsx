@@ -36,40 +36,37 @@ const Navigation: FC = () => {
   ]
 
   return (
-    <Route
-      path="/"
-      render={() =>
-        adminState.state.isLoggedIn && (
-          <Drawer
-            className={state.isNavOpen ? styles.drawerOpen : styles.drawerClose}
-            variant="persistent"
-            classes={{
-              paper: styles.drawerPaper,
-            }}
-            open={state.isNavOpen}
-            anchor="left"
-          >
-            <div className={styles.toolbar} />
-            <List>
-              {navList.map((nav, i) => (
-                <ListItem button key={i} component={Link} to={nav.link}>
-                  <ListItemIcon>{nav.icon}</ListItemIcon>
-                  <ListItemText primary={nav.name} />
-                </ListItem>
-              ))}
-            </List>
-            <List style={{ marginTop: 'auto' }}>
-              <ListItem button onClick={signOut}>
-                <ListItemIcon>
-                  <ExitToApp />
-                </ListItemIcon>
-                <ListItemText primary="Logout" />
+    <>
+      {adminState.state.isLoggedIn && (
+        <Drawer
+          className={styles.drawer}
+          variant="permanent"
+          classes={{
+            paper: styles.drawerPaper,
+          }}
+          open={state.isNavOpen}
+          anchor="left"
+        >
+          <div className={styles.toolbar} />
+          <List>
+            {navList.map((nav, i) => (
+              <ListItem button key={i} component={Link} to={nav.link}>
+                <ListItemIcon>{nav.icon}</ListItemIcon>
+                <ListItemText primary={nav.name} />
               </ListItem>
-            </List>
-          </Drawer>
-        )
-      }
-    />
+            ))}
+          </List>
+          <List style={{ marginTop: 'auto' }}>
+            <ListItem button onClick={signOut}>
+              <ListItemIcon>
+                <ExitToApp />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItem>
+          </List>
+        </Drawer>
+      )}
+    </>
   )
 }
 

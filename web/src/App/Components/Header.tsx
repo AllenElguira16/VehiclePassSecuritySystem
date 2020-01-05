@@ -16,12 +16,12 @@ const Header: FC = () => {
   const styles = useStyles()
 
   return (
-    <AppBar position="fixed" color="inherit" className={styles.header}>
+    <AppBar className={styles.header} position="fixed" color="inherit">
       <Container>
         <Toolbar>
-          <IconButton onClick={toggleNav} edge="start">
+          {/* <IconButton onClick={toggleNav} edge="start">
             <Menu />
-          </IconButton>
+          </IconButton> */}
           <img src={logo} alt="Logo" className={styles.menuButton} />
           <Typography variant="h6" className={styles.title}>
             Vehicle Pass Security System - Dashboard

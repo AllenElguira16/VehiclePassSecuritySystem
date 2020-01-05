@@ -25,6 +25,9 @@ const App: FC = () => {
       },
       type: themeColor,
     },
+    zIndex: {
+      appBar: 2000,
+    },
   })
 
   const changeTheme = () => {
@@ -44,20 +47,18 @@ const App: FC = () => {
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <div className={styles.dashboardContainer}>
+        <div style={{ display: 'flex' }}>
           <Header />
-          <div className={styles.toolbar} />
-          <div style={{ display: 'flex' }}>
-            <Navigation />
-            <main className={styles.dashboardContent}>
-              <Router />
-            </main>
-          </div>
+          <Navigation />
+          <main className={styles.content}>
+            <div className={styles.toolbar} />
+            <Router />
+          </main>
+          <DarkModeToggler
+            themeColor={themeColor}
+            changeThemeColor={changeTheme}
+          />
         </div>
-        <DarkModeToggler
-          themeColor={themeColor}
-          changeThemeColor={changeTheme}
-        />
       </MuiThemeProvider>
     </BrowserRouter>
   )

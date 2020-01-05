@@ -23,8 +23,8 @@ const Alert: FC<AlertComponentProps> = props => {
       onClose={onClose}
     >
       <SnackbarContent
-        style={{ color: '#FFF' }}
         className={props.type !== '' ? styles[props.type] : ''}
+        style={{ color: '#FFF' }}
         message={props.children}
       />
     </Snackbar>
