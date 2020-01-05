@@ -4,7 +4,7 @@
   "description": "Backend services for vehicle pass security system",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon",
+    "start": "nodemon",
     "start:prod": "ts-node -r tsconfig-paths/register src/index.ts"
   },
   "author": "Allen Elguira",

@@ -92,7 +92,8 @@ class UserController {
     }
     this.socketService.openBoomBarrier()
     // this.arduinoService.openBoomBarrier()
-    return { success: true }
+    const timeout = this.socketService.timeout * 0.001
+    return { success: `You have ${timeout} seconds before the gate closes` }
   }
 
   @Get('/get-id/:id')

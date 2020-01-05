@@ -4,7 +4,7 @@ import { Response } from 'type'
 import { MySocketService } from 'Providers/SocketService'
 
 interface ChangeTimeout {
-  timeout: number
+  timeout: string
 }
 
 @Controller('/settings')
@@ -25,7 +25,8 @@ class SettingsController {
    */
   @Post('/timeout')
   public changeTimeOut(@BodyParams() param: ChangeTimeout): Response {
-    this.socketService.timeout = param.timeout
+    this.socketService.timeout = parseInt(param.timeout)
+    this.socketService.nsp.emit('getTimeout', this.socketService.timeout)
     return { success: true }
   }
 }

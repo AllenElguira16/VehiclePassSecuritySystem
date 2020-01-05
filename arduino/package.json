@@ -15,7 +15,7 @@
     "@types/socket.io-client": "^1.4.32"
   },
   "scripts": {
-    "start": "npx nodemon"
+    "start": "nodemon"
   },
   "author": "",
   "license": "ISC"
