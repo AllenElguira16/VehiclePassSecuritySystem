@@ -1,8 +1,18 @@
 import React, { FC, SyntheticEvent } from 'react'
-import { Snackbar, SnackbarContent } from '@material-ui/core'
+import { Snackbar, SnackbarContent, makeStyles } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
-import { useStyles } from 'Assets/styles'
+// import { useStyles } from 'Assets/styles'
 import { AlertComponentProps } from 'type'
+import { green } from '@material-ui/core/colors'
+
+const useStyles = makeStyles(theme => ({
+  success: {
+    backgroundColor: green[600],
+  },
+  error: {
+    backgroundColor: theme.palette.error.dark,
+  },
+}))
 
 const Alert: FC<AlertComponentProps> = props => {
   const styles = useStyles()

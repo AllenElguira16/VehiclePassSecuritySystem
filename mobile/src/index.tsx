@@ -17,9 +17,10 @@ import { getIpAddressAsync } from "expo-network";
 const isProd = !__DEV__;
 
 // async function bootstrap() {
-Axios.defaults.baseURL = isProd
-  ? `http://${getIpAddressAsync().then(ip => ip)}:8000`
-  : "http://192.168.100.5:8000";
+// Axios.defaults.baseURL = isProd
+//   ? `http://${getIpAddressAsync().then(ip => ip)}:8000`
+//   : "http://10.8.6.49:8000";
+Axios.defaults.baseURL = "http://10.8.6.49:8000";
 Axios.defaults.withCredentials = true;
 // }
 // bootstrap();

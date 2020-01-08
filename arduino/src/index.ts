@@ -9,8 +9,11 @@ board.on("ready", () => {
 
   socket.emit("askTimeout");
   socket.on("getTimeout", (timeoutValue: number) => {
-    console.log(timeoutValue);
     timeout = timeoutValue;
+    console.log("\n");
+    console.table({
+      timeout
+    });
   });
 
   socket.on("open", () => {
