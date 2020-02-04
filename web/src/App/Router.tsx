@@ -7,6 +7,7 @@ import SignIn from 'App/Pages/SignIn'
 import Users from 'App/Pages/Users'
 import History from 'App/Pages/History'
 import EditCredentials from 'App/Pages/EditCredentials'
+import NightModeSettings from './Pages/NightModeSettings'
 
 const Router: FC = () => {
   const { state, getSignInState } = useContext(AdminState)
@@ -24,6 +25,11 @@ const Router: FC = () => {
         <Route exact path="/" render={() => <Redirect to="/users" />} />
         <Route exact path="/users" component={Users} />
         <Route exact path="/history" component={History} />
+        <Route
+          exact
+          path="/night-mode-settings"
+          component={NightModeSettings}
+        />
         <Route exact path="/edit-credentials" component={EditCredentials} />
       </>
     )

@@ -1,31 +1,30 @@
-import React, { FC, useContext } from 'react'
-import {
-  AppBar,
-  Typography,
-  Container,
-  Toolbar,
-  IconButton,
-} from '@material-ui/core'
+import React, { FC } from 'react'
+import { AppBar, Typography, Container, Toolbar } from '@material-ui/core'
 import logo from 'Assets/images/LNULogo.webp'
 import { useStyles } from 'Assets/styles'
-import { Menu } from '@material-ui/icons'
-import { MainState } from 'App/State'
+import DarkModeToggler from './DarkModeToggler'
+import { ThemeColor } from 'type'
 
-const Header: FC = () => {
-  const { toggleNav } = useContext(MainState)
+interface Props {
+  themeColor: ThemeColor
+  changeTheme: () => void
+}
+
+const Header: FC<Props> = ({ themeColor, changeTheme }) => {
   const styles = useStyles()
 
   return (
     <AppBar className={styles.header} position="fixed" color="inherit">
       <Container>
         <Toolbar>
-          {/* <IconButton onClick={toggleNav} edge="start">
-            <Menu />
-          </IconButton> */}
           <img src={logo} alt="Logo" className={styles.menuButton} />
           <Typography variant="h6" className={styles.title}>
             Vehicle Pass Security System - Dashboard
           </Typography>
+          <DarkModeToggler
+            themeColor={themeColor}
+            changeThemeColor={changeTheme}
+          />
         </Toolbar>
       </Container>
     </AppBar>

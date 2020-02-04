@@ -5,7 +5,6 @@ import {
   CssBaseline,
 } from '@material-ui/core'
 // import Dashboard from 'Pages'
-import DarkModeToggler from 'App/Components/DarkModeToggler'
 import { ThemeColor } from 'type'
 import Header from './Components/Header'
 import { useStyles } from 'Assets/styles'
@@ -35,8 +34,17 @@ const App: FC = () => {
   }
 
   useEffect(() => {
-    if (!localStorage.getItem('themeColor'))
-      localStorage.setItem('themeColor', 'light')
+    // console.log()
+    const isNightModeInBrowser = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches
+    if (!localStorage.getItem('themeColor')) {
+      // if (isNightModeInBrowser)
+      localStorage.setItem(
+        'themeColor',
+        isNightModeInBrowser ? 'dark' : 'light',
+      )
+    }
 
     changeTheme()
   }, [])
@@ -48,16 +56,12 @@ const App: FC = () => {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <div style={{ display: 'flex' }}>
-          <Header />
+          <Header themeColor={themeColor} changeTheme={changeTheme} />
           <Navigation />
           <main className={styles.content}>
             <div className={styles.toolbar} />
             <Router />
           </main>
-          <DarkModeToggler
-            themeColor={themeColor}
-            changeThemeColor={changeTheme}
-          />
         </div>
       </MuiThemeProvider>
     </BrowserRouter>

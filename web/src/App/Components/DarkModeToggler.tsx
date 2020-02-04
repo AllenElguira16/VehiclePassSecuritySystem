@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { Fab, Tooltip, Switch } from '@material-ui/core'
-import { useStyles } from 'Assets/styles'
+import { Tooltip, IconButton } from '@material-ui/core'
+import { Brightness3, Brightness5 } from '@material-ui/icons'
 import { ThemeColor } from 'type'
 
 interface Props {
@@ -9,31 +9,21 @@ interface Props {
 }
 
 const DarkModeToggler: FC<Props> = props => {
-  const styles = useStyles()
-
   // Switch to Dark or Light theme
   const toggleDarkMode = () => {
     if (localStorage.getItem('themeColor') === 'light')
       localStorage.setItem('themeColor', 'dark')
     else localStorage.setItem('themeColor', 'light')
+
+    props.changeThemeColor()
   }
 
   return (
-    <Fab
-      className={styles.darkToggler}
-      color="primary"
-      onClick={toggleDarkMode}
-      aria-label="toggle-dark"
-    >
-      <Tooltip title="Toggle Dark">
-        <Switch
-          checked={props.themeColor === 'dark'}
-          onChange={props.changeThemeColor}
-          value="checkedA"
-          id="dark-switch"
-        />
+    <IconButton onClick={toggleDarkMode} aria-label="toggle-dark">
+      <Tooltip title="Toggle Night Mode">
+        {props.themeColor === 'dark' ? <Brightness5 /> : <Brightness3 />}
       </Tooltip>
-    </Fab>
+    </IconButton>
   )
 }
 
