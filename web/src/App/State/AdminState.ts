@@ -13,6 +13,7 @@ class State {
   private userInput: AdminInput = {
     username: '',
     password: '',
+    rePassword: '',
   }
   /**
    * Signing admin user by sending data to server then wait for response

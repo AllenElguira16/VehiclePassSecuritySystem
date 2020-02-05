@@ -13,6 +13,7 @@ import { AdminState } from 'App/State'
 import { LockOutlined } from '@material-ui/icons'
 import Alert from 'App/Components/Alert'
 import { Alert as AlertStateProps } from 'type'
+import PasswordField from 'App/Components/PasswordField'
 
 const EditCredentials: FC = () => {
   const styles = useStyles()
@@ -50,12 +51,13 @@ const EditCredentials: FC = () => {
               label="Username"
               fullWidth
             />
-            <TextField
+            <PasswordField
               onChange={onInputChange('password')}
-              margin="normal"
               label="Password"
-              type="password"
-              fullWidth
+            />
+            <PasswordField
+              onChange={onInputChange('rePassword')}
+              label="Re-enter Password"
             />
             <Button
               className={styles.marginTopMedium}

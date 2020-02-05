@@ -19,6 +19,7 @@ export type AdminInput = {
   _id: Partial<string>
   username: string
   password: string
+  rePassword: string
 }
 
 export interface Setting {
@@ -32,7 +33,7 @@ export interface Response {
 }
 
 export interface SessionInterface {
-  user: AdminInput
+  user: Omit<AdminInput, 'rePassword'>
 }
 // export interface UserInterface {
 //   userId: string;

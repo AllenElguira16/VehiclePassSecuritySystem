@@ -19,6 +19,7 @@ export type History = {
 export interface AdminInput {
   username: string
   password: string
+  rePassword: string
 }
 
 export interface TableHeader<T> {

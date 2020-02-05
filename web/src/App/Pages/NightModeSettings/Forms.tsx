@@ -9,7 +9,6 @@ import {
   FormGroup,
   makeStyles,
 } from '@material-ui/core'
-import { GetTimesResult } from 'suncalc'
 import { observer } from 'mobx-react-lite'
 
 const useLocalStyles = makeStyles({
@@ -22,10 +21,9 @@ const useLocalStyles = makeStyles({
 
 interface Props {
   onSubmit(event: ChangeEvent<HTMLFormElement>): void
-  sunCalc: GetTimesResult
 }
 
-const Forms: FC<Props> = ({ onSubmit, sunCalc }) => {
+const Forms: FC<Props> = ({ onSubmit }) => {
   const localStyles = useLocalStyles()
   const {
     time,
@@ -59,7 +57,7 @@ const Forms: FC<Props> = ({ onSubmit, sunCalc }) => {
             <Switch
               checked={isTimeAuto}
               color="primary"
-              onChange={() => setTimeAsAuto(sunCalc)}
+              onChange={setTimeAsAuto}
             />
           }
           label="Auto Detect from Sunrise/Sunset"

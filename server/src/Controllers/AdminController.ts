@@ -25,14 +25,16 @@ class AdminController {
 
   @Post()
   public async signIn(
-    @BodyParams() params: AdminInput,
+    @BodyParams() params: Omit<AdminInput, 'rePassword'>,
     @Session() session: SessionInterface,
   ): Promise<Response> {
     const { username, password } = params
     const user = await this.model.findOne({ username })
     if (!user) return { error: true }
+
     const isMatch = await compare(password, user.password)
     if (!isMatch) return { error: true }
+
     session.user = user as SessionInterface['user']
     return { success: true }
   }
@@ -45,19 +47,22 @@ class AdminController {
 
   @Put()
   public async update(
-    @BodyParams() params: Admin,
+    @BodyParams() params: AdminInput,
     @Session() session: SessionInterface,
   ): Promise<Response> {
     try {
-      const { username, password } = params
+      const { username, password, rePassword } = params
       const { user } = session
       if (!username && !password) throw 'User Input are empty'
+      if (password !== rePassword) throw "Passwords doesn't Match"
+
       const hashedPassword = await hash(password, 10)
       const admin = await this.model.findByIdAndUpdate(user._id, {
-        username, password: hashedPassword
+        username,
+        password: hashedPassword,
       })
-      console.log(admin)
-      if (!admin) throw "Error updating admin"
+      // console.log(admin)
+      if (!admin) throw 'Error updating admin'
     } catch (error) {
       return { error }
     }
