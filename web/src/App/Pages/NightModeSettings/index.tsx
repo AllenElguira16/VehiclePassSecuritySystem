@@ -1,115 +1,55 @@
-import React, { FC, useState, useEffect, ChangeEvent } from 'react'
+import React, { FC, useEffect, useContext, useState, ChangeEvent } from 'react'
 import { useStyles } from 'Assets/styles'
-import {
-  Grid,
-  Paper,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Button,
-  FormControl,
-  FormGroup,
-} from '@material-ui/core'
-import sunCalc from 'suncalc'
-import moment from 'moment'
-// import { Paper } from '@material-ui/co'
+import { Grid, Paper } from '@material-ui/core'
+import { getTimes } from 'suncalc'
+import NightModeState from 'App/State/NightModeState'
+import { observer } from 'mobx-react-lite'
+import Alert from 'App/Components/Alert'
+import { Alert as AlertStateProps } from 'type'
+import Forms from './Forms'
 
 const NightModeSettings: FC = () => {
-  const styles = useStyles()
-  const [state, setState] = useState({
-    start: '06:00',
-    end: '18:00',
+  const [alertState, setAlertState] = useState<AlertStateProps>({
+    type: '',
+    isOpen: false,
+    msg: '',
   })
-  const [isAutoTime, setAsAutoTime] = useState(false)
-  const time = sunCalc.getTimes(new Date(), 16.036, 120.33)
-
-  const timeStampToTime = (time: number) => {
-    const formattedDate = moment(time).format('HH:mm')
-    return formattedDate
-  }
+  const styles = useStyles()
+  const { populateTime, submit, isLoading } = useContext(NightModeState)
+  const sunCalc = getTimes(new Date(), 16.036, 120.33)
 
   useEffect(() => {
-    if (isAutoTime) {
-      setState({
-        start: timeStampToTime(time.sunrise.getTime()),
-        end: timeStampToTime(time.sunset.getTime()),
-      })
-    }
-  }, [])
+    if (isLoading) populateTime(sunCalc)
+  }, [populateTime, sunCalc, isLoading])
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
-      [event.currentTarget.name]: event.currentTarget.value,
+  const onSubmit = (event: ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    submit()
+    setAlertState({
+      type: 'success',
+      isOpen: true,
+      msg: 'Saved!',
     })
   }
 
-  const setAutoTime = () => {
-    setState({
-      start: timeStampToTime(time.sunrise.getTime()),
-      end: timeStampToTime(time.sunset.getTime()),
-    })
-    setAsAutoTime(!isAutoTime)
-  }
-
-  const submit = () => {
-    // localStorage.setItem('isAutoTime', );
-  }
-
+  if (isLoading) return <>Loading</>
   return (
     <Grid container justify="center" spacing={2}>
       <Grid item md={6}>
         <Paper className={styles.signInContainer}>
           <h2>Schedule Night Light</h2>
-          <form onSubmit={submit}>
-            <Grid container direction="row" justify="space-around">
-              <TextField
-                id="time"
-                label="Start Time"
-                type="time"
-                value={state.start}
-                name="start"
-                inputProps={{
-                  step: 300, // 5 min
-                }}
-                disabled={isAutoTime}
-                onChange={onChange}
-              />
-              <TextField
-                id="time"
-                label="End Time"
-                type="time"
-                value={state.end}
-                name="end"
-                inputProps={{
-                  step: 300, // 5 min
-                }}
-                disabled={isAutoTime}
-                onChange={onChange}
-              />
-            </Grid>
-            <FormGroup>
-              <FormControl>
-                <FormControlLabel
-                  control={
-                    <Checkbox checked={isAutoTime} onChange={setAutoTime} />
-                  }
-                  label="Set Time same as Sunset and Sunrise?"
-                />
-              </FormControl>
-            </FormGroup>
-            <FormGroup>
-              <FormControl>
-                <Button color="primary" variant="contained">
-                  Apply
-                </Button>
-              </FormControl>
-            </FormGroup>
-          </form>
+          <Forms onSubmit={onSubmit} sunCalc={sunCalc} />
         </Paper>
+        <Alert
+          type={alertState.type}
+          open={alertState.isOpen}
+          onClose={() => setAlertState({ ...alertState, isOpen: false })}
+        >
+          {alertState.msg}
+        </Alert>
       </Grid>
     </Grid>
   )
 }
 
-export default NightModeSettings
+export default observer(NightModeSettings)
