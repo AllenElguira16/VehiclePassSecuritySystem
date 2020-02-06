@@ -1,5 +1,13 @@
 import React, { FC, useContext } from 'react'
-import { TableRow, TableCell, IconButton, Checkbox } from '@material-ui/core'
+import {
+  TableRow,
+  TableCell,
+  IconButton,
+  // Checkbox,
+  MenuItem,
+  FormControl,
+  Select,
+} from '@material-ui/core'
 import { Edit, Delete, Print } from '@material-ui/icons'
 import { UsersState } from 'State'
 import { observer } from 'mobx-react-lite'
@@ -41,17 +49,28 @@ const UserRows: FC = () => {
             <Forms type={formState.type} user={user} key={i} />
           ) : (
             <TableRow key={i}>
+              <TableCell align="left">{user.schoolID}</TableCell>
+              <TableCell align="left">{user.firstname}</TableCell>
+              <TableCell align="left">{user.lastname}</TableCell>
               <TableCell align="left">
-                <Checkbox
+                {/* <Checkbox
                   checked={user.active}
                   onChange={onActiveChange(user.id)}
                   value="primary"
                   inputProps={{ 'aria-label': 'primary checkbox' }}
-                />
+                /> */}
+                <FormControl>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={user.active}
+                    onChange={onActiveChange(user.id)}
+                  >
+                    <MenuItem value="true">Active</MenuItem>
+                    <MenuItem value="false">In-Active</MenuItem>
+                  </Select>
+                </FormControl>
               </TableCell>
-              <TableCell align="left">{user.schoolID}</TableCell>
-              <TableCell align="left">{user.firstname}</TableCell>
-              <TableCell align="left">{user.lastname}</TableCell>
               <TableCell align="left">{user.type}</TableCell>
               <TableCell align="left">{formatDate(user.dateCreated)}</TableCell>
               <TableCell align="right">
