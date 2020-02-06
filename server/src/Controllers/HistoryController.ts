@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Inject, PathParams, Delete } from '@tsed/common'
-import { History } from 'Model/History'
+import { History } from 'Models/History'
 import { MongooseModel } from '@tsed/mongoose'
 import { Response } from 'type'
 

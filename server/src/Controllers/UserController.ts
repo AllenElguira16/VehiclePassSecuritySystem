@@ -8,12 +8,12 @@ import {
   BodyParams,
   PathParams,
 } from '@tsed/common'
-import { User } from 'Model/User'
+import { User } from 'Models/User'
 import { MongooseModel } from '@tsed/mongoose'
 import { Response, UserInput } from 'type'
 import { ObjectId } from 'mongodb'
-import { History } from 'Model/History'
-import ArduinoService from 'Providers/ArduinoService'
+import { History } from 'Models/History'
+// import ArduinoService from 'Providers/ArduinoService'
 import { MySocketService } from 'Providers/SocketService'
 
 interface PathParamsInterface {
@@ -31,9 +31,8 @@ class UserController {
   constructor(
     @Inject(User) private user: MongooseModel<User>,
     @Inject(History) public history: MongooseModel<History>,
-    private socketService: MySocketService,
-  ) // private readonly arduinoService: ArduinoService,
-  {}
+    private socketService: MySocketService, // private readonly arduinoService: ArduinoService,
+  ) {}
   /**
    * Returns all or search Users base on keyword
    * @param params userParams
@@ -149,6 +148,25 @@ class UserController {
       if (error) return { error }
     }
     return { success: 'User updated!' }
+  }
+
+  @Put('/toggle-active')
+  public async toggleActive(@BodyParams() { id }: { id: string }): Promise<
+    Response
+  > {
+    try {
+      // console.table(id)
+      const fetchedUser = await this.user.findById(id)
+      if (!fetchedUser) throw 'Houston, we have a problem'
+      const updateResponse = await this.user.findByIdAndUpdate(id, {
+        active: !fetchedUser.active,
+      })
+
+      if (!updateResponse) throw 'Error Updating!'
+    } catch (error) {
+      if (error) return { error }
+    }
+    return { success: 'Updated!' }
   }
 
   @Delete('/:id')

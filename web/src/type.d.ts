@@ -1,5 +1,6 @@
 export interface User {
   id: string
+  active: boolean
   schoolID: string
   type: 'Employee' | 'Student'
   firstname: string
@@ -7,7 +8,7 @@ export interface User {
   dateCreated: Date
 }
 
-export type UserInput = Omit<User, 'dateCreated'>
+export type UserInput = Omit<User, 'dateCreated' | 'active'>
 
 export type History = {
   id: string

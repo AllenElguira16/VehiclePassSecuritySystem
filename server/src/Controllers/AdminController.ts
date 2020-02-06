@@ -10,7 +10,7 @@ import {
 } from '@tsed/common'
 import { hash, compare } from 'bcryptjs'
 import { MongooseModel } from '@tsed/mongoose'
-import { Admin } from 'Model/Admin'
+import { Admin } from 'Models/Admin'
 import { SessionInterface, AdminInput, Response } from 'type'
 
 @Controller('/admin')
