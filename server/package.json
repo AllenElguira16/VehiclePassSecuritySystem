@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@tsed/common": "^5.32.1",
-    "@tsed/core": "^5.32.1",
+    "@tsed/core": "^5.65.7",
     "@tsed/di": "^5.32.1",
     "@tsed/mongoose": "^5.32.1",
     "@tsed/socketio": "^5.32.1",
