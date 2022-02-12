@@ -27,7 +27,7 @@
     "@types/socket.io": "^2.1.4",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
     "@typescript-eslint/parser": "^2.4.0",
-    "ajv": "^6.10.2",
+    "ajv": "^6.12.3",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.0.0",
     "cors": "^2.8.5",
